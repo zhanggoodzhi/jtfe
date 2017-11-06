@@ -1,0 +1,80 @@
+@border:1px solid #eee;
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+}
+.gu-hide {
+  display: none !important;
+}
+.gu-unselectable {
+  user-select: none !important;
+}
+.gu-transit {
+  opacity: 0.2;
+}
+
+
+.kb-form-builder{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    user-select: none;
+    h5{
+        font-size: 17px;
+        margin: 16px 0;
+        padding: 0 8px;
+    }
+
+    .menu-item{
+        box-sizing: border-box;
+        text-align: center;
+        padding: 5px;
+        border-bottom: @border;
+        border-right: @border;
+        cursor:pointer;
+        float: left;
+        width: 50%;
+
+        &:first-child,&:nth-child(2){
+            border-top:@border;
+        }
+
+        &:nth-child(2n+1){
+            border-left:@border;
+        }
+        &:nth-child(2n+0){
+            margin-left: -1px;
+        }
+
+        .material-icons{
+            font-size: 20px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+        span{
+            font-size: 16px;
+            display: inline-block;
+            line-height: 24px;
+        }
+    }
+
+    .kb-content{
+        .kb-form-group{
+            margin-top: 10px;
+            padding: 5px;
+            border:2px dashed transparent;
+            transition: border-color 0.2s;
+            input{
+                margin-bottom: 10px;
+            }
+            &.active{
+                border-color: #eee;
+            }
+        }
+    }
+
+    .property-content{
+        padding: 10px 0;
+    }
+}

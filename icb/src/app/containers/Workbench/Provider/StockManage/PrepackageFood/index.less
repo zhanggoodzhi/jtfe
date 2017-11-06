@@ -1,0 +1,78 @@
+.Content {
+    padding: 5px;
+    position: relative;
+    .BatchIn {
+        position: absolute;
+        top: 5px;
+        right: 180px;
+        z-index: 9;
+    }
+    .BatchOut {
+        position: absolute;
+        top: 5px;
+        right: 87px;
+        z-index: 9;
+    }
+    .Add {
+        position: absolute;
+        top: 5px;
+        right: 15px;
+        z-index: 9;
+    }
+}
+
+.Flex {
+    display: flex;
+}
+
+.StockOutTitle {
+    padding: 10px 0;
+}
+
+.List {
+    padding: 10px 0;
+    li {
+        position: relative;
+        border-bottom: 1px solid #eee;
+        padding: 10px 5px;
+        &:hover {
+            background: #edf3fe;
+        }
+        &:last-child {
+            border: 0;
+        }
+        :global(.img-wrap) {
+            padding-right: 8px;
+            flex: none;
+            img {
+                width: 120px;
+                height: 70px;
+            }
+        }
+        :global(.btn-wrap) {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 30px;
+        }
+    }
+}
+
+.Table {
+    padding: 10px 0px;
+}
+
+.None {
+    width: 16px;
+    height: 18px;
+    display: inline-block;
+}
+
+.Mf {
+    margin-left: 15px;
+}
+
+.PaginationWrap {
+    text-align: right;
+    padding: 10px 5px;
+}

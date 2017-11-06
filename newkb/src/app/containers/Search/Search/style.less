@@ -1,0 +1,186 @@
+.Middle {
+    display: flex;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 150px;
+}
+
+.Normal {
+    display: flex;
+}
+
+.SearchInputWrap {
+    :global(.ant-btn-lg) {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+    }
+    :global(.ant-input-suffix) {
+        right: 0!important;
+    }
+    :global(.ant-input:not(:last-child)) {
+        padding-right: 70px!important;
+    }
+}
+
+.SearchItem {
+    display: flex;
+    padding: 10px 0;
+    .Title {
+        color: #d4d4d4;
+    }
+}
+
+.UpdateTimeWrap {
+    .Title {
+        line-height: 28px;
+    }
+}
+
+.Main {
+    flex: 1;
+}
+
+.Card {
+    margin-top: 10px;
+}
+
+.RightSide {
+    margin: -16px 0;
+    padding-left: 20px;
+    flex: none;
+    border-left: 5px solid #f8f6f2;
+    :global(.ant-card-head) {
+        background: #e0deda;
+        position: relative;
+        .Column {
+            width: 5px;
+            position: absolute;
+            background: #dd5601;
+            left: 0;
+            top: 15%;
+            height: 70%;
+        }
+    }
+    :global(.ant-card-body) {
+        background: #f8f6f2;
+    }
+}
+
+.HotSearchWrap {
+    .Title {
+        border-bottom: 1px solid #eee;
+        padding: 10px 0;
+        img {
+            width: 20px;
+            height: auto;
+            vertical-align: middle;
+        }
+        span {
+            font-size: 16px;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+    }
+    .Content {
+        padding-left: 20px;
+        li {
+            color: #d4d4d4;
+            margin: 5px 0;
+            .Number {
+                display: inline-block;
+                width: 30px;
+            }
+            .Text {
+                font-size: 14px;
+                cursor: pointer;
+                &:hover {
+                    color: #36a8ea;
+                }
+            }
+        }
+    }
+}
+
+.ResultWrap {
+    .ShowWrap {
+        margin: 0;
+        padding: 0;
+        p {
+            padding: 5px 0;
+        }
+        li {
+            border: 1px solid #e3e3e3;
+            box-shadow: 1px 2px 1px rgba(0, 0, 0, .07);
+            margin: 10px 0;
+        }
+        .Top {
+            border-bottom: 1px solid #e3e3e3;
+            display: flex;
+            padding: 0 5px;
+            align-items: center;
+            .NameWrap {
+                flex: none;
+                width: 50%;
+                text-align: center;
+                span {
+                    font-size: 30px;
+                }
+            }
+            .InfoWrap {
+                font-size: 14px;
+                flex: 1;
+            }
+        }
+        .Bottom {
+            font-size: 14px;
+            padding: 5px;
+        }
+    }
+}
+
+.SearchDetail {
+    b {
+        color: #c51f29;
+    }
+    :global(.detail-item) {
+        padding: 10px 0;
+        a {
+            cursor: pointer;
+            text-decoration: none;
+            border-bottom: 1px solid #039be5;
+        }
+        :global(.title) {
+            font-size: 18px;
+        }
+        :global(.separate) {
+            padding: 0 15px;
+        }
+        :global(.info) {
+            span {
+                color: #999;
+            }
+        }
+        p {
+            margin: 5px 0;
+            font-size: 12px;
+        }
+        :global(.attachments) {
+            li {
+                padding: 3px 0;
+                img {
+                    width: 15px;
+                    height: auto;
+                    vertical-align: middle;
+                    margin-right: 10px;
+                }
+                :global(.file-name) {
+                    font-size: 12px;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+    :global(.pagination-wrap) {
+        display: none;
+    }
+}

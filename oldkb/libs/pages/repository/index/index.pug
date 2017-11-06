@@ -1,0 +1,96 @@
+extends /layouts/main.pug
+block tabs
+  +tab('知识列表')(href="#knowledgeList",id="knowledgeList-btn")
+  +tab('待审核列表')(href="#unreviewed",id="unreviewed-btn")
+  +tab('已审核列表')(href="#reviewed",id="reviewed-btn")
+  +tab('更新记录')(href="#allstatus",id="allstatus-btn")
+  +tab('回收站')(href="#filed",id="filed-btn")
+block script
+  script(th:inline="javascript").
+    /*<![CDATA[*/
+        var alldirectory = [[${alldirectory}]];
+        var templates = [[${templates}]];
+        var labels = [[${labels}]];
+    /*]]>*/
+block mainbody
+  .kb-tabs-content
+    .row.file-menu-wrap#knowledgeList
+      .col.s10.left-col
+          .menu
+            .title
+                span.menu-title 知识类别
+            .content.kb-scroll
+              #index-jstree.jstree.kb-select-tree
+          .middle-line
+          .zz-detail
+            .title
+                span.menu-title 知识类别
+                .btn-group
+                  a.waves-effect.btn-small.btn.kb-flat-btn#return
+                    i.material-icons.left undo
+                    | 返回上层
+                  a.dropdown-button.btn.btn-small(data-activates="add-btn", href="#")
+                    i.material-icons.left add
+                    | 新增知识
+                  ul#add-btn.dropdown-content.add-drop.kb-dropdown-content
+                    p.slide-title 请选择模板
+                    li(th:each="template:${templates}")
+                      a(th:text="${template.name}",th:attr="data-id=${template.id}")
+                  a.waves-effect.btn-small.btn#import
+                    i.material-icons.left play_for_work
+                    | 批量导入
+            .content.tab-content
+              table#key-table.table.key-table
+              table#search-table.table.key-table
+      .col.s2#right-side
+    #unreviewed.row
+      .col.m12
+        form.clearfix.kb-search-form
+          +input(3)(placeholder='关键字',id="unreviewed-keyword")
+          +rangeDate('更新时间')(id="unreviewed-updatetime")
+          .col.s6.input-field
+            +btn('查询')(id="unreviewed-search")
+            +btn('批量通过')(id="allPass")
+            +btn('批量驳回')(id="allRefuse")
+        table#unreviewed-table
+    #reviewed.row
+      .col.m12
+        form.clearfix.kb-search-form
+          +input(3)(placeholder='关键字',id="reviewed-keyword")
+          +rangeDate('审核时间')(id="reviewed-updatetime")
+          .col.s6.input-field
+            +btn('查询')(id="reviewed-search")
+        table#reviewed-table
+    #allstatus.row
+      .col.m12
+        form.clearfix.kb-search-form
+          +input(2)(placeholder='关键字',id="allstatus-keyword")
+          .col.s2.input-field
+            select.select-small(id="allstatus-template")
+              option(value="",disabled,selected) 请选择模板
+              option(th:each="template:${templates}",th:text="${template.name}",th:value="${template.id}")
+          .col.s2.input-field
+            select.select-small(id="allstatus-status",multiple)
+              option(value="",disabled,selected) 状态
+              option(value="1") 草稿
+              option(value="2") 审核中
+              option(value="3") 已发布
+              option(value="4") 被驳回
+              option(value="5") 已归档
+          +rangeDate('更新时间')(id="allstatus-updatetime")
+          .col.s3.input-field
+            +btn('查询')(id="allstatus-search")
+            +btn('清空条件')(id="allstatus-clear")
+        table#allstatus-table
+    #filed.row
+      .col.m12
+        form.clearfix.kb-search-form
+          +input(2)(placeholder='关键字',id="filed-keyword")
+          .col.s2.input-field
+            select.select-small(id="filed-template")
+              option(value="",disabled,selected) 请选择模板
+              option(th:each="template:${templates}",th:text="${template.name}",th:value="${template.id}")
+          +rangeDate('归档时间')(id="filed-updatetime")
+          .col.s2.input-field
+            +btn('查询')(id="filed-search")
+        table#filed-table

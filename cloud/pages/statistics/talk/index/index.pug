@@ -1,0 +1,42 @@
+extends /layout/main.pug
+
+block variable
+  - const href="spss/sessionLog/index";
+
+block script
+  script.
+    var baseuri = '${baseuri}';
+block mainbody
+  .x_panel
+    .x_content
+      form#search-form.form-horizontal.cloud-search-area
+        .form-group
+          label.cloud-input-title 用户
+          .cloud-input-content
+            input#user.form-control.input-sm(type='text',placeholder="请输入关键词")
+        .form-group
+          label.cloud-input-title 来源
+          .cloud-input-content
+            select#source.form-control.input-sm(name='pushway')
+              option(value='') 全部
+              option(value='PC网页') PC网页
+              option(value='微信') 微信
+              option(value='移动应用') 移动应用
+        .form-group
+          label.cloud-input-title 满意度
+          .cloud-input-content
+            select#satisfy.form-control.input-sm(name='pushway')
+              option(value='') 全部
+              option(value='100') 非常满意
+              option(value='75') 满意
+              option(value='50') 一般
+              option(value='25') 不满意
+              option(value='0') 非常不满意
+        .form-group
+          label.cloud-input-title 开始时间
+          .cloud-input-content.cloud-md.big-date
+            input#form-date.form-control.input-sm.form-date(type='text')
+        .form-group
+          button.btn.btn-primary.btn-sm(type="button",id=`search-btn`) 查询
+          button.btn.btn-primary.btn-sm(type="button",id='export') 导出
+      table#key-table.table.fixed-table

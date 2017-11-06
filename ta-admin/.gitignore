@@ -1,0 +1,4 @@
+### forntend ###
+npm-debug.log*
+/node_modules
+/.awcache

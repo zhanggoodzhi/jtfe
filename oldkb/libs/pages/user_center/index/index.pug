@@ -1,0 +1,182 @@
+extends /layouts/main.pug
+block tabs
+  +tab('个人中心')(href="#kb-user",id="kb-user-btn")
+block script
+  script(th:inline="javascript").
+    /*<![CDATA[*/
+        var result = [[${result}]];
+        var alldirectory = [[${alldirectory}]];
+        var templates = [[${templates}]];
+        var labels = [[${labels}]];
+    /*]]>*/
+block mainbody
+  .kb-tabs-content
+    //- .row#kb-search
+    #kb-user
+      .head-wrap.clearfix
+        .left
+          img(src="/images/adminhead.png")
+          span.title(th:text="${session.user.alias}")
+        .right
+          ul
+            li
+              h3(th:text="${result.knowledgeNum}",data-link="my-knowledge")
+              p 知识
+            li
+              h3(th:text="${result.commentNum}",data-link="my-comment")
+              p 评论
+            li
+              h3(th:text="${result.collectionNum}",data-link="my-collect")
+              p 收藏
+      .row.user-tag
+        .col.s2(data-id="message-center").active
+          .title-wrap
+            span.title 消息中心
+            span.triangle
+        .col.s2(data-id="draft-box")
+          .title-wrap
+            span.title 我的草稿箱
+            span.triangle
+        .col.s2(data-id="my-knowledge")
+          .title-wrap
+            span.title 我的知识
+            span.triangle
+        .col.s2(data-id="my-comment")
+          .title-wrap
+            span.title 我的评论
+            span.triangle
+        .col.s2(data-id="my-collect")
+          .title-wrap
+            span.title 我的收藏
+            span.triangle
+        .col.s2(data-id="message-edit")
+          .title-wrap
+            span.title 资料修改
+            span.triangle
+      .tag-content.active#message-center
+        .search-form.row
+          .btn-wrap.col.s12.input-field
+            a.waves-effect.waves-light.btn.btn-small.allReaded 全部标记为已读
+        .kb-scroll
+          .scroll-el
+            .row.message-wrap
+              ul
+                //- li
+                //-   .row
+                //-     .image-wrap.col.s1
+                //-       img(src="/images/letter1.png")
+                //-     .main.col.s11
+                //-       .top.clearfix
+                //-         span.title.left 有人回复了我的知识XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                //-         span.time.right 2016-1-23 17:23
+                //-       .text @胡一菲：这个知识点丰富多彩这个知识点丰富多彩这个知识点丰富多彩这个知识点丰富多彩这个知识点丰富多彩。
+      .tag-content#draft-box
+        .search-form.row
+          .btn-wrap.col.s12.input-field
+            a.dropdown-button.btn.btn-small(data-activates="draft-add-btn", href="#")
+              i.material-icons.left add
+              | 新增知识
+            ul#draft-add-btn.dropdown-content.add-drop
+              p.slide-title 请选择模板
+              li(th:each="template:${templates}")
+                a(th:text="${template.name}",th:attr="data-id=${template.id}")
+        .row
+          .col.s12
+            table#draft-table
+      .tag-content#my-knowledge
+        .row.search-form
+          +input(2)(placeholder='关键字',id="my-knowledge-keyword")
+          .col.s3.input-field
+            select.select-small(id="my-knowledge-status",multiple)
+              option(value="",disabled,selected) 状态
+              option(value="1") 草稿
+              option(value="2") 审核中
+              option(value="3") 已发布
+              option(value="4") 被驳回
+              option(value="5") 已归档
+          +rangeDate('更新时间')(id="my-knowledge-updatetime")
+          .btn-wrap.col.s4.input-field
+            +btn('查询')(id="my-knowledge-search")
+            +btn('清空条件')(id="my-knowledge-clear")
+            a.dropdown-button.btn.btn-small(data-activates="knowledge-add-btn", href="#")
+              i.material-icons.left add
+              | 新增知识
+            ul#knowledge-add-btn.dropdown-content.add-drop
+              p.slide-title 请选择模板
+              li(th:each="template:${templates}")
+                a(th:text="${template.name}",th:attr="data-id=${template.id}")
+        .row
+          .col.s12
+            table#knowledge-table
+      .tag-content#my-comment
+        .row.search-form
+          +input(2)(placeholder='知识点名称',id="my-comment-keyword")
+          +input(2)(placeholder='评论内容',id="my-comment-content")
+          +rangeDate('评论时间')(id="my-comment-commentTime")
+          .btn-wrap.col.s5.input-field
+            +btn('查询')(id="my-comment-search")
+            +btn('清空条件')(id="my-comment-clear")
+        .row
+          .col.s12
+            table#comment-table
+      .tag-content#my-collect
+        .row.search-form
+          +input(2)(placeholder='知识点名称',id="my-collect-keyword")
+          +rangeDate('收藏时间')(id="my-collect-collectTime")
+          .btn-wrap.col.s7.input-field
+            +btn('查询')(id="my-collect-search")
+            +btn('清空条件')(id="my-collect-clear")
+        .row
+          .col.s12
+            table#collect-table
+      .tag-content#message-edit
+        .row.user-form
+          .col.s12
+            //- .user-head(th:text="${session.user}")
+            //- .user-head(th:text="${session.appid}")
+            .kb-scroll
+              .form-wrap
+                form
+                  .head-icon-wrap
+                    img(src="/images/adminhead.png")
+                    .text 上传新头像
+                  //- .save-psd-btn-wrap
+                  //-   a.waves-effect.waves-light.btn.btn-small
+                  //-     i.material-icons.left cloud
+                  //-     | 保存密码
+                  .row.form-item
+                    .col.input-field.s3.label.account(th:attr="data-id=${session.user.id}")
+                      span 账号名
+                    +input(9)(disabled,id="edit-username",th:value="${session.user.username}")
+                  .row.form-item
+                    .col.input-field.s3.label
+                      span 用户名(必填)
+                    +input(9)(placeholder='请输入姓名',id="edit-alias",th:value="${session.user.alias}")
+                  .row.form-item
+                    .col.input-field.s3.label
+                      span 邮箱(必填)
+                    +input(9)(placeholder='请输入邮箱',id="edit-email",th:value="${session.user.email}")
+                  .row.form-item
+                    .col.input-field.s3.label
+                      span 密码(必填)
+                    +input(9)(type="password",placeholder='请输入密码',id="edit-password")
+                  .row.form-item
+                    .col.input-field.s3.label
+                      span 新密码
+                    +input(9)(type="password",placeholder='请输入新密码',id="edit-newPassword")
+                  .row.form-item
+                    .col.input-field.s3.label
+                      span 确认密码
+                    +input(9)(type="password",placeholder='请再次输入新密码',id="edit-reNewPassword")
+                  .row.form-item
+                    .col.input-field.s3.label
+                      span 手机号
+                    +input(9)(placeholder='请输入手机号',id="edit-mobile",th:value="${session.user.mobile}")
+                  .row.form-item
+                    .col.input-field.s3.label
+                      span QQ
+                    +input(9)(placeholder='请输入QQ',id="edit-qq",th:value="${session.user.qq}")
+              .btn-wrap
+                a.waves-effect.waves-light.btn.btn-small.btn-flat#edit-cancel 取消
+                a.waves-effect.waves-light.btn.btn-small#edit-sure 确定
+

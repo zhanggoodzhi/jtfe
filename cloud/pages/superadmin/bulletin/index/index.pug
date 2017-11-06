@@ -1,0 +1,49 @@
+extends /layout/main.pug
+
+block variable
+  - const isadmin=true;
+  - const title="公告管理"
+
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+        .form-group
+          label.cloud-input-title 公告标题
+          .cloud-input-content
+            input#search-title.form-control.input-sm(maxlength="50",type='text')
+        .form-group
+          label.cloud-input-title 公告内容
+          .cloud-input-content
+            input#search-plainText.form-control.input-sm(type='text')
+        +cDate('创建时间','create')
+        .form-group
+          button#search-btn.btn.btn-primary.btn-sm(type='button') 查询
+          button#edit-btn.btn.btn-primary.btn-sm(type='button') 编辑
+          button#add-btn.btn.btn-primary.btn-sm(type='button') 添加
+          button#delete-btn.btn.btn-danger.btn-sm(type='button') 删除
+
+        +cPageChange
+      table#table.table.fixed-table
+
+block modal
+  #create-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-default
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 编辑公告
+        .modal-body
+          form.form-horizontal
+            .form-group.clearfix
+              label.cloud-input-title 公告标题
+              .cloud-input-content
+                input#title.form-control.input-sm(type='text', name='title')
+            .form-group
+              label.cloud-input-title 公告内容
+              .cloud-input-content.form-date-wrap
+                #plainText.form-date
+        .modal-footer
+          button#create-submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消

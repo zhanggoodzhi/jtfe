@@ -1,0 +1,27 @@
+extends /layout/main.pug
+block variable
+  - var title="粉丝管理";
+
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+        .clearfix
+          .form-group
+            label.cloud-input-title 公众号
+            .cloud-input-content
+              select#weixin-account.form-control.input-sm(name='character')
+                option(value="") 全部
+                c:forEach(var="wechatCredential",items="${wechatCredentials}")
+                  option(value="${wechatCredential.id}") ${wechatCredential.wxName}
+          .form-group
+            label.cloud-input-title 分组
+            .cloud-input-content
+              select#weixin-group.form-control.input-sm(name='character')
+                option(value="") 全部分组
+        .clearfix
+          .form-group
+            button#search-btn.btn.btn-primary.btn-sm(type='button') 查询
+            button#sync-btn.btn.btn-primary.btn-sm(type='button',disabled) 同步粉丝
+          +cPageChange
+      table#table.table.fixed-table

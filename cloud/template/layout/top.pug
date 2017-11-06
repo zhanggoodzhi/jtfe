@@ -1,0 +1,52 @@
+doctype html
+include ./component.pug
+
+.
+  <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+  <%
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()+ request.getContextPath() + "/";
+  %>
+c:set(var="ctx",value="${pageContext.request.contextPath}")/
+c:set(var="isVcg",value="${sessionScope.accessKey=='pre.dam.vcg.com'}")/
+
+
+
+block variable
+
+html(lang="zh-cmn-Hans")
+  head
+    <!-- !{copyright} -->
+    base(href!="<%=basePath%>")
+    meta(charset="utf-8")
+    //- meta(name="viewport",content="width=device-width,initial-scale=1,user-scalable=0")
+    meta(name="referrer",content="no-referrer")
+    meta(http-equiv="X-UA-Compatible",content="IE=edge,chrome=1")
+    meta(name="renderer",content="webkit")
+    meta(name="keyword",content="金童云平台,金童,云平台,智能机器人")
+
+    if common&&common.css
+      link(type="text/css",rel="stylesheet",href=common.css)
+    if file&&file.css
+      link(type="text/css",rel="stylesheet",href=file.css)
+
+    block style
+
+    title 金童智能客服云平台
+  body.nav-md
+    block body
+
+    script.
+      var ctx="${ctx}";
+      var isVcg=${isVcg};
+    if common&&common.js
+      script(src=common.js)
+    block script
+    if file&&file.js
+      script(src=file.js)
+
+    <!--[if lte IE 9]>
+    <script src='${ctx}/module/placeholders/placeholders.jquery.min.js'></script>
+    <![endif]-->

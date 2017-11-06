@@ -1,0 +1,267 @@
+@import '../global/pub.less';
+@import '../global/variable.less';
+// .jstree {
+//     user-select: none;
+//     font-size: 1rem;
+//     font-weight: 300;
+//     outline: none;
+// }
+
+// .jstree-contextmenu {
+//     &>li>a {
+//         color: #444;
+//         font-weight: 300;
+//         font-size: 12px;
+//         padding: 0 36px;
+//         height: 30px;
+//         line-height: 30px;
+//     }
+//     .material-icons {
+//         height: 24px;
+//         line-height: 30px!important;
+//         width: 24px!important;
+//         margin-left: -30px;
+//         font-size: 18px;
+//     }
+// }
+
+// .jstree-default>.jstree-container-ul .jstree-loading {
+//     &>.jstree-ocl {
+//         .kb-icon;
+//         background-image: none !important;
+//         line-height: 24px;
+//         font-size: 18px;
+//         width: 24px;
+//         height: 24px;
+//         .kb-rotate;
+//         &::after {
+//             content: 'autorenew';
+//         }
+//     }
+// }
+
+// .kb-tree-wrap {
+//     display: none;
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     background-color: #fff;
+//     z-index: 999;
+// }
+
+// .select-small .kb-placeholder {
+//     padding: 12px 10px;
+// }
+
+// .select-small .kb-select-tree .jstree-node {
+//     .jstree-anchor {
+//         height: 44px;
+//         padding: 12px 10px;
+//     }
+//     &>.jstree-icon {
+//         line-height: 22px;
+//         margin: 10px 0;
+//     }
+// }
+
+// .kb-select-tree {
+//     width: 100%;
+//     .jstree-node {
+//         position: relative;
+//         background-image: none;
+//         padding: 0 4px;
+//         &.jstree-open, &.jstree-closed {
+//             &>.jstree-ocl::after {
+//                 content: 'play_arrow';
+//             }
+//         }
+//         &.jstree-open>.jstree-ocl {
+//             transform: rotate(90deg);
+//         }
+//         &.jstree-leaf>.jstree-ocl::after {
+//             content: none;
+//         }
+//         &>.jstree-icon {
+//             .kb-icon;
+//             background-image: none;
+//             margin: 12px 0;
+//             transition: transform 0.2s;
+//             font-size: 18px;
+//             line-height: 24px;
+//             &::after {
+//                 content: none;
+//             }
+//         }
+//         .jstree-anchor {
+//             padding: 14px 12px;
+//             // color: @link-color;
+//             position: absolute;
+//             right: 0;
+//             top: 0;
+//             height: 48px;
+//             left: 24px;
+//             &.jstree-hovered {
+//                 background-color: #eee;
+//                 box-shadow: none;
+//                 border-radius: 0;
+//             }
+//             &.jstree-clicked {
+//                 background: none;
+//                 color: @link-color;
+//                 box-shadow: none;
+//                 border-radius: 0;
+//             }
+//             // &.jstree-hovered, &.jstree-clicked {
+//             //     background-color: #eee;
+//             //     color: @link-color;
+//             //     box-shadow: none;
+//             //     border-radius: 0;
+//             // }
+//             &.jstree-disabled {
+//                 color: rgba(0, 0, 0, .3);
+//                 background-color: transparent;
+//             }
+//         }
+//     }
+//     .jstree-loading {
+//         padding: 14px 16px;
+//         color: @link-color;
+//         >i.jstree-icon{
+//             &::after{
+//                 content: 'autorenew'!important;
+//             }
+//         }
+//     }
+// }
+
+// .kb-placeholder {
+//     padding: 14px 16px;
+//     cursor: pointer;
+//     color: rgba(0, 0, 0, .3);
+// }
+
+// .kb-placeholder, .kb-select-tree li {
+//     // width: 100%;
+//     font-size: 16px;
+//     font-weight: normal;
+// }
+.kb-select-wrapper {
+    position: relative;
+    .kb-tree-wrap {
+        display: none;
+    }
+    .caret {
+        font-size: 10px;
+        height: 10px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+    }
+}
+
+.kb-select-wrapper .kb-placeholder {
+    color: rgba(0, 0, 0, .3);
+    cursor: pointer;
+    line-height: 22px;
+    font-size: 16px;
+    display: block;
+    outline: none;
+    padding: 10px 20px;
+}
+
+.jstree {
+    background-color: #fff;
+    ul {
+        margin: 0;
+    }
+}
+
+.jstree-anchor {
+    padding: 10px;
+    line-height: 22px;
+    font-size: 16px;
+    display: block;
+    cursor: pointer;
+    background-color: transparent;
+    transition-duration: 0.2s;
+    transition-property: background-color;
+    outline: none;
+    &.jstree-search {
+        color: #8b0000;
+        font-style: italic;
+    }
+
+    &:hover, &.jstree-clicked {
+        background-color: #eee;
+    }
+}
+
+.jstree-node {
+    position: relative;
+}
+
+.jstree-node {
+    padding-left: 18px;
+}
+
+.jstree-open, .jstree-closed {
+    &.jstree-loading& > .jstree-ocl {
+        .kb-rotate;
+        &::after {
+            content: 'refresh';
+        }
+    }
+    & > .jstree-ocl {
+        transition-duration: 0.2s;
+        transition-property: transform;
+        .kb-icon;
+        cursor: pointer;
+        position: absolute;
+        left: 0;
+        top: 11px;
+        font-size: 18px;
+        &::after {
+            content: 'play_arrow';
+        }
+    }
+}
+
+.jstree-open > .jstree-ocl {
+    transform: rotate(90deg);
+}
+
+.jstree-closed > .jstree-ocl {
+    transform: rotate(0);
+}
+
+.vakata-context {
+    position: absolute;
+    background: #f7f7f7;
+    padding: 2px;
+    border: 1px solid #eee;
+    a {
+        display: block;
+        line-height: 20px;
+        font-size: 14px;
+        padding: 5px 8px;
+        outline: none;
+        color: @text-color;
+        &:hover {
+            background-color: #e8eff7;
+        }
+
+        .material-icons {
+            position: relative;
+            top: 3px;
+            font-size: 18px;
+        }
+        .vakata-contextmenu-sep {
+            margin: 0 4px;
+        }
+    }
+    li + li {
+        border-top: 1px solid #eee;
+    }
+}

@@ -1,0 +1,14 @@
+.music-box
+  .music-outer-wrap.clearfix(data-url= url)
+    section.music-preview
+      div.preview-l
+        .song-preview.truncate 歌曲：#{song}
+        .song-related.truncate
+          span.singer-preview 歌手：#{singer}
+          | /
+          span.singer-album-preview 专辑: #{album}
+      div.preview-r.music-wrap.clearfix(data-url= url)
+        i.fa.fa-pause.music-play
+        i.fa.fa-play-circle.music-pause
+  p.delete
+    span 删除

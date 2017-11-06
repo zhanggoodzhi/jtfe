@@ -1,0 +1,15 @@
+/node_modules
+/main/resources/public/dist
+/main/resources/templates/app
+/main/resources/templates/configuration
+/main/resources/templates/framework
+/main/resources/templates/repository
+/main/resources/templates/resource
+/main/resources/templates/search
+/main/resources/templates/statistics
+/main/resources/templates/user_center
+/main/resources/templates/index.html
+/config/assets.json
+npm-debug.log*
+/.sass-cache
+/.awcache

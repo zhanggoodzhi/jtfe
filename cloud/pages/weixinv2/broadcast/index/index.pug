@@ -1,0 +1,11 @@
+extends /layout/main.pug
+block variable
+  - const href="weixinv2/broadcast/index.do";
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+        +cPageChange
+        .form-group
+          button#rebroadcast-btn.btn.btn-primary.btn-sm(type='button') 重新推送
+      table#table.table.fixed-table

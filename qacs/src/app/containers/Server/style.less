@@ -1,0 +1,233 @@
+@arrow-width: 17px;
+@link-color: #108ee9;
+.Header {
+    background: #1f90e6;
+    color: white;
+    display: flex;
+    h1,
+    span,
+     :global(.anticon) {
+        color: white;
+    }
+    .Left {
+        flex: 1;
+    }
+    .Right {
+        flex: none;
+    }
+     :global(.ant-dropdown-link) {
+        color: white;
+    }
+}
+
+.Check {
+    margin-right: 5px;
+}
+
+.Hide {
+    margin-right: 5px;
+    visibility: hidden;
+}
+
+.Sider {
+    overflow: auto;
+    background: white;
+    padding: 5px;
+}
+
+.Content {
+    display: flex;
+    flex-direction: column;
+    background: white;
+}
+
+.GuestTableWrap {
+    flex: none;
+    .GuestTable {
+        max-height: 200px;
+        overflow: auto;
+    }
+}
+
+.Main {
+    flex: 1;
+    display: flex;
+    .SessionWrap {
+        overflow: auto;
+        width: 200px;
+        flex: none;
+         :global(.ant-collapse) {
+            border-top: 0!important;
+            border-right: 0;
+        }
+    }
+}
+
+.ChartWrap {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border-left: 1px solid #d9d9d9;
+    border-right: 1px solid #d9d9d9;
+}
+
+.ChartBox {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    .TitleWrap {
+        flex: none;
+    }
+}
+
+.Chart {
+    flex: 1;
+    margin-top: 63px;
+    padding: 10px 20px 0;
+    overflow: auto;
+}
+
+.InputArea {
+    flex: none;
+    height: 200px;
+    border-top: 1px solid #d9d9d9;
+    padding: 15px;
+}
+
+.ToolBar {
+    height: 30px;
+    line-height: 30px;
+    &>* {
+        display: inline-block;
+    }
+    i {
+        font-size: 18px;
+        margin-right: 10px;
+        cursor: pointer;
+        &:hover {
+            color: #108ee9;
+        }
+    }
+    span {
+        display: inline-flex;
+    }
+}
+
+.TextWrapper {
+    height: 120px;
+    padding: 10px 0;
+    textarea {
+        resize: none;
+        height: 100%;
+        border: none;
+    }
+}
+
+.MessageItem {
+    margin-bottom: 20px;
+    word-break: break-all;
+    &.Question {
+        .Avatar {
+            float: left;
+        }
+        .MessageContent {
+            float: left;
+            background-color: #fff;
+            margin-left: @arrow-width;
+            &::before {
+                background-image: url(../Server/assets/answer.png);
+                left: (-@arrow-width);
+            }
+        }
+    }
+    &.Answer {
+        .Avatar {
+            float: right;
+        }
+        .MessageContent {
+            float: right;
+            background-color: #f2f2f2;
+            margin-right: @arrow-width;
+            &::before {
+                background-image: url(../Server/assets/question.png);
+                right: (-@arrow-width);
+            }
+        }
+    }
+}
+
+.MessageContent {
+    padding: 10px 20px;
+    position: relative;
+    border: 1px solid #e7e7ec;
+    border-radius: 6px;
+    max-width: calc( 100% - 50px - @arrow-width );
+    font-size: 14px;
+    &::before {
+        content: ' ';
+        display: block;
+        width: 24px;
+        height: 10px;
+        position: absolute;
+        top: -1px;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
+
+.MessageName {
+    color: @link-color;
+    font-size: 13px;
+    margin-bottom: 6px;
+    cursor: pointer;
+}
+
+.EmojiList {
+    width: 297px;
+    height: 200px;
+    overflow: auto;
+    margin: -8px -16px;
+    li {
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+    }
+    img {
+        display: block;
+        max-width: 100%;
+        transform-origin: center center;
+        transform: scale(0.8, 0.8);
+        cursor: pointer;
+        &:hover {
+            transform: scale(1, 1);
+        }
+    }
+}
+
+.InputPreview {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    padding: 8px 24px 8px 12px;
+    border-top: 1px solid #eee;
+    word-break: break-all;
+}
+
+.PreviewClose {
+    position: absolute;
+    right: 12px;
+    top: 9px;
+    cursor: pointer;
+}
+
+:global(.ant-collapse) {
+    border-radius: 0!important;
+}
+
+:global(.ant-collapse-content) {
+    border-radius: 0!important;
+}

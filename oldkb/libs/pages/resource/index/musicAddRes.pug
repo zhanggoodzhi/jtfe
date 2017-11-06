@@ -1,0 +1,52 @@
+include ../../../layouts/components.pug
+
+main.resource-detail-main
+  form.col.s7.m7.l7.add-res
+    .row
+      .input-field.col.s8
+        input#song.required(type='text',length="30",placeholder="请输入歌曲名称，不能超过30个字")
+        label.active(for='song') 歌曲名
+    .row
+      .input-field.col.s8
+        input#singer.required(type='text',length="20",placeholder="请输入歌手名称，不能超过20个字")
+        label.active(for='singer') 歌手（选填）
+    .row
+      .input-field.col.s8
+        input#album.required(type='text',length="24",placeholder="请输入专辑名称")
+        label.active(for='album') 专辑（选填）
+    .row
+      .input-field.col.s8
+        +btn('上传')(id='upload-music')
+        span(style='color:#9e9e9e;font-size:13px;')
+        label.active(for='upload-music',style='height:30px;') 歌曲
+    .row.music-show
+  .col.s4.m4.l4.resource-right-gray
+    .row.text-right-sider
+        .chat-box
+          section.header
+            img(src='/images/robot.jpg')
+          section.chat-ctx
+            section.text-ctx1
+              img(src='/images/right.png',width='10px')
+            section.text-ctx2.music-preview
+              div.preview-l
+                .song-preview.truncate 歌曲名称
+                .song-related.truncate
+                  span.singer-preview 歌手
+                  |-
+                  span.singer-album-preview 专辑
+              div.music-wrap.clearfix.preview-r(data-id='')
+                i.material-icons.music-pause play_circle_outline
+                i.material-icons.music-play pause_circle_outline
+//- div.cover-footer
+//-   +btn('保存').music-save
+//-   a.waves-effect.btn-small.music-cancel.cancel-btn.btn-flat 取消
+
+
+
+
+
+
+
+
+

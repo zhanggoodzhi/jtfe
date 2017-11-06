@@ -1,0 +1,243 @@
+
+.private-padding-1 {
+    padding-left: 50px;
+}
+.weixin-edit-area-wrap{
+    flex: 1;
+}
+.weixin-edit-area-wrap,.weixin-chat-area-wrap{
+    position: relative;
+}
+.sort-btn-wrap,.save-btn-wrap{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -60px;   
+}
+
+.weixin-list-wrap {
+    width: 160px;
+    float: left;
+}
+
+.weixin_list_titile {
+    font-size: 15px;
+    font-weight: 700;
+    text-indent: 5px;
+}
+
+.weixin_account_item {
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+}
+
+.weixin_account_item a {
+    display: block;
+    transition: .3s;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    text-indent: 25px;
+    white-space:nowrap; 
+    text-overflow:ellipsis; 
+    overflow: hidden;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.weixin_account_item a:hover {
+    background-color: #f4f5f9;
+    
+}
+
+.weixin-display-wrap {
+    display: flex;
+    box-sizing: border-box;
+    padding: 36px 20px 80px 20px;
+}
+
+.weixin-chat-area,
+.weixin-edit-area {
+    height: 580px;
+    margin: 0 auto;
+    border: 1px solid #EEE;
+    box-sizing: border-box;
+}
+
+.weixin-chat-area {
+    width: 300px;
+    position: relative;
+    background: url("../../../images/weixin-top.png") no-repeat;
+    background-position: top center;
+    background-size: 100%;
+}
+
+.weixin-chat-area>ul {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    border-top: 1px solid #eee;
+    background: url("../../../images/weixin-keyboard.png") no-repeat;
+}
+
+.weixin-chat-area>ul>li {
+    flex: 1;
+    text-align: center;
+    border-left: 1px solid #eee;
+    position: relative;
+}
+
+.weixin-menu {
+    height: 100%;
+    line-height: 50px;
+    display: block;
+    background-color: rgb(250, 250, 250);
+    border: 1px solid transparent;
+    white-space:nowrap; 
+    text-overflow:ellipsis; 
+    overflow: hidden;
+    padding: 0 5px;
+
+}
+
+.weixin-chat-area .weixin-chat-area-menu:hover,
+.sub-menu-box .weixin-sub-menu:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+.weixin-edit-area {
+    margin-left: 20px;
+    box-sizing: border-box;
+    padding: 0 20px;
+    
+}
+
+.weixin-edit-area-title {
+    padding: 9px;
+    border-bottom: 1px solid #eee;
+}
+
+.weixin-edit-area-title>h5 {
+    float: left;
+    margin: 0;
+}
+
+.weixin-edit-area-title>.del-menu {
+    text-align: right;
+}
+
+.weixin-edit-area-title>.del-menu>a {
+    color: #459ae9;
+}
+
+.form-horizontal .control-label {
+    text-align: left;
+    font-weight: normal;
+}
+
+.weixin-edit-radio,
+.weixin-edit-radio>input {
+    cursor: pointer;
+}
+
+.weixin-edit-radio {
+    margin-right: 10px;
+}
+
+.weixin-edit-radio>input {
+    position: relative;
+    top: 2px;
+    margin: 0 5px;
+}
+
+.menu-content {
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.form-horizontal>.form-group:first-child {
+    margin-top: 10px;
+}
+
+.sub-menu-box {
+    padding: 0;
+    list-style: none;
+    position: absolute;
+    bottom: 60px;
+    width: 100%;
+    display: none;
+}
+
+.sub-menu-box li {
+    height: 50px;
+    border: 1px solid #EEE;
+}
+
+.sub-menu-box>li:last-child::after {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    position: absolute;
+    left: 50%;
+    border-width: 7px;
+    bottom: -13px;
+    transform: translateX(-7px);
+    border-top-color: #eee;
+}
+.menu-selected{
+    border: 1px solid #44b549 !important;
+}
+#weixin-edit-area-message>label{
+    margin-top: 10px;
+}
+#weixin-edit-area-message{
+    display: none;
+}
+.add-icon{
+    font-size: 16px;
+}
+.form-horizontal{
+    margin: 30px 0;
+}
+.weixin_account_selected>a{
+    background-color: #44b549;
+    color: #fff;
+}
+.weixin_account_selected>a:hover{
+    background-color: #44b549;
+}
+.name-message{
+    color: #A52A2A;
+    font-size: 12px;
+    display: none;
+}
+.return-message{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #FFF;
+    font-weight: bold;
+}
+.menu-name{
+    padding: 0 9px;
+    float: left;
+}
+.weixin-edit-area .form-group{
+    margin: 10px 0;
+}
+.modal-footer .btn+.btn{
+    margin-bottom: 5px;
+}
+.rule-message{
+    padding: 10px 0;
+    margin: 0;
+    font-size: 12px;
+}

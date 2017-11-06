@@ -1,0 +1,106 @@
+#kb-user {
+    .head-wrap {
+        margin: 0;
+        .left {
+            padding: 20px;
+            img {
+                box-shadow: 0 0 10px #444;
+                width: 100px;
+                height: 100px;
+                border-radius: 50px;
+                vertical-align: middle;
+            }
+            .title {
+                vertical-align: middle;
+                margin-left: 20px;
+                font-size: 20px;
+            }
+        }
+        .right {
+            ul {
+                li {
+                    display: inline-block;
+                    padding: 0 40px;
+                    margin: 30px 0;
+                    border-right: 1px solid #eee;
+                    &:last-of-type {
+                        border: 0;
+                    }
+                    h3 {
+                        padding: 0;
+                        margin: 0;
+                        cursor: pointer;
+                        transition: color 0.2s;
+                        &:hover {
+                            color: #3aa8e8;
+                        }
+                    }
+                    p {
+                        padding: 0;
+                        margin: 0;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+    .user-tag {
+        margin: 0;
+        border: 1px solid #eee;
+        .col {
+            transition: color 0.2s;
+            cursor: pointer;
+            margin: 0!important;
+            padding: 10px 0;
+            position: relative;
+            text-align: center;
+            margin: 10px 0;
+            &:last-of-type .title-wrap {
+                border: 0;
+            }
+            &:hover {
+                color: #32a5e7;
+            }
+            .title-wrap {
+                border-right: 1px solid #eee;
+            }
+            .title {
+                font-size: 18px;
+                display: block;
+            }
+        }
+        .active {
+            color: #32a5e7;
+            background: #f7f7f7;
+            .triangle {
+                background: url(/images/triangle.png);
+                background-size: 10px 10px;
+                position: absolute;
+                display: block;
+                height: 10px;
+                width: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: -1px;
+            }
+        }
+    }
+    .tag-content {
+        display: none;
+        .search-form {
+            border-bottom: 1px solid #eee;
+            .btn-wrap {
+                text-align: right;
+                .btn {
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+    .tag-content.active {
+        display: block;
+    }
+    .slide-title {
+        text-align: center;
+    }
+}

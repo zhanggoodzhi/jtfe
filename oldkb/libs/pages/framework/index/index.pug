@@ -1,0 +1,143 @@
+extends /layouts/main.pug
+
+block tabs
+  +tab('类型','classes')
+  +tab('属性','properties')
+  +tab('实例','individuals')
+  +tab('图','chart')
+  +tab('推理','inference')
+
+mixin headarrow(id,color)
+  -
+    id=id||'arrowhead'
+    color=color||'#666'
+  marker(
+  id=id,
+  fill=color,
+  markerUnits="userSpaceOnUse",
+  viewBox="0 0 16 16",
+  refX="46",
+  refY="8",
+  markerWidth="16",
+  markerHeight="16",
+  orient="auto"
+  )
+    path(d="M 0,0 L 16,8 L 0,16 z")
+
+block mainbody
+  .kb-tabs-content
+    #classes-tab.row
+      .col.s12.m4
+        h5 类型层级
+        .row
+          .input-field.col.s12
+            input#classes-search(type='text')
+            label(for='classes-search') 输入关键词查询
+        .kb-scroll
+          #classes-tree
+      .col.s12.m8
+        #classes-input-wrap.kb-scroll
+          .row
+            h6 标签
+            .input-field.col.s12
+              input#classes-display-name(type='text',readonly)
+            h6 IRI
+            .input-field.col.s12
+              input#classes-iri(type='text',readonly)
+            h6 类型
+            #classes-types-group.kb-group
+            h6 标注
+            #classes-annotations-group.kb-group
+            h6 属性
+            #classes-properties-group.kb-group
+
+    #properties-tab.row
+      .col.s12.m4
+        h5 属性层级
+        .row
+          .input-field.col.s12
+            input#properties-search(type='text')
+            label(for='properties-search') 输入关键词查询
+        .kb-scroll
+          #properties-obj-tree
+          //- hr
+          #properties-data-tree
+          //- hr
+          #properties-ann-tree
+
+      .col.s12.m8
+        #properties-input-wrap.kb-scroll
+          .row
+            h6 标签
+            .input-field.col.s12
+              input#properties-display-name(type='text',readonly)
+            h6 IRI
+            .input-field.col.s12
+              input#properties-iri(type='text',readonly)
+            h6 标注
+            #properties-annotations-group.kb-group
+            #properties-functional-wrap.col.s12
+              input#properties-functional(type='checkbox')
+              label(for='properties-functional') 函数型
+            h6 定义域
+            #properties-domain-group.kb-group
+            h6 值域
+            #properties-range-group.kb-group
+
+    #individuals-tab.row
+      .col.s12.m4
+        h5 类型层级
+        .row
+          .input-field.col.s12
+            input#individuals-search(type='text')
+            label(for='individuals-search') 输入关键词查询
+        #individuals-container
+          h6 类
+          #individuals-tree
+          h6 实例
+          #individuals-items-tree
+
+      .col.s12.m8
+        #individuals-input-wrap.kb-scroll
+          .row
+            h6 标签
+            .input-field.col.s12
+              input#individuals-display-name(type='text',readonly)
+            h6 IRI
+            .input-field.col.s12
+              input#individuals-iri(type='text',readonly)
+            h6 类型
+            #individuals-types-group.kb-group
+            h6 属性
+            #individuals-properties-group.kb-group
+            h6 sameAs
+            #individuals-same-as-group.kb-group
+
+
+    #chart-tab.row
+      //- .col.s3.tree-wrap
+      //-   .content.kb-scroll
+      //-     #chart-jstree.jstree
+      .col.s12
+        .kb-scroll.chart-wrap
+          button#reflow-btn.reflow-btn.waves-effect.btn-small.btn(type="button") 重新排序
+          svg#net-chart
+            defs
+              +headarrow
+              +headarrow('arrowhead-active','#1F9EE8')
+              +headarrow('arrowhead-individual','#E6DB74')
+              +headarrow('arrowhead-subclass','#AE81FF')
+              svg#add(width='14', height='14', viewbox='0 0 24 24')
+                path(d='M0 0h24v24H0z', fill='transparent')
+                path(d='M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z')
+              svg#remove(width='14', height='14', viewbox='0 0 24 24')
+                path(d='M0 0h24v24H0z', fill='transparent')
+                path(d='M19 13H5v-2h14v2z')
+
+          //- canvas#network-chart
+    #inference-tab.row
+      .col.s12
+        form.clearfix.kb-search-form
+          .col.s2.input-field
+            +btn('添加')(id="inference-add")
+        table#inference-table

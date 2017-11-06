@@ -1,0 +1,107 @@
+.count-wrap {
+    ul {
+        margin: 0;
+    }
+    p {
+        margin: 0;
+    }
+    .title-wrap {
+        padding: 0 30px;
+        margin-top: 70px;
+        .title {
+            margin-right: 15px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        ul {
+            margin-left: 10px;
+            border: 1px solid #eee;
+
+
+            border-radius: 5px;
+            display: inline-block;
+            li {
+                cursor: pointer;
+                display: inline-block;
+                padding: 10px 20px;
+                border-right: 1px solid #eee;
+                &:first-of-type {
+                    border-top-left-radius: 5px;
+                    border-bottom-left-radius: 5px;
+                }
+                &:last-of-type {
+                    border: 0;
+                    border-top-right-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                }
+            }
+            .active {
+                color: white;
+                background: #1f9ce5;
+            }
+        }
+    }
+    .special {
+        height: 44px;
+        line-height: 44px;
+    }
+    .content-wrap {
+        padding: 0 30px;
+        margin-top: 10px;
+        .btn-wrap {
+            border: 1px solid #eee;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            ul {
+                width: 100%;
+                li {
+                    position: relative;
+                    text-align: center;
+                    width: 20%;
+                    cursor: pointer;
+                    display: inline-block;
+                    padding: 10px 20px;
+                    border-right: 1px solid #eee;
+                    &:last-of-type {
+                        border: 0;
+                    }
+                }
+                .active {
+                    color: #32a5e7;
+                    background: #f7f7f7;
+                    .triangle {
+                        background: url(/images/triangle.png);
+                        background-size: 10px 10px;
+                        position: absolute;
+                        display: block;
+                        height: 10px;
+                        width: 10px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        bottom: -1px;
+                    }
+                }
+            }
+        }
+        .chart-wrap {
+            border: 1px solid #eee;
+            border-top: 0;
+            >div {
+                height: 500px;
+                width: 100%;
+            }
+        }
+        .table-wrap {
+            padding: 0 15px;
+            height: 600px;
+            width: 100%;
+            border: 1px solid #eee;
+            border-top: 0;
+        }
+        .percent {
+            height: 10px;
+            border-radius: 5px;
+            background: #1f9ce5;
+        }
+    }
+}

@@ -1,0 +1,9 @@
+export { default as MainLayout } from './MainLayout';
+export { default as Login } from './Passport/Login';
+export { default as Passport } from './Passport';
+export { default as Demo } from './Demo';
+export { default as Announcement } from './Announcement';
+export { default as Workbench } from './Workbench';
+export { default as Canteen } from './Canteen';
+export { default as User } from './User';
+export { default as NotFound } from './NotFound';

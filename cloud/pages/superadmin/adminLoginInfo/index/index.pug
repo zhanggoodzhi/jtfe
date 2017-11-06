@@ -1,0 +1,28 @@
+extends /layout/main.pug
+
+block variable
+  - const isadmin=true;
+  - const title="登陆记录"
+
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+        .clearfix
+          .form-group
+            label.cloud-input-title 应用
+            .cloud-input-content
+              select#appid.form-control.input-sm
+                option(value='') 全部
+                c:forEach(var='app',items='${appList}')
+                  option(value='${app.id}') ${app.name}
+          +cInput('用户名','user-name')
+          +cInput('访问地点','location-address')
+          +cInput('登录结果','login-result')
+          +cInput('IP地址','ip-address','nm')
+          +cDate('登录时间')
+        .clearfix
+          .form-group
+            button#search-btn.btn.btn-primary.btn-sm(type='button') 查询
+          +cPageChange
+      table#table.table.fixed-table

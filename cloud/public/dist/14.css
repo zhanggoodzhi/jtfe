@@ -1,0 +1,50 @@
+/* fonts */
+
+div.jqcloud {
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 10px;
+  line-height: normal;
+}
+
+div.jqcloud a {
+  font-size: inherit;
+  text-decoration: none;
+}
+
+div.jqcloud span.w10 { font-size: 550%; }
+div.jqcloud span.w9 { font-size: 500%; }
+div.jqcloud span.w8 { font-size: 450%; }
+div.jqcloud span.w7 { font-size: 400%; }
+div.jqcloud span.w6 { font-size: 350%; }
+div.jqcloud span.w5 { font-size: 300%; }
+div.jqcloud span.w4 { font-size: 250%; }
+div.jqcloud span.w3 { font-size: 200%; }
+div.jqcloud span.w2 { font-size: 150%; }
+div.jqcloud span.w1 { font-size: 100%; }
+
+/* colors */
+
+div.jqcloud { color: #09f; }
+div.jqcloud a { color: inherit; }
+div.jqcloud a:hover { color: #0df; }
+div.jqcloud a:hover { color: #0cf; }
+div.jqcloud span.w10 { color: #0cf; }
+div.jqcloud span.w9 { color: #0cf; }
+div.jqcloud span.w8 { color: #0cf; }
+div.jqcloud span.w7 { color: #39d; }
+div.jqcloud span.w6 { color: #90c5f0; }
+div.jqcloud span.w5 { color: #90a0dd; }
+div.jqcloud span.w4 { color: #90c5f0; }
+div.jqcloud span.w3 { color: #a0ddff; }
+div.jqcloud span.w2 { color: #99ccee; }
+div.jqcloud span.w1 { color: #aab5f0; }
+
+/* layout */
+
+div.jqcloud {
+  overflow: hidden;
+  position: relative;
+}
+
+div.jqcloud span { padding: 0; }ul,ul li{margin:0;padding:0}ul li{list-style:none}p{margin:0;padding:0}.cloud-search-area{padding-top:20px}.cloud-search-area .excel{float:right}.spss-info-wrap{padding:10px 200px}.spss-info-wrap ul{border:1px solid #efefef;border-top-left-radius:5px;border-top-right-radius:5px}.spss-info-wrap ul li.title{padding:6px 15px;background:#f4f4f4}.spss-info-wrap ul li{border-bottom:1px solid #efefef;padding:15px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex}.spss-info-wrap ul li h5{text-indent:4%;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.spss-info-wrap ul li span:not(.title){text-indent:4%}.spss-info-wrap ul li span{display:inline-block;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.spss-info-wrap ul li:last-child{border-bottom:none}.spss-info-wrap ul li.special{position:relative}.spss-info-wrap ul li.special .title{position:absolute;left:-69px}#tag-cloud{width:100%;height:400px}.cloud-input-content.big-select{width:150px}.chart-wrap{width:100%;height:400px}.chart-wrap .chart{height:100%;width:100%}.chart-wrap .info-chart-wrap #info-chart{width:100%;height:300px}
+/*# sourceMappingURL=14.css.map*/

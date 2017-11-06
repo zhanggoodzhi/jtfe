@@ -1,0 +1,17 @@
+{
+    "plugins": [
+        "add-module-exports",
+        "lodash", [
+            "import",
+            {
+                "libraryName": "antd",
+                "style": true
+            }
+        ]
+    ],
+    "presets": [
+        "es2015-ie",
+        "react",
+        "stage-0"
+    ]
+}

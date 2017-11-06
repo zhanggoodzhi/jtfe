@@ -1,0 +1,40 @@
+.Detail {
+    border: 1px solid #e9e9e9;
+    .Bread {
+        border-bottom: 1px solid #e9e9e9;
+    }
+    .Image {
+        background: blue;
+        width: 120px;
+        height: 100%;
+        min-height: 60px;
+    }
+    .Flex {
+        position: relative;
+        display: flex;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        &:hover {
+            background: #f6f8fa;
+        }
+        &:last-child {
+            border: none;
+        }
+    }
+    .Info {
+        margin-left: 10px;
+    }
+    .Label::after {
+        content: ' : ';
+    }
+    .InfoLine {
+        padding: 5px 0;
+        .Right {
+            margin-left: 30px;
+        }
+    }
+    .Link {
+        position: absolute;
+        right: 10px;
+    }
+}

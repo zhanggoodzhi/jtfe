@@ -1,0 +1,84 @@
+a {
+	color: rgb(52, 73, 94);
+}
+
+a:hover {
+	color: rgb(44, 62, 80);
+}
+
+h2 span {
+	color: rgb(52, 73, 94);
+}
+
+p span {
+	color: rgb(52, 73, 94);
+}
+
+.header {
+	background-color: rgb(52, 73, 94);
+}
+
+.logo a:hover {
+	background-color: rgb(44, 62, 80);
+}
+
+.nav>ul>li>a:hover {
+	background-color: rgb(44, 62, 80);
+}
+
+.slider {
+	background-color: rgb(44, 62, 80);
+}
+
+.store-button {
+	background-color: rgb(52, 73, 94);
+}
+
+.store-button:hover {
+	background-color: rgba(44, 62, 80, 0.1);
+}
+
+.single-feature i, .single-feature h2 {
+	color: rgb(52, 73, 94);
+}
+
+.single-feature:nth-child(1) {
+	background-color: rgb(52, 73, 94);
+}
+
+.single-feature:nth-child(3) {
+	background-color: rgb(52, 73, 94);
+}
+
+.enterprise-feature i, .enterprise-feature h2 {
+	color: rgb(52, 73, 94);
+}
+
+.enterprise-feature:nth-child(2) {
+	background-color: rgb(52, 73, 94);
+}
+
+.enterprise-feature:nth-child(4) {
+	background-color: rgb(52, 73, 94);
+}
+
+.enterprise-feature:nth-child(6) {
+	background-color: rgb(52, 73, 94);
+}
+
+.owl-theme .owl-controls .owl-page.active span, .owl-theme .owl-controls.clickable .owl-page:hover span
+	{
+	background-color: rgb(52, 73, 94);
+}
+
+.news-letter {
+	background-color: rgb(52, 73, 94);
+}
+
+.btn-color {
+	background-color: rgb(44, 62, 80);
+}
+
+.footer .fa-stack-2x {
+	color: rgb(52, 73, 94);
+}

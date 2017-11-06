@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>QA Demo</title>
+</head>
+
+<body>
+    DEMO 示例
+    <script>
+        (function(w, d, s, p, j, b) {
+            w[p] = w[p] || function() {
+				(w[p].c = w[p].c || []).push(arguments);
+			};
+            b = d.getElementsByTagName('body')[0];
+            j = d.createElement(s);
+            j.async = true;
+            j.charset = 'UTF-8';
+            j.src = 'http://mysql.dev.jintongsoft.cn/csclient/public/plugin/jtchat-plugin.js?v='+new Date().getTime();
+            b.appendChild(j);
+        })(window, document, 'script','_JTCHAT_');
+        _JTCHAT_('appkey','ED4E2982D5BEF97726650ED0CDD6C517'); // 必须参数
+		_JTCHAT_('domain','http://mysql.dev.jintongsoft.cn'); // 框架加载地址域
+		_JTCHAT_('width','320px'); // 默认360px
+		//_JTCHAT_('height','640px'); // 默认560px
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+extends /layout/main.pug
+
+block variable
+  - const href="spss/userData/index";
+  - const title="用户数据";
+
+block script
+  script.
+    //- var selectData = ${classifys};
+block mainbody
+  ul#tablist.nav.nav-tabs(role="tablist")
+    li.active(role="presentation")
+      a(href="#userData",role="tab",data-toggle="tab") 用户数据
+    li(role="presentation")
+      a(href="#userRecord",role="tab",data-toggle="tab") 用户记录
+  .tab-content
+    #userData.tab-pane.fade.in.active(rol="tabpanel")
+      .spss-time-container
+        .date-range-picker
+        .spss-main
+          section
+            form.form-horizontal.cloud-search-area
+              .form-group
+                label.cloud-input-title 用户来源
+                .cloud-input-content.tip-wrap
+                  i#source-tip.tip.fa.fa-question-circle
+            .chart-wrap
+              #chart.chart
+          section
+            form.form-horizontal.cloud-search-area
+              .form-group
+                label.cloud-input-title 地域分布
+                .cloud-input-content.tip-wrap
+                  i#distribute-tip.tip.fa.fa-question-circle
+            .map-wrap
+              #map.map
+          section
+            form.form-horizontal.cloud-search-area
+              .form-group
+                label.cloud-input-title 地域排名
+                .cloud-input-content.tip-wrap
+                  i#rank-tip.tip.fa.fa-question-circle
+            .table-wrap
+              table#area-rank-table.table
+    #userRecord.tab-pane.fade(rol="tabpanel")
+      form#search-form.form-horizontal.cloud-search-area
+        .form-group
+          label.cloud-input-title 用户
+          .cloud-input-content
+            input#user.form-control.input-sm(type="text",placeholder="请输入关键词")
+        .form-group
+          label.cloud-input-title 用户满意率
+          .cloud-input-content
+            select#satisfy.form-control.input-sm(name="pushway")
+              option(value="0") 全部
+              option(value="1") 大于80%
+              option(value="2") 50% ~ 80%
+              option(value="3") 小于50%
+        .form-group
+          label.cloud-input-title 会话数
+          .cloud-input-content
+            select#talk-number.form-control.input-sm(name="pushway")
+              option(value="0") 全部
+              option(value="1") 1
+              option(value="2") 2
+              option(value="3") 3
+              option(value="4") 4
+              option(value="5") 5
+              option(value="6") 大于5
+        .form-group
+          label.cloud-input-title 首次会话时间
+          .cloud-input-content.cloud-md
+            input#form-date.form-control.input-sm.form-date(type="text",readonly)
+        .form-group
+          button.btn.btn-primary.btn-sm(type="button",id=`search-btn`) 查询
+          button.btn.btn-primary.btn-sm(type="button",id='export') 导出
+      table#record-table.table.fixed-table
+

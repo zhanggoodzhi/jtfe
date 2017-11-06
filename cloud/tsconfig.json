@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "public/module/*",
+        "components/*"
+      ]
+    },
+    "pretty": true,
+    "sourceMap": true,
+    "lib": [
+      "dom",
+      "es6",
+      "scripthost"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "node"
+  ]
+}

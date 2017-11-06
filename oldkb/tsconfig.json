@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "target": "es5",
+        "sourceMap": true,
+        "moduleResolution": "node",
+        "lib": [
+            "dom",
+            "es6",
+            "scripthost"
+        ],
+        "paths": {
+            "*": [
+                "libs/components/*"
+            ]
+        }
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

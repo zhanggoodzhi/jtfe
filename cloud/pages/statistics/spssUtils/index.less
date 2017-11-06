@@ -1,0 +1,114 @@
+// 统计 start
+.spss-time-container {
+	position: relative;
+	color: black;
+	background: white;
+	border: 1px solid #e8e8e8;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	.spss-main {
+		padding: 15px;
+	}
+	.cloud-search-area {
+		label {
+			font-size: 16px;
+			padding-top: 4px!important;
+		}
+		&::before {
+			content: "";
+			width: 6px;
+			height: 20px;
+			background: #32b8f4;
+			margin-top: 6px;
+			float: left;
+			margin-right: 10px;
+		}
+	}
+}
+
+.t-right {
+	height: 40px;
+	width: 40px;
+	border-left: 1px solid #e8e8e8;
+	display: flex;
+	align-items: center;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	z-index: 9;
+}
+
+i.tip {
+	height: 30px;
+	line-height: 30px;
+	margin-left: 10px;
+	font-size: 18px;
+	color: #adadad;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+i.table-tip {
+	margin-left: 5px;
+	font-size: 15px;
+	color: #adadad;
+	cursor: pointer;
+}
+
+.time-btn-wrap {
+	border-bottom: 1px solid #e8e8e8;
+	ul {
+		display: flex;
+		li {
+			position: relative;
+			color: black;
+			background: linear-gradient(#fff, #efefef);
+			border-right: 1px solid #e8e8e8;
+			flex: 2;
+			text-align: center;
+			height: 40px;
+			line-height: 40px;
+			cursor: pointer;
+			img {
+				width: 15px;
+				height: 10px;
+				position: absolute;
+				bottom: -1px;
+				left: 50%;
+				transform: translateX(-50%);
+				display: none;
+			}
+			i {
+				padding: 5px;
+				margin-left: 20px;
+			}
+			&:first-child {
+				border-top-left-radius: 8px;
+			}
+			&.daterangepicker-wrap {
+				border-top-right-radius: 8px;
+				border: none;
+				flex: 3;
+			}
+			&.active {
+				span {
+					color: #37a6e7;
+				}
+				background: #f1f1f1;
+				img {
+					display: inline-block;
+				}
+			}
+			&:hover {
+				span {
+					color: #37a6e7;
+				}
+				i {
+					color: #37a6e7;
+				}
+			}
+		}
+	}
+}
+
+// 统计 end

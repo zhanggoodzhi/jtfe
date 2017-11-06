@@ -1,0 +1,203 @@
+extends /layout/top.pug
+//- mixin resourceModal(text,type)
+//-   -const modalType=type+'-modal';
+//-   .modal.fade.resource-modal(id=`${modalType}`,data-backdrop="false")
+//-     .modal-dialog.modal-lg
+//-       .modal-content
+//-         .modal-header
+//-           button.close(type='button', data-dismiss='modal', aria-label='Close')
+//-             span(aria-hidden='true') &times;
+//-           h4.modal-title= '选择'+text
+//-         .modal-body
+//-           form.form-horizontal.cloud-search-area
+//-             .clearfix
+//-               .form-group.col-md-7.col-sm-7.col-lg-7
+//-                 .input-group
+//-                   input.keyword.form-control.input-sm(type='text', placeholder='请输入关键词搜索')
+//-                   span.input-group-btn
+//-                     button.search.btn.btn-default.btn-sm(type='button')
+//-                       span.glyphicon.glyphicon-search
+//-               //- button.upload.btn.btn-primary.btn-sm(type='button')= '上传'+text
+//-           .resource-content
+//-             block
+//-         .modal-footer
+//-           span.count-number
+//-           button.sure.btn.btn-primary(type='button') 确定
+//-           button.btn.btn-default(type='button', data-dismiss='modal') 取消
+
+//- mixin answerRadio({text,value,checked})
+//-   .col-sm-6
+//-     .radio
+//-       label
+//-         input(type='radio',name='answerType',value=value)
+//-         = text
+//- mixin toolWrap(url,text)
+//-   .tool-wrap
+//-     .select-item
+//-       .img-wrap
+//-         img(src="images/update_resource1.png")
+//-       span 从素材库中选择
+//-     .upload-item
+//-       .img-wrap
+//-         img(src=url)
+//-       span= text
+
+block script
+  script.
+    var pairId, pairs,updateSunQuestions,mergeSunQuestions,fatherIds,recommendList;
+  c:if(test="${param.pairId!=null}")
+    script.
+      pairs = ${pairs};
+      recommendList=${recommendList};
+    c:if(test="${fatherIds!=null}")
+      script.
+        fatherIds=${fatherIds};
+        mergeSunQuestions=${questions};
+    c:if(test="${fatherIds==null}")
+      script.
+        pairId='${param.pairId}';
+        updateSunQuestions = ${sunQuestions};
+
+  script.
+    var selectData = ${selectmap};
+    var appid='${appid}';
+    var userid='${userid}';
+    var kbRestUrl='${kbRestUrl}';
+    var group='${group}';
+    var hrefType='${param.type}';
+block body
+  #corpus-wrapper
+    #common-wrap.common-wrap
+      h4#title 标准问法
+      form.form-horizontal(role='form')
+        +cClassify
+        .form-group.col-xs-12.col-sm-6
+          label.cloud-input-title.classify-title 问题
+          .cloud-input-content.question-wrap
+            input#question.form-control.input-sm(autocomplete="off")
+            c:if(test="${fatherIds!=null}")
+              ul#question-selections.question-selections
+            p#exist-wrap.exist-wrap
+              a#exist-link(href="#")
+                i.fa.fa-warning
+                span#exist-text 该问题已经存在，点击前往该问题
+        //- .form-group.pull-right.hidden
+        //-   button#link-btn.link-btn.btn.btn-sm.btn-primary(type="button") 关联知识点
+    //- #link-wrap.link-wrap.clearfix
+    #repeat-wrap
+      .title-wrap
+        h4 复述问法
+        button#auto-repeat.btn.btn-primary.btn-sm(type="button") 自动复述
+      form.form-horizontal.cloud-search-area.add-text
+        .form-group
+          .cloud-input-content
+            input#add-question-text.form-control.input-sm(type="text",placeholder="请输入复述问法，点击添加按钮添加")
+        .form-group
+          button.btn.btn-primary.btn-sm(type="button")#add-question-btn 添加
+      .q-table-wrap
+        table#q-table.table.fixed-table.no-scroll
+      .title-wrap
+        h4 回复
+        button#add-answer-btn.btn.btn-primary.btn-sm(type="button") 添加回复
+      .a-table-wrap
+        table#a-table.table.fixed-table.no-scroll
+        #answer-type-wrapper.hidden
+    #recommend-question
+      .title-wrap
+        h4
+          | 推荐问题
+          img#recommend-example(src='images/small_icon/q.png',width='16px',title='点击查看示例')
+        button#add-rec-q-btn.btn.btn-primary.btn-sm(type="button") 推荐添加问题
+      .rec-q-ctx
+        ol
+      .form-group.text-center.btn-wrap
+        button#save-btn.btn.btn-success(type="button") 保存
+      //- button#back-btn.btn.btn-default(type="button") 返回
+
+  .modal.fade#choose-repeat-modal(data-backdrop="false")
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 请选择复述问法
+        .modal-body
+          table#choose-repeat-table.table.fixed-table
+        .modal-footer
+          button#q-edit-confirm-btn.btn.btn-primary(type='button') 确定
+          button.btn.btn-default(type='button', data-dismiss='modal') 关闭
+  .modal.fade#intent-add-modal(data-backdrop="false")
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 添加意图
+        .modal-body
+          form
+            .form-group
+              label intentKey
+              input#intent-code.form-control.input-sm
+            .form-group.intent-add-form
+              label extras
+              #extras-add.row
+                .col-sm-5
+                  input.form-control.input-sm(placeholder="key")
+                .col-sm-5
+                  input.form-control.input-sm(placeholder="value")
+                .col-sm-2
+                  span.add-operation
+                    i.cloud-fa-icon.fa.fa-plus-circle(title='添加意图')
+
+        .modal-footer
+          button#intent-confirm-btn.btn.btn-primary(type='button') 确定
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+
+  .modal.fade#add-recommend-modal(data-backdrop="false")
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 添加推荐问题
+        .modal-body
+          form.form-horizontal.cloud-search-area
+            .clearfix
+              .form-group
+                input#recommend-keyword.input-sm(type='text', placeholder='请输入关键词搜索',style='border:1px solid #ccc;margin-right: 20px;')
+                button#recommend-q-search-btn.btn.btn-primary.btn-sm(type='button') 查询
+          table#add-recommend-table.table.fixed-table
+        .modal-footer
+          button#add-r-q-btn.btn.btn-primary(type='button') 确定
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  .modal.fade#add-recommend-example-modal(data-backdrop="false")
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 推荐问题示例
+        .modal-body
+          .record-wrap
+            .chart-right-item.clearfix
+              img.headIcon(src='${ctx}/images/user.png')
+              .content
+                .text-wrap
+                  .text 您好！我有一些个人心理问题想要得到你的帮助。
+            .chart-left-item.clearfix
+              img.headIcon(src='${ctx}/images/jt.png')
+              .content
+                .text-wrap
+                  .text
+                    | 您好，有什么能帮您的吗？
+                    br
+                    | --推荐问题--
+                    ul
+                      li
+                        a 推荐问题1
+                      li
+                        a 推荐问题2
+                      li
+                        a 推荐问题3
+                      li
+                        a 推荐问题4

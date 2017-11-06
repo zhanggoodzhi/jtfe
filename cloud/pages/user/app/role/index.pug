@@ -1,0 +1,40 @@
+extends /layout/main.pug
+block script
+  script.
+   var appName = '${ctx}';
+block variable
+  - var title="角色管理"
+
+block mainbody
+  .col-xs-6.left-box
+    .disabled-wrap
+    .x_panel
+      .x_title
+        button.btn.btn-primary.btn-sm(type="button",id="add-btn") 添加
+      .x_content
+        table#role-table.fixed-table.table
+  .col-xs-6
+    .x_panel
+      .x_title
+        button.btn.btn-primary.btn-sm(type="button",id="edit-btn") 编辑权限
+        button.btn.btn-primary.btn-sm(type="button",id="save-btn") 保存
+      .x_content(style="position:relative")
+        .auth-disabled-wrap
+        table#auth-table.fixed-table.table
+block modal
+  #role-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 添加角色
+        .modal-body
+          form.form-horizontal
+            .form-group.clearfix
+              label.cloud-input-title 角色名称
+              .cloud-input-content
+                input#name.form-control.input-sm(type='text', name='name')
+        .modal-footer
+          button#modal-save-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消

@@ -1,0 +1,207 @@
+.weixin-list {
+    width: 160px;
+    float: left;
+}
+
+.weixin-list-titile {
+    font-size: 16px;
+    padding: 0 5px;
+}
+
+.weixin-list-item {
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    a {
+        display: block;
+        transition: .2s;
+        text-decoration: none;
+        padding: 0 12px 0 30px;
+        &:hover {
+            background-color: #f4f5f9;
+            text-decoration: none;
+        }
+    }
+    &.selected a{
+        background-color: #44b549;
+        color: #fff;
+    }
+}
+
+.weixin-menu {
+    margin-left: 160px;
+    padding: 36px 20px 80px;
+}
+.weixin-menu-display{
+    width: 300px;
+    height: 580px;
+    border:1px solid #EEE;
+    background-image: url(../../../../public/images/weixin-top.png);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 100% auto;
+    position: relative;
+    float: left;
+    .weixin-menu-list{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding-left: 40px;
+        height: 50px;
+        border-top: 1px solid #EEE;
+        background-image: url(../../../../public/images/weixin-keyboard.png);
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        background-position: left center;
+        display: flex;
+        >li{
+            flex:1;
+            position: relative;
+            &>.weixin-parent-menu{
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+            }
+            .sub-menu-list{
+                position: absolute;
+                left: 0;
+                bottom: 68px;
+                right: 0;
+                visibility: hidden;
+                opacity: 0;
+                transition: .2s;
+                transform: translateY(20px);
+                // &>li{
+                //     overflow: hidden;
+                // }
+                &.show{
+                    visibility: visible;
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                .weixin-menu-item{
+                    border-color: #EEE;
+                }
+                // &.last-selected::after{
+                //     border-right-color: #44b549;
+                //     border-bottom-color: #44b549;
+                // }
+
+                &::after{
+                    content: " ";
+                    box-sizing: content-box;
+                    position: absolute;
+                    width: 8px;
+                    height: 8px;
+                    border: 1px solid #EEE;
+                    bottom: -8px*sqrt(2)/2-1;
+                    left: 50%;
+                    transform: rotate(45deg) translateX(-50%);
+                    border-top-color: transparent;
+                    border-left-color: transparent;
+                    background-color: #FFF;
+                    z-index: -1;
+                    box-shadow: 0 0 0.5px rgba(0, 0, 0, 0.3);
+                }
+            }
+        }
+    }
+    ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+}
+.weixin-menu-item{
+    line-height: 47px;
+    display: block;
+    background-color: #FFF;
+    border: 1px solid transparent;
+    border-left-color: #EEE;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 0 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: .2s;
+    &.selected{
+        border-color: #44b549 !important;
+    }
+}
+
+.weixin-menu-edit{
+    margin-left: 320px;
+    padding: 0 20px;
+    border: 1px solid #EEE;
+    height: 580px;
+    .weixin-edit-title{
+        padding: 22px 5px;
+        border-bottom: 1px solid #EEE;
+        h5{
+            margin: 0;
+            line-height: 16px;
+        }
+        a{
+            color: #459ae9;
+        }
+    }
+    .weixin-edit-content{
+        padding: 22px 5px;
+    }
+}
+
+.weixin-edit-container{
+    .cloud-row{
+        margin-bottom:10px;
+    }
+}
+
+.detail-title,.detail-name{
+    display: inline-block;
+
+}
+.detail-title{
+    line-height: 30px;
+    margin-right: 12px;
+}
+.detail-name{
+    width: 200px;
+}
+.detail-content{
+    textarea{
+        resize: none;
+        height: 200px;
+    }
+}
+
+.radio label{
+    margin-right: 12px;
+}
+
+.no-submenu{
+    display: none;
+}
+.weixin-resync{
+    position: absolute;
+    top: 180px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    cursor: pointer;
+    color: #bbb;
+    .fa{
+        font-size:32px;
+        transition: transform 0.3s;
+    }
+    .resync-text{
+        padding-left:10px;
+        font-size: 16px;
+    }
+    &:hover .fa{
+        transform: rotate(180deg);
+    }
+}

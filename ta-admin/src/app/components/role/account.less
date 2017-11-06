@@ -1,0 +1,57 @@
+
+.content{
+    position:relative;
+    .add-user{
+        position: absolute;
+        right:87px;
+        top:-48px;
+    }
+    .many-remove{
+        position: absolute;
+        right:0px;
+        top:-48px;
+    }
+}
+.role-wrap{
+    position: relative;
+    .icon-wrap{
+        position: absolute;
+        left:-20px;
+        width: 13px;
+    }
+    .icon-noclick{
+        transition: all 500ms;
+        
+        overflow: hidden;
+        .role-item{
+            height:34px;
+        }
+    }
+    .icon-click{
+        transition: all 500ms;
+        overflow: hidden;
+        .role-item{
+            height:34px;
+        }
+    }
+}
+.account-table{
+    vertical-align: top;
+    box-sizing: border-box;
+    height: 51px;
+    td{
+       padding: 16px 8px 0px!important;
+    }
+
+}
+.ant-table th {
+    background: rgb(244,244,244)!important;
+}
+.ant-modal-content{
+    box-sizing: content-box!important;
+    padding: 16px;
+    background: rgb(244,244,244)!important;
+    &>div{
+        background: white;
+    }
+}

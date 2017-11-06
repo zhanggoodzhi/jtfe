@@ -1,0 +1,60 @@
+extends /layout/main.pug
+
+block variable
+  - const href="knowledge/dialog/index";
+
+block script
+  script.
+    var dialogid = '${dialogid}';
+    var selectData = JSON.parse('${selectmap}');
+
+block mainbody
+  .row
+    .col-sm-4.col-xs-4.col-md-4
+      .x_panel.cloud-scroll
+        .x_title
+          h5 视图区
+        #tree-wrap.x_content
+          #tree.tree
+    .col-sm-8.col-xs-8.col-md-8
+      .x_panel.cloud-scroll
+        .x_title
+          h5 编辑区
+        #table-wrap.x_content
+          #table-blur.form-horizontal.edit-form
+            #show-coupus-wrap.form-group.hidden
+              .search-area
+                form#search-form.form-horizontal.cloud-search-area
+                  .cloud-row.clearfix
+                    +cCorpusSearch
+                    .form-group
+                      button#search-btn.btn.btn-primary.btn-sm(type='button') 查询
+                      button#hide-btn.btn.btn-primary.btn-sm(type='button') 隐藏语料
+              table#table.table.fixed-table
+            .form-group
+              label.cloud-input-title 问题
+              .col-md-6.col-sm-6.col-lg-6
+                .cloud-input-content.cloud-full
+                  input#question.form-control.input-sm(type='text')
+              .btn-wrap
+                button#show-coupus-btn.btn.btn-sm.btn-primary(type="button") 选择现有语料
+            .form-group
+              h6 回复
+              textarea#answer-area.answer-area.form-control
+            .form-group.save-btn-wrap
+              button#submit-btn.btn.btn-success(type='button') 保存
+              a.btn.btn-default(href="knowledge/dialog/index") 返回
+block modal
+  .modal.fade#leave-confirm-modal(data-backdrop="false")
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 温馨提示
+        .modal-body
+          p 修改内容尚未保存，确定离开吗？
+        .modal-footer
+          button#leave-btn.btn.btn-primary(type='button') 确定
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+

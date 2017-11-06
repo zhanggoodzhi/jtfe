@@ -1,0 +1,138 @@
+@font: 12px;
+//@infoWidth:80%;
+.chatBox{
+    .leftBox {
+        .blue {
+            background: #eaf8fe;
+        }
+        .ant-table-tbody {
+            height: 531px;
+            overflow: hidden;
+        }
+    }
+
+    .rightBox {
+        overflow: hidden;
+        width: 48%;
+        height: 110%;
+        float: right;
+        .detailBox {
+            width: 100%;
+            height: 582px;
+            border: 1px solid #e9e9e9;
+            border-radius: 8px;
+            overflow: auto;
+            p {
+                height: 50px;
+                background-color: #f7f7f7;
+                border-radius: 5px;
+                font-weight: bold;
+                padding: 15px;
+            }
+            .chatDetail {
+                width: 100%;
+                float: right;
+                overflow: hidden;
+                .singleInfo {
+                    width: 100%;
+                    overflow: hidden;
+                    .time {
+                        margin: 10px;
+                        text-align: center;
+                    }
+                    .infoBox {
+                        padding: 7px;
+                        overflow: hidden;
+                        .photo {
+                            width: 50px;
+                            height: 50px;
+                            border-radius: 50%;
+                            border: 1px solid #eee;
+                            overflow: hidden;
+                            float: left;
+                        }
+                        .infoCtx {
+                            float: left;
+                            margin: 0 10px;
+                            .nickname {
+                                font-weight: bold;
+                                font-size: @font;
+                            }
+                            .ctx {
+                                background-color: #eee;
+                                border-radius: 7px;
+                                padding: 4px 6px;
+                                font-size: @font+2;
+                                padding: 5px;
+                                min-height: 30px;
+                            }
+                        }
+                    }
+                }
+                .avatarInfo {
+                    float: right;
+                    .infoBox {
+                        /*.infoCtx{
+                            float:right;
+                            width:80%;
+                        }*/
+                        .photo {
+                            float: right;
+                        }
+                    }
+                    .nickname {
+                        text-align: right;
+                    }
+                }
+                /*.playerInfo{
+                    .infoCtx{
+                        width:80%;
+                    }
+                }*/
+            }
+        }
+    }
+
+    .detailPagination {
+        margin-top: 13px;
+        //margin-left:300px;
+    }
+
+    .infoCtx {
+        width: 80%;
+    }
+
+    @media screen and (max-width:769px) {
+        .infoCtx {
+            //float:right;
+            width: 75%;
+        }
+    }
+    @media screen and (max-width:1024px) {
+        .infoCtx {
+            //float:right;
+            width: 75%;
+        }
+    }
+}
+
+/*.leftBox .ant-pagination.mini .ant-pagination-total-text{
+    position:absolute;
+    top:120px;
+    left:0px;
+}*/
+
+
+/*.leftBox .ant-pagination.ant-table-pagination.mini li{
+    //border:1px solid red;
+    //display: inline-block;
+    //position:relative;
+    //left:0;
+    //margin-left:-200px;
+}
+*/
+
+.btn-wrap {
+    text-align: right;
+    padding-right: 14px;
+}

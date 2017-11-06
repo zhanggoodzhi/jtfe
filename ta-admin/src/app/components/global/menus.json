@@ -1,0 +1,199 @@
+[{
+
+    "title": "首页",
+
+    "children": [{
+
+        "title": "工作台",
+
+        "href": "/workbench/index"
+
+    }]
+
+}, {
+
+    "title": "用户信息",
+
+    "children": [{
+
+        "title": "账户列表",
+
+        "href": "/workbench/userInfo/account"
+
+    }, {
+
+        "title": "角色列表",
+
+        "href": "/workbench/userInfo/avatar"
+
+    }, {
+
+        "title": "认证资料",
+
+        "href": "/workbench/userInfo/identify"
+
+    }]
+
+}, {
+
+    "title": "用户记录",
+
+    "children": [{
+
+        "title": "聊天记录",
+
+        "href": "/workbench/record/chart"
+
+    }, {
+
+        "title": "订单记录",
+
+        "href": "/workbench/record/order"
+
+    }, {
+
+        "title": "充值记录",
+
+        "href": "/workbench/record/recharge"
+
+    }, {
+
+        "title": "投诉处理",
+
+        "href": "/workbench/record/complain"
+
+    }, {
+
+        "title": "提现记录",
+
+        "href": "/workbench/record/withdraw"
+
+    }]
+
+}, {
+
+    "title": "审核管理",
+
+    "children": [{
+
+        "title": "资格审核",
+
+        "href": "/workbench/review/qualification"
+
+    }, {
+
+        "title": "讲座审核",
+
+        "href": "/workbench/review/lecture"
+
+    }, {
+
+        "title": "入驻审核",
+
+        "href": "/workbench/review/settle"
+
+    }, {
+
+        "title": "文章审核",
+
+        "href": "/workbench/review/article"
+
+    }, {
+
+        "title": "化身审核",
+
+        "href": "/workbench/review/avatar"
+
+    }]
+
+}, {
+
+    "title": "发现模块",
+
+    "children": [{
+
+        "title": "测试管理",
+
+        "href": "/workbench/find/test"
+
+    }]
+
+}, {
+
+    "title": "运营统计",
+
+    "children": [{
+
+        "title": "实时总览",
+
+        "href": "/workbench/count/immediate"
+
+    }, {
+
+        "title": "消息数据",
+
+        "href": "/workbench/count/message"
+
+    }, {
+
+        "title": "注册数据",
+
+        "href": "/workbench/count/register"
+
+    }, {
+
+        "title": "礼物数据",
+
+        "href": "/workbench/count/gift"
+
+    }, {
+
+        "title": "历史总览",
+
+        "href": "/workbench/count/history"
+
+    }]
+
+}, {
+
+    "title": "专区",
+
+    "children": [{
+
+        "title": "专区管理",
+
+        "href": "/workbench/prefecture/index"
+
+    }]
+
+}, {
+
+    "title": "微信集成",
+
+    "children": [{
+
+        "title": "快速接入",
+
+        "href": "/workbench/weixin/integrate"
+
+    }, {
+
+        "title": "自定义菜单",
+
+        "href": "/workbench/weixin/menu_config"
+
+    }, {
+
+        "title": "角色管理",
+
+        "href": "/workbench/weixin/RoleManage"
+
+    }, {
+
+        "title": "客服管理",
+
+        "href": "/workbench/weixin/bind_roles"
+
+    }]
+
+}]

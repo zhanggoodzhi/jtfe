@@ -1,0 +1,85 @@
+table.dataTable tbody tr{
+    height: 45px;
+}
+.key-table-td{
+    vertical-align: middle !important;
+}
+.dataTables_paginate a{
+    color: #73879C;
+    background: none !important;
+}
+.dataTables_paginate a{
+    border: 0 !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+    color: #1ABB9C !important;
+    background: none !important;
+}
+.row-selected{
+    background-color: #1ABB9C !important;
+    color: #fff;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+    color: #1ABB9C !important;
+    background-color: #FFF !important;
+}
+.search-area .form-group{
+    height: 35px;
+    float: right;
+}
+.form-group{
+    margin: 5px 0 !important;
+}
+.input-title{
+    float: left;
+    padding-top: 8px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.input-wrap{
+    float: left;
+    box-sizing: border-box;
+    padding: 0 10px;
+    width: 130px;
+}
+.input-wrap>input{
+    padding: 0 12px;
+}
+.input-wrap>.date-picker{
+    cursor: pointer;
+}
+.search-area .form-btn-wrap{
+    float: right;
+    text-align: right;
+}
+.modal-footer .btn+.btn{
+    margin-bottom: 5px !important;
+}
+.page-change-wrap+.input-wrap{
+    width: 90px;
+}
+.search-area{
+    padding: 2px 0;
+}
+.form-btn-wrap .btn{
+    margin-right: 0;
+}
+td{
+    cursor: default;
+}
+.dataTables_wrapper .dataTables_processing {
+    z-index: 1000;
+    background-color: #1ABB9C;
+    color: #FFF;
+    padding-top: 10px;
+    background:-webkit-linear-gradient(left,rgba(255,255,255,0),rgba(26,187,156,.8),rgba(26,187,156,.9),rgba(26,187,156,.8),rgba(255,255,255,0));
+    background:-ms-linear-gradient(left,rgba(255,255,255,0) 0%,rgba(26,187,156,.8) 25%,rgba(26,187,156,.9) 50%,rgba(26,187,156,.8) 75%,rgba(255,255,255,0) 100%);
+    background:-moz-linear-gradient(left,rgba(255,255,255,0) 0%,rgba(26,187,156,.8) 25%,rgba(26,187,156,.9) 50%,rgba(26,187,156,.8) 75%,rgba(255,255,255,0) 100%);
+    background:-o-linear-gradient(left,rgba(255,255,255,0) 0%,rgba(26,187,156,.8) 25%,rgba(26,187,156,.9) 50%,rgba(26,187,156,.8) 75%,rgba(255,255,255,0) 100%);
+}
+.form-group-wrap {
+    clear: both;
+}
+.search-area .form-group{
+    float: left;
+}

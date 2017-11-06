@@ -1,0 +1,59 @@
+.RightSide {
+    margin: -16px 0;
+    padding-left: 12px;
+    flex: none;
+    border-left: 5px solid #f8f6f2;
+    :global(.ant-card) {
+        margin: 15px 0;
+        :global(.ant-card-head) {
+            background: #e0deda;
+            position: relative;
+            .Column {
+                width: 5px;
+                position: absolute;
+                background: #dd5601;
+                left: 0;
+                top: 15%;
+                height: 70%;
+            }
+        }
+        :global(.ant-card-body) {
+            background: #f8f6f2;
+            .HotKnowledgeItem {
+                border-radius: 5px;
+                padding: 3px 5px;
+                color: #777;
+                &:hover {
+                    background: #eeece7;
+                    cursor: pointer;
+                }
+            }
+            .HotLabelItem {
+                border: 1px solid #e0deda;
+                display: inline-block;
+                font-size: 12px;
+                padding: 3px 5px;
+                border-radius: 9px;
+                margin: 2px 2px;
+                color: #777;
+                cursor: pointer;
+                &:hover {
+                    background: #ecf6fd;
+                    border-color: #ceebff;
+                    color: #36a8ea;
+                }
+            }
+        }
+    }
+}
+
+.RankIcon {
+    vertical-align: middle;
+    margin-right: 3px;
+    width: 15px;
+    height: auto;
+}
+
+.VM {
+    vertical-align: middle;
+}

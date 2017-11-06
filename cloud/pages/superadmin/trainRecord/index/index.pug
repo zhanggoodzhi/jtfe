@@ -1,0 +1,34 @@
+extends /layout/main.pug
+
+block variable
+  - const isadmin=true;
+  - const title="训练记录"
+prepend script
+
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+        .clearfix
+          .form-group
+            label.cloud-input-title 应用
+            .cloud-input-content
+              select#appid.form-control.input-sm
+                option(value='') 全部
+                c:forEach(var='app',items='${appList}')
+                  option(value='${app.id}') ${app.name}
+          +cInput('用户名','admin-user')
+          .form-group
+            label.cloud-input-title 训练结果
+            .cloud-input-content
+              select#train-result.form-control.input-sm
+                option(value='') 全部
+                option(value='1') 训练成功
+                option(value='2') 训练失败
+                option(value='3') 训练异常
+          +cDate('训练时间')
+        .clearfix
+          .form-group
+            button#search-btn.btn.btn-primary.btn-sm(type='button') 查询
+          +cPageChange
+      table#train-table.table.fixed-table

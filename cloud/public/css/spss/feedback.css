@@ -1,0 +1,109 @@
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.form-wrap {
+    margin-bottom: 20px;
+}
+
+.form-horizontal .form-label {
+    float: left;
+    padding: 6px 0;
+}
+
+.time-wrap {
+    float: left;
+    width: 160px;
+}
+
+.list-item {
+    margin-bottom: 30px;
+}
+
+td {
+    word-wrap: break-word;
+    max-width: 400px;
+    min-width: 70px;
+}
+
+.tree-wrap {
+    position: absolute;
+    z-index: 1050;
+    padding: 0;
+    top: 29px;
+    border: 1px solid #7A9CD3;
+    box-sizing: border-box;
+    background-color: #FFF;
+    font-size: 12px;
+    display: none;
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: visible;
+    padding-right: 10px;
+}
+
+.tree-wrap::-webkit-scrollbar {
+    display: none;
+    background-color: transparent;
+}
+
+.tree-wrap>ul {
+    list-style: none;
+    line-height: 20px;
+}
+
+#select-classify-text,
+#edit-select-classify-text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 20px;
+    cursor: default;
+}
+
+.select-classify-wrap {
+    width: 210px;
+    position: relative;
+}
+
+.select-all {
+    margin-left: 35px;
+}
+
+.categoryList-wrap,
+.report-wrap,
+.count-wrap {
+    margin-bottom: 60px;
+}
+
+.view-record {
+    min-width: 94px;
+}
+
+.rotate {
+    animation: rotate 1s infinite linear;
+    padding: 0 7px;
+}
+
+.section-title {
+    font-size: 16px;
+    padding: 5px 0;
+}
+
+.modal-dialog {
+    margin: 30px auto;
+}
+
+.export-wrap {
+    width: 180px;
+}
+
+.paginate_button {
+    padding: 0 6.5px;
+    cursor: pointer;
+}

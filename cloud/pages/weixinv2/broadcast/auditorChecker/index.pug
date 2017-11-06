@@ -1,0 +1,40 @@
+doctype html
+include /layout/component.pug
++sJava
+html(lang="zh-cmn-Hans")
+  head
+    +sHtml
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+    if common&&common.css
+      link(type="text/css",rel="stylesheet",href=common.css)
+    if file&&file.css
+      link(type="text/css",rel="stylesheet",href=file.css)
+    title 审核公众号群发请求
+  body
+    c:if(test='${broadcastStatus!=null}')
+      center 群发审核已处理, 处理结果为:${broadcastStatus}
+    c:if(test='${broadcastStatus==null}')
+      #mainbody.container-fluid
+        p.bg-warning 请问您是否允许执行本次图文群发请求?
+        .commander
+          .row
+            .col-xs-9
+              button.btn.btn-success.btn-block#approve-btn(type='button') 允许
+            .col-xs-3
+              button.btn.btn-danger.btn-block#reject-btn(type='button') 拒绝
+        h4 图文详情
+        .newscontainer
+          c:forEach(var='news', items='${newslist}')
+            .news
+              img.newsimg(src='${news.identifierUrl}')
+              .title ${news.title}
+            .clearfix
+        div
+    script.
+      var ctx="${ctx}";
+      var processid = "${processid}";
+      var isVcg=false;
+    if common&&common.js
+      script(src=common.js)
+    if file&&file.js
+      script(src=file.js)

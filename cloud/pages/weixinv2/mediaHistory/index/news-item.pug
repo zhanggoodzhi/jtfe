@@ -1,0 +1,26 @@
+if news&&news.length>0
+  .news-item
+    .news-time= time
+    - var first=news[0];
+    if news.length>1
+      .news-cover(style={'background-image':'url('+first.identifierUrl+')'})
+        .news-top-title= first.title
+      each node,index in news
+        if index>0
+          .news-node.clearfix
+            .news-node-title= node.title
+            .news-node-cover(style={'background-image':'url('+node.identifierUrl+')'})
+    else
+      .news-title= first.title
+      .news-cover(style={'background-image':'url('+first.identifierUrl+')'})
+      .news-summary= first.digest
+    .material-toolbar
+      if !nodeId||(select&&select===nodeId)
+        i.fa.fa-pencil-square-o.fa-fw.edit-news(title="编辑")
+      i.fa.fa-eye.fa-fw.preview-news(title="预览")
+      if select
+        i.image-icon.push-one-icon.push-one-news(title="群发")
+      i.image-icon.push-all-icon.push-all-news(title="推送到矩阵")
+      if !nodeId||(select&&select===nodeId)
+        i.fa.fa-trash-o.fa-fw.delete-news(title="删除")
+

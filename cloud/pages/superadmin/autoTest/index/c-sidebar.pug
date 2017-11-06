@@ -1,0 +1,57 @@
+p 计划任务：#{remarks}
+p 状态：#{statusText}
+p 创建时间：#{create}
+p 执行时间：#{start}
+p 完成时间：#{end}
+p 训练语料：
+  a.btn.btn-sm.btn-primary(href="knowledge/editByA/index",target="_blank") 查看
+p 初始参数配置
+table.table
+  thead
+    tr
+      th 参数
+      th 最小值
+      th 最大值
+      th 步长
+  tbody
+    each setting in settings
+      tr
+        td= setting.key
+        td= setting.start
+        td= setting.end
+        td= setting.step
+p 测试用例：
+  button.btn.btn-sm.btn-primary.view-testcase(type="button") 查看
+  button.btn.btn-sm.btn-primary.toggle-testcase.hidden(type="button") 隐藏
+if count>0
+  p 测试报告：一共执行#[strong #{count}]轮，
+    | 通过率：
+    if bestResultId
+      | #[a(href="javascript:;",class="result-link best",data-target="#result-detial-"+bestResultId) 最佳#{bestResult}]，
+    else
+      | #[a(href="javascript:;") 最佳0%]，
+    if worstResultId
+      | #[a(href="javascript:;",class="result-link worst",data-target="#result-detial-"+worstResultId) 最差#{worstResult}]
+    else
+      | #[a(href="javascript:;") 最差0%]
+
+if testResultOutlines
+  .panel-group
+    each result,index in testResultOutlines
+      .panel.panel-white
+        .panel-heading
+          h4.panel-title
+            a(role="button", data-toggle="collapse", href="#result-detial-"+result.testResultId, aria-expanded="true")
+              | 第#[strong #{index+1}]轮：
+              each k in keyArray
+                each threshold in result.thresholds
+                  if k.name===threshold.k
+                    | #{k.value}：#[strong #{threshold.v}]&nbsp;&nbsp;
+              | 通过率：#[strong #{result.passingRate}]，
+              | 测试#[strong #{result.count}]次，
+              | 通过#[strong #{result.passed}]次，
+              | 失败#[strong #{result.failed}]次，
+              | 无答案#[strong #{result.mismatchNoAnswerCount}]次，
+              | 混淆（答错）#[strong #{result.mismatchWrongAnswerCount}]次
+      .panel-collapse.collapse(role="tabpanel", id="result-detial-"+result.testResultId,data-id=result.testResultId)
+        .panel-body

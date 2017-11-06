@@ -1,0 +1,52 @@
+extends /layout/main.pug
+
+block mainbody
+  .x_panel
+    .x_content
+      form#search-form.form-horizontal.form-label-left.cloud-search-area
+        .form-group-wrap
+          .form-group.pull-left
+            button#edit-more-btn.btn.btn-primary.btn-sm(type='button') 配置对话模型
+            button#edit-btn.btn.btn-primary.btn-sm(type='button') 编辑基本信息
+            button#add-btn.btn.btn-primary.btn-sm(type='button') 添加
+            button#del-btn.btn.btn-danger.btn-sm(type='button') 删除
+          +cPageChange
+      table#key-table.table.fixed-table
+
+block modal
+  #create-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 创建对话模型
+        .modal-body
+          form.form-horizontal
+            .form-group.clearfix
+              label.cloud-input-title 模型名称
+              .cloud-input-content
+                input#dialogName.form-control.input-sm(type='text', name='dialogName')
+            .form-group
+              label.cloud-input-title 虚拟角色
+              .cloud-input-content
+                select#select-character.form-control.input-sm(name='character')
+                  c:forEach(var='character', items='${selectmapObject.Characters}')
+                    option(value='${character.id}') ${character.name}
+            +cInput('生效时间','start-date')(readonly)
+            +cInput('失效时间','end-date')(readonly)
+            //- .form-group
+            //-   label.cloud-input-title 生效时间
+            //-   .cloud-input-content.form-date-wrap
+            //-     input#start-date.form-control.input-sm.form-date(type='text')
+            //- .form-group
+            //-   label.cloud-input-title 失效时间
+            //-   .cloud-input-content.form-date-wrap
+            //-     input#end-date.form-control.input-sm.form-date(type='text')
+            .form-group
+              label.cloud-input-title 是否允许重复进入
+                input#isReaccess.isreaccess(type='checkbox')
+        .modal-footer
+          button#create-submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+

@@ -1,0 +1,85 @@
+.Tools {
+    user-select: none;
+}
+
+.ToolItem {
+    height: 36px;
+    line-height: 36px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-bottom: 8px;
+     :global(.material-icons) {
+        line-height: inherit;
+        vertical-align: middle;
+    }
+    span {
+        display: inline-block;
+        margin-left: 10px;
+        vertical-align: middle;
+    }
+}
+
+.BuilderForm {
+    user-select: none;
+    cursor: default;
+     :global(.ant-input-disabled),
+    input {
+        cursor: default;
+    }
+}
+
+.BuilderItem {
+    position: relative;
+    padding: 10px;
+    border: 1px dashed transparent;
+    background-color: #fff;
+     :global(.ant-form-item) {
+        margin-bottom: 0;
+    }
+    &.active {
+        border-color: #d9d9d9;
+    }
+}
+
+// .OptionInput {
+//     width: 50%;
+// }
+.ItemOverlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.Actions {
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    &>i {
+        cursor: pointer;
+        margin-left: 8px;
+        font-size: 18px;
+    }
+}
+
+.OptionLabel {
+    position: relative;
+    label {
+        position: static;
+    }
+    i {
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 18px;
+        cursor: pointer;
+    }
+}
+
+.TreeFormItem {
+     :global(.ant-form-item-control) {
+        line-height: 1.5;
+    }
+}

@@ -1,0 +1,81 @@
+extends /layout/main.pug
+
+block script
+  script.
+    var selectData = JSON.parse('${selectmap}')[0];
+
+block mainbody
+  .x_panel
+    .x_content
+      ul#tablist.nav.nav-tabs(role="tablist")
+        li.active(role="presentation")
+          a#common-question-tab(href="#common-question",role="tab",data-toggle="tab") 常见问题
+        li(role="presentation")
+          a#menu-manage-tab(href="#menu-manage",role="tab",data-toggle="tab") 菜单管理
+      .tab-content
+        #common-question.tab-pane.fade.in.active(rol="tabpanel")
+          form.form-horizontal.cloud-search-area
+            .form-group
+              label.cloud-input-title 关键词
+              .cloud-input-content
+                input#q-keyword.form-control.input-sm(type='text')
+            .form-group
+              label.cloud-input-title 菜单
+              .cloud-input-content
+                select#q-menu.form-control.input-sm(type='text')
+                  //- c:forEach(var="menu",items="${generalMenus}")
+                  //-   option(value="${menu.id}") ${menu.name}
+            .form-group
+              label.cloud-input-title 状态
+              .cloud-input-content
+                select#q-state.form-control.input-sm(type='text')
+                  option(value="") 全部
+                  option(value="1") 已开放
+                  option(value="0") 已关闭
+
+            .form-group
+              button#common-question-search-btn.btn.btn-primary.btn-sm(type="button") 查询
+              button#common-question-open-btn.btn.btn-primary.btn-sm(type="button") 开放
+              button#common-question-close-btn.btn.btn-primary.btn-sm(type="button") 关闭
+          table#common-question-table.table.fixed-table
+        #menu-manage.tab-pane.fade.in(rol="tabpanel")
+          form.form-horizontal.cloud-search-area
+            .form-group
+              label.cloud-input-title 关键词
+              .cloud-input-content
+                input#m-keyword.form-control.input-sm(type='text')
+            +cBtngroup("menu-manage")
+          table#menu-manage-table.table.fixed-table
+
+block modal
+  #menu-modal.menu-modal.modal.fade(data-backdrop="false")
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title
+        .modal-body
+          form.form-horizontal
+            .form-group
+              .col-xs-3.col-md-2.cloud-input-title 菜单名称
+              .col-xs-4.col-md-4
+                input#menu-name.form-control.input-sm(type="text")
+
+            .form-group
+              .col-xs-3.col-md-2.cloud-input-title 优先级
+              .col-xs-4.col-md-4
+                input#menu-number.form-control.input-sm(type="number",max="100",min="1",value="1")
+            .form-group
+              .col-xs-3.col-md-2.cloud-input-title 映射关系
+              .col-xs-9.col-md-4
+                #relationship-select.form-control.input-sm
+            .form-group
+              .col-xs-3.col-md-2.cloud-input-title 描述
+              .col-xs-9.col-md-10
+                input#menu-description.form-control.input-sm(type="text")
+
+        .modal-footer
+          button#menu-save-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 关闭
+

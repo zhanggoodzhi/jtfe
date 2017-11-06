@@ -1,0 +1,55 @@
+.inference-update
+  .row
+    .input-field.col.s12
+      input(id="inference-name",type="text",class="validate")
+      label.active(for="inference-name") 规则名称
+  .row
+    .input-field.col.s12
+      div.clearfix.variable-wrap
+        span.variables a,b,c
+        a.variable-add.btn-floating.btn-small.waves-effect.waves-light
+          i.material-icons add
+        a.variable-remove.btn-floating.btn-small.waves-effect.waves-light
+          i.material-icons remove
+      label.active 变量
+  .rules
+    div.title-wrap.clearfix
+      span.title 条件
+      a.add.btn-floating.btn-small.waves-effect.waves-light
+        i.material-icons add
+    .row
+      .input-field.col.s2
+        select.inference-sup
+        label(for="inference-sup") 主
+      .input-field.col.s6
+        select.inference-text.select-two.browser-default
+        label.active(for="inference-text") 谓
+      .input-field.col.s2
+        select.inference-sub
+        label(for="inference-sub") 宾
+      .col.s2.delete-wrap
+        a.delete.btn-floating.btn-small.waves-effect.waves-light.red
+          i.material-icons delete
+  .results
+    div.title-wrap.clearfix
+      span.title 结论
+      a.add.btn-floating.btn-small.waves-effect.waves-light
+        i.material-icons add
+    .row
+      .input-field.col.s2
+        select.inference-sup
+        label(for="inference-sup") 主
+      .input-field.col.s6
+        select.inference-text.select-two.browser-default
+        label.active(for="inference-text") 谓
+      .input-field.col.s2
+        select.inference-sub
+        label(for="inference-sub") 宾
+      .col.s2.delete-wrap
+        a.delete.btn-floating.btn-small.waves-effect.waves-light.red
+          i.material-icons delete
+
+
+
+
+

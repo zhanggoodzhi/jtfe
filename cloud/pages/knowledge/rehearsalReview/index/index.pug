@@ -1,0 +1,143 @@
+extends /layout/main.pug
+
+block variable
+  - const title="复述添加";
+block script
+  script.
+    var selectData = JSON.parse('${selectmap}');
+    var hrefId='${param.id}';
+    var hrefType='${param.type}';
+  script.
+    //- function reviewSave(){
+    //-   var sideBar=$('#language');
+    //-   if(sideBar.attr('data-type')==='add'){
+    //-      sideBar.trigger('addSave');
+    //-      return;
+    //-   }
+    //-      sideBar.trigger('auditSave');
+    //- };
+    //- function jump(src){
+    //-   window.open(src);
+    //- };
+    //- function addSave(){
+    //-   $('#iframe-modal').trigger('addSave');
+    //- }
+    //- function auditSave(){
+    //-   $('#iframe-modal').trigger('auditSave');
+    //- }
+block mainbody
+  .x_panel
+    .x_content
+      ul#tablist.nav.nav-tabs(role="tablist")
+        li.active(role="presentation")
+          a#server-acc-tab(href="#repeat-add-tab",role="tab",data-toggle="tab") 复述添加
+        li(role="presentation")
+          a#server-group-tab(href="#repeat-audit-tab",role="tab",data-toggle="tab") 复述审核
+      .tab-content
+        #repeat-add-tab.tab-pane.fade.in.active(rol="tabpanel")
+          form.form-horizontal.cloud-search-area#add-form
+            .form-group
+                label.cloud-input-title 问题
+                .cloud-input-content
+                  input.question.form-control.input-sm(type='text')
+            .form-group
+              label.cloud-input-title 回复
+              .cloud-input-content
+                input.reply.form-control.input-sm(type='text')
+            .form-group
+              label.cloud-input-title 状态
+              .cloud-input-content
+                select.status.form-control.input-sm
+                  option(value="") 全部
+                  option(value="0") 未提交
+                  option(value="1") 待审核
+            .form-group
+              button.btn.btn-primary.btn-sm.reply-search(type="button") 查询
+              button.btn.btn-primary.btn-sm.reply-batch-upload(type="button") 批量上传
+              button.btn.btn-primary.btn-sm.reply-add(type="button") 添加语料
+              button.btn.btn-primary.btn-sm.reply-audit(type="button") 提交审核
+              button.btn.btn-primary.btn-sm.reply-output(type="button") 导出
+              button.btn.btn-danger.btn-sm.reply-delete(type="button") 删除
+
+          table#add-table.table.fixed-table
+        #repeat-audit-tab.tab-pane.fade(rol="tabpanel")
+          form.form-horizontal.cloud-search-area#audit-form
+            .form-group
+                label.cloud-input-title 混淆度
+                .cloud-input-content
+                  select.mix.form-control.input-sm
+                    option(value="0") 全部
+                    option(value="1") 大于90%
+                    option(value="2") 大于70%
+                    option(value="3") 大于50%
+                    option(value="4") 小于50%
+            .form-group
+              label.cloud-input-title 操作建议
+              .cloud-input-content
+                select.suggest.form-control.input-sm
+                  option(value="0") 全部
+                  option(value="1") 合并通过
+                  option(value="2") 审核通过
+                  option(value="3") 合并/编辑/删除
+                  option(value="4") 无建议
+            .form-group
+              button.btn.btn-primary.btn-sm.reply-search(type="button") 查询
+              button.btn.btn-primary.btn-sm.reply-reset(type="button") 重置
+              button.btn.btn-primary.btn-sm.reply-audit(type="button") 审核通过
+              button.btn.btn-primary.btn-sm.reply-output(type="button") 导出
+              button.btn.btn-danger.btn-sm.reply-delete(type="button") 删除
+          table#audit-table.table.fixed-table
+block modal
+  #upload.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 温馨提示
+        .modal-body
+          p.text-center
+            |请按照模板格式上传语料，
+            a(href="${ctx}/uploadFile/corpus/jintongsoft.xls") 点此下载模板
+          //- p.text-center
+            |下载最新的
+            a(href="${ctx}/knowledge/virtualCharactersFile") 语料角色信息
+            | &nbsp;&&nbsp;
+            a(href="${ctx}/knowledge/classifysFile") 语料类型信息
+          #upload-wrap.upload-icon-wrap
+            i.upload-icon.wangeditor-menu-img-upload
+          #info-wrap.info-wrap
+            p#info-name
+        .modal-footer
+          button#upload-submit-btn.btn.btn-primary(type='button') 确定
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  #add-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 添加复述问法
+        .modal-body
+          form.form-horizontal
+            .form-group
+              label.cloud-input-title 标准问法
+              .cloud-input-content
+                input.standard.form-control.input-sm(type='text',readonly)
+            .form-group
+              label.cloud-input-title 复述问法
+              .cloud-input-content
+                input.repeat.form-control.input-sm(type='text',placeholder="请输入复述问法")
+                i.cloud-fa-icon.fa.fa-plus-circle.add-repeat(title='添加复述问法')
+        .modal-footer
+          button#add-save.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  //- #iframe-modal.modal.fade(data-backdrop='false')
+  //-   .modal-dialog.modal-lg
+  //-     .modal-content
+  //-       .modal-header
+  //-         button.close(type='button', data-dismiss='modal', aria-label='Close')
+  //-           span(aria-hidden='true') &times;
+  //-       .modal-body
+  //-         iframe(name="review",src="knowledge/editByA/update?type=review",width="50%",height="50%")
+

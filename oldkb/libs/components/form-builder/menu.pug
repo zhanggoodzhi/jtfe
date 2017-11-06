@@ -1,0 +1,20 @@
+mixin items(data)
+  //- - for (var i = 0,l=data.length; i < l; i++)
+  //-   if i%2===0
+  //-     - var items=[data[i],data[i+1]];
+  //-     .menu-row
+  - for(var i in data)
+    - var item=data[i]
+    .menu-item(data-name=i)
+      i.material-icons= item.icon
+      span= item.text
+
+.col.s3.kb-menu
+  if commonMenus
+    h5 通用字段
+    .menu-block.clearfix
+      +items(commonMenus)
+  if userMenus
+    h5 联系人字段
+    .menu-block.clearfix
+      +items(userMenus)

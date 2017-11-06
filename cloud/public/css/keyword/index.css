@@ -1,0 +1,55 @@
+.key-table-td{
+    height: 32px;
+}
+.dataTables_paginate a{
+    color: #333;
+    background: none !important;
+}
+.dataTables_paginate a{
+    border: 0 !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+    color: #1ABB9C !important;
+    background: none !important;
+}
+.row-selected{
+    background-color: #1ABB9C !important;
+    color: #fff;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+    color: #1ABB9C !important;
+    background-color: #FFF !important;
+}
+.search-area .form-group{
+    float: right;
+}
+.form-group{
+    margin: 10px !important;
+}
+.input-title{
+    float: left;
+    padding-top: 5px;
+    width: 60px;
+}
+.input-wrap{
+    float: left;
+    box-sizing: border-box;
+    padding: 0 10px;
+    width: 130px;
+}
+.input-wrap>input{
+    padding: 0 22px;
+}
+.input-wrap>.date-picker{
+    cursor: pointer;
+}
+.search-area .form-btn-wrap{
+    float: right;
+    text-align: right;
+}
+.modal-footer .btn+.btn{
+    margin-bottom: 5px !important;
+}
+.page-change-wrap+.input-wrap{
+    width: 85px;
+}

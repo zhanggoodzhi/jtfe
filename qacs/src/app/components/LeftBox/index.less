@@ -1,0 +1,101 @@
+.LeftBox {
+    li {
+        padding: 0 10px 0 5px;
+        transition: background-color 0.2s;
+        height: 25px;
+        line-height: 25px;
+        .Gname {
+            display: inline-block;
+            width: calc(~'100% - 55px');
+        }
+        .Icon {
+            text-align: right;
+            display: inline-block;
+            // width: 45px;
+        }
+        .Close {
+            margin-top: 2px;
+            &:after {
+                vertical-align: initial!important;
+            }
+        }
+        :global(.ant-badge) {
+            float: left;
+            margin-top: 2px;
+        }
+        &:hover, &.active {
+            background-color: #ecf6fd;
+            cursor: pointer;
+        }
+        span.Gname {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            float: left;
+        }
+        div {
+            float: left;
+            margin-left: 8px;
+        }
+    }
+}
+
+.Fangke {
+    li {
+        &:hover {
+            .Icon:after {
+                content: '';
+                background: url('../images/close.png') no-repeat center;
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.LiBg {
+    background-color: #ecf6fd;
+}
+
+.Paidui {
+    li {
+        &:hover {
+            .Icon:after {
+                content: '';
+                background: url('../images/onservice.png') no-repeat center;
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.Zhineng {
+    li {
+        .Icon2 {
+            margin-right: 5px;
+        }
+        &:hover {
+            .Icon1:after {
+                content: '';
+                background: url('../images/chat.png') no-repeat center;
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                vertical-align: middle;
+            }
+            .Icon2:after {
+                content: '';
+                background: url('../images/forceChat.png') no-repeat center;
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                vertical-align: middle;
+            }
+        }
+    }
+}

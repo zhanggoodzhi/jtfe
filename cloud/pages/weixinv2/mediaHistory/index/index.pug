@@ -1,0 +1,194 @@
+extends /layout/main.pug
+
+block variable
+  - const href="weixinv2/material/mediaHistory/index";
+block script
+  c:set(var="simple",value="${param.style=='simple'}")/
+  script.
+    var output=JSON.parse('${output}');
+    var groupOutput=JSON.parse('${groupOutput}');
+    var credentialBeansOutput=JSON.parse('${credentialBeansOutput}');
+    var hasOnlinePic=false;
+    var hasDam=false;
+    var nodeAccountId=null;
+    //- wechat_dam
+    <c:if test="${flag}">
+       nodeAccountId="${userExtraData.id}";
+    </c:if>
+    <c:if test="${fn:contains(accesslist, 'wechat_fotomore')}">
+      hasOnlinePic=true;
+    </c:if>
+    <c:if test="${fn:contains(accesslist, 'wechat_dam')}">
+      hasDam=true;
+    </c:if>
+
+    var simple=${simple};
+
+
+mixin accountOption
+  c:if(test="${flag}")
+    c:if(test="${userExtraData.id==item.id}")
+      option(value="${item.id}" selected) ${item.wxName}
+    c:if(test="${userExtraData.id!=item.id}")
+      option(value="${item.id}",class="without-access") ${item.wxName}
+  c:if(test="${!flag}")
+    option(value="${item.id}") ${item.wxName}
+
+mixin searchForm(name)
+  form#search-form.form-horizontal.cloud-search-area
+    .clearfix
+      .form-group.col-md-3.col-sm-3.col-lg-3
+        .input-group
+          input.form-control.input-sm(id=name+"-search-title",type='text',placeholder="请输入关键词搜索")
+          span.input-group-btn
+            button.btn.btn-default.btn-sm(id=name+"-search-btn",type='button')
+              span.glyphicon.glyphicon-search
+      .form-group.col-md-6.col-sm-6.col-lg-6
+        label.cloud-input-title 当前公众号
+        .cloud-input-content
+          select.weixin-account.form-control.input-sm(id=name+"-account",type='text',placeholder='请选择当前公众号')
+            c:if(test="${!flag}")
+              option.without-access(value="") 全部
+            case name
+              //- when 'text'
+              when 'link'
+              when 'file'
+                c:forEach(var="item",items="${wechatCredentials}")
+                  c:if(test="${item.accountType=='3'}")
+                    +accountOption
+              default
+                c:forEach(var="item",items="${wechatCredentials}")
+                  +accountOption
+        button.weixin-add-btn.btn.btn-primary.btn-sm(id=name+"-add-btn",type='button') 新建素材
+block mainbody
+  .x_panel
+    .x_content
+      ul#tablist.nav.nav-tabs(role="tablist")
+        li.active(role="presentation")
+          a#news-link(href="#news-tab",role="tab",data-toggle="tab") 图文消息
+        li(role="presentation")
+          a#image-link(href="#image-tab",role="tab",data-toggle="tab") 图片
+        li(role="presentation")
+          a#voice-link(href="#voice-tab",role="tab",data-toggle="tab") 语音
+        li(role="presentation")
+          a#video-link(href="#video-tab",role="tab",data-toggle="tab") 视频
+        li(role="presentation")
+          a#text-link(href="#text-tab",role="tab",data-toggle="tab") 文本
+        c:if(test!="${(!flag||userExtraData.accountType=='3')&&!isVcg}")
+          li(role="presentation")
+            a#link-link(href="#link-tab",role="tab",data-toggle="tab") 链接
+          li(role="presentation")
+            a#file-link(href="#file-tab",role="tab",data-toggle="tab") 文件
+        //- li(role="presentation")
+        //-   a#music-link(href="#music-tab",role="tab",data-toggle="tab") 音乐
+      #tab-content.tab-content
+        #news-tab.news-tab.tab-pane.fade.in.active(rol="tabpanel")
+          +searchForm('news')
+          //- form.news-form
+          //-    button.btn.btn-primary.btn-sm(id="news-add-btn",type='button') 新增素材
+          #news-scroll.cloud-scroll
+            #news-items-wrap.clearfix
+        #image-tab.tab-pane.fade(rol="tabpanel")
+          +searchForm('image')
+          .image-box.row
+          .preview-wrap
+            i.fa.fa-close.close-btn
+            img.image-loading(src="images/default.png")
+        #voice-tab.tab-pane.fade(rol="tabpanel")
+          +searchForm('voice')
+          table#voice-table.table.fixed-table
+        #video-tab.tab-pane.fade(rol="tabpanel")
+          +searchForm('video')
+          .video-box.row
+        #text-tab.tab-pane.fade(rol="tabpanel")
+          +searchForm('text')
+          table#text-table.table.fixed-table
+        c:if(test!="${(!flag||userExtraData.accountType=='3')&&!isVcg}")
+          #link-tab.tab-pane.fade(rol="tabpanel")
+            +searchForm('link')
+            table#link-table.table.fixed-table
+          #file-tab.tab-pane.fade(rol="tabpanel")
+            +searchForm('file')
+            .file-box.row
+            //- .preview-wrap
+            //-   i.fa.fa-close.close-btn
+            //-   img.image-loading(src='images/default.png')
+          //- #music-tab.tab-pane.fade(rol="tabpanel")
+          //-   +searchForm('music')
+          //-   table#music-table.table.fixed-table
+block modal
+  #push-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-lg
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 推送到矩阵
+        .modal-body
+          table#push-table.table.fixed-table
+            thead
+              tr.headings
+                th.check-wrap
+                  label#check-wrap
+                    input.checkAll(style="vertical-align:-2px",type="checkbox")
+                    |  全选
+                th 公众号
+                th 群发对象
+            tbody#tB
+              c:forEach(var="selectWechatCredential", items="${wechatCredentials}")
+                tr(data-id="${selectWechatCredential.id}",data-type="${selectWechatCredential.accountType}",data-name="${selectWechatCredential.wxName}")
+                  td.check-wrap
+                    input(type="checkbox",name="checklist",data-type="${selectWechatCredential.accountType}")
+                  td ${selectWechatCredential.wxName}
+                  c:if(test="${selectWechatCredential.accountType!='3'}")
+                    td.select-wrap
+                      .form-group
+                        select.select.form-control(data-id="${selectWechatCredential.id}")
+                          option(value="-1") 全部用户
+                          c:forEach(var="groupName", items="${groupNames}")
+                            c:if(test="${groupName.credential.id == selectWechatCredential.id}")
+                              option(value="${groupName.groupid}") ${groupName.name}
+                  c:if(test="${selectWechatCredential.accountType=='3'}")
+                    td.select-wrap
+                      .form-group
+                        select.select.form-control.select2(data-id="${selectWechatCredential.id}",multiple="multiple")
+                          c:forEach(var="agent", items="${wechatAppInCredentialBeans}")
+                            c:if(test="${agent.credentialId==selectWechatCredential.id}")
+                              c:forEach(var="app", items="${agent.apps}")
+                                option(value="${app.agentid}") ${app.name}
+        .modal-footer
+          button#push-sure.btn.btn-success(type='button') 确定
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+
+  #preview-news-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 图文消息预览
+        .modal-body
+          form.form-horizontal
+            .form-group
+              label.cloud-input-title 公众号
+              .cloud-input-content
+                select#preview-wx-account.input-sm.form-control
+                  c:forEach(var="wechatCredential", items="${wechatCredentials}")
+                    c:if(test="${!flag}")
+                      c:if(test="${wechatCredential.accountType!='3'}")
+                        option(value="${wechatCredential.id}") ${wechatCredential.wxName}
+                    c:if(test="${flag}")
+                      c:if(test!="${wechatCredential.accountType!='3' && wechatCredential.id==userExtraData.id}")
+                        option(value="${wechatCredential.id}") ${wechatCredential.wxName}
+            .form-group
+              .cloud-input-title 微信号
+              .cloud-input-content
+                input#preview-wx-user.input-sm.form-control
+        .modal-footer
+          button#preview-news-btn.btn.btn-success(type='button') 确定
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  block modal
+    #record-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+      button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+      .modal-dialog
+        img(src='')

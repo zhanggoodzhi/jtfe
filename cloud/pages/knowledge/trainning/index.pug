@@ -1,0 +1,30 @@
+extends /layout/main.pug
+
+block variable
+  - const href="knowledge/trainning"
+  - const title="训练机器人"
+
+prepend script
+  script.
+    var appId="${appid}";
+
+block mainbody
+  .x_panel.trainning-wrap
+    .info-wrap
+      h4 训练机器人的作用
+      ul
+        li 训练机器人可以让机器通过分析新增的问答对以及关键词信息，进一步对内容进行理解与消化，进而提高回答问题的准确度
+      h4 训练机器人的注意事项
+      ul
+        li 机器人需要一些时间来消化学习的数据，所以训练的过程将会持续1到60分钟不等，为了让您的机器人一天不致于太频繁的进行训练学习, 建议您一天最多训练机器人两次
+    #progress-wrap.progress-wrap
+      h4 训练机器人进度
+      p#status-text &nbsp;
+      .progress
+        #progress-bar.progress-bar.progress-bar-striped.active
+
+    .btn-wrap
+      button#start-btn.btn.btn-primary(type="button") 开始训练
+      button#end-btn.btn.btn-danger(type="button") 终止训练
+      button#experience-btn.experience.btn.btn-success(role="button",data-href="${csclientUrl}${appKey}") 立即体验
+

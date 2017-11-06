@@ -1,0 +1,72 @@
+extends /layout/primary.pug
+
+//- block variable
+//-   - const title="消息数据分析"
+
+block script
+  script.
+    var username='${username}';
+    var activieId='${param.activieId}';
+block mainbody
+  .reset-container
+    .wizard_horizontal
+      ul.wizard_steps.anchor
+        li
+          a.link1.selected(isdone='1', rel='1')
+            span.step_no 1
+            span.step_descr
+              small 输入邮箱
+        li
+          a.link2.disabled(isdone='1', rel='2')
+            span.step_no 2
+            span.step_descr
+              small 进入邮箱验证
+        li
+          a.link3.disabled(isdone='1', rel='3')
+            span.step_no 3
+            span.step_descr
+              small 设置新密码
+        li
+          a.link4.disabled(isdone='1', rel='4')
+            span.step_no 4
+            span.step_descr
+              small 完成
+    form.step-form#form1(data-toggle="validator" role="form")
+      .form-group
+        label.control-label 请输入绑定的邮箱
+        input#email.form-control(data-required-error="请输入邮箱",type='email',required)
+        .help-block.with-errors
+      .form-group.center
+        button.btn.btn-success#next1(type='submit') 下一步
+    form.step-form#form2
+      .info-wrap
+        img(src="images/icon_2.jpg")
+        .info
+          h4 请您立即登录该邮箱，并按邮件中提示完成找回密码的操作。
+          p 注意：如果您连续多次申请找回密码，请以最新收到的邮件为准！
+    form.step-form#form3
+      .form-group
+        label.control-label 用户名
+        input#user.form-control(readonly,data-required-error="请输入用户名",type='text',required)
+        .help-block.with-errors
+      .form-group
+        label.control-label 请输入新的密码
+        input#old-password.form-control(data-length,data-required-error="请输入新密码",type='password',required)
+        .help-block.with-errors
+      .form-group
+        label.control-label 再次输入新密码
+        input#new-password.form-control(data-length,data-match-error="两次密码输入不一致" data-match="#old-password" data-required-error="请再次输入新密码",type='password',required)
+        .help-block.with-errors
+      .form-group.center
+        button.btn.btn-success#next3(type='submit') 确定
+    form.step-form#form4
+      .info-wrap
+        img(src="images/img_18.gif")
+        .info
+          h4 修改密码成功！
+          p 为了保护您的账号安全，请重新登录。
+      .form-group.center
+        a.btn.btn-success#step-login(href="login") 马上登陆
+
+
+

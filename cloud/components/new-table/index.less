@@ -1,0 +1,48 @@
+.table {
+    th,
+    td {
+        box-sizing: content-box;
+    }
+}
+
+.table thead tr .cloud-table-checkbox {
+    .fa::before {
+        content: "\f096";
+    }
+    &.selected-all .fa::before {
+        content: "\f046";
+    }
+}
+
+.table tbody tr {
+    .cloud-table-checkbox .fa::before {
+        content: "\f096";
+    }
+    &.selected {
+        .cloud-table-checkbox .fa::before {
+            content: "\f046";
+        }
+    }
+}
+
+.table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    p {
+        margin: 0;
+        line-height: 28px;
+        &.cloud-td-info {
+            color: #b5b5b5;
+            font-size: 12px;
+        }
+    }
+    .btn-link {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.paginate_button.disabled {
+    display: none;
+}

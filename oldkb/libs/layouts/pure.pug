@@ -1,0 +1,27 @@
+doctype html
+block variable
+include ./components.pug
+html(xmlns:th="http://www.thymeleaf.org")
+  head
+    meta(charset='utf-8')
+    meta(name='viewport',content='width=device-width,initial-scale=1')
+    meta(http-equiv='X-UA-Compatible',content='IE=edge,chrome=1')
+    meta(name='renderer',content='webkit')
+    if common&&common.css
+      link(href=common.css,type="text/css",rel="stylesheet")
+    if page&&page.css
+      link(href=page.css,type="text/css",rel="stylesheet")
+
+    title= title || '金童知识库平台'
+  body
+    main
+      block mainbody
+    footer
+    block modal
+    block script
+    //- 公共js
+    if common && common.js
+      script(src=common.js)
+    //- 私有js
+    if page && page.js
+      script(src=page.js)

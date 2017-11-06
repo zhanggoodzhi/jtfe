@@ -1,0 +1,83 @@
+.Title {
+    line-height: 22px;
+    min-height: 38px;
+    padding: 8px 0 8px 32px;
+    background: #f7f7f7;
+    color: rgba(0, 0, 0, .85);
+    display: flex;
+    .Text {
+        flex: 1;
+    }
+    .Operation {
+        flex: none;
+        .OpItem {
+            margin-right: 20px;
+        }
+    }
+}
+
+.TranferModal {
+     :global(.ant-modal-body) {
+        padding: 0 16px!important;
+    }
+}
+
+.Wrapper {
+    position: relative;
+}
+
+.RecordWrap {
+    border-bottom: 1px solid #d9d9d9;
+    position: absolute;
+    width: 100%;
+    .RecordTitle {
+        display: flex;
+        align-items: center;
+    }
+     :global(.arrow) {
+        display: none!important;
+    }
+     :global(.ant-collapse-header) {
+        cursor: initial!important;
+    }
+     :global(.ant-collapse-content) {
+        max-height: 300px;
+        overflow: auto;
+    }
+     :global(.ant-collapse-item) {
+        background: white!important;
+    }
+    .RecordItem {
+        padding: 5px 3px;
+    }
+}
+
+.Content {
+    display: flex;
+    .MTitle {
+        margin-bottom: 10px;
+    }
+    .Left {
+        padding: 10px;
+        flex: 1;
+        .InfoIcon {
+            margin-right: 5px;
+        }
+        .Table {
+            margin-top: 10px;
+        }
+    }
+    .Right {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        border-left: 1px solid #d9d9d9;
+        flex: none;
+        p {
+            flex: none;
+        }
+        .TextArea {
+            flex: 1;
+        }
+    }
+}

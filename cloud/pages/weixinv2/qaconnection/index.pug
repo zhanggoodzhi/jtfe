@@ -1,0 +1,147 @@
+extends /layout/main.pug
+
+block script
+  script.
+
+block mainbody
+  .x_panel
+    .x_content
+      ul.nav.nav-tabs
+        li.active
+          a(href="#public", data-toggle="tab") 公众号
+        li
+          a(href="#enterprise", data-toggle="tab") 企业号
+      .tab-content
+        #public.tab-pane.active
+          h2 对接说明
+          blockquote
+            p 微信矩阵绑定微信消息接口后，可以让微信公众号为粉丝提供基于人工智能的机器人对话。您只需要将下面的URL和Token填写到微信公众号平台的基本配置里，即可实现人机对话功能。
+          form.form-horizontal.form-label-left.input_mask
+            .form-group.row
+              label.control-label.col-lg-1.col-md-1.col-sm-1.col-xs-12 角色
+              .col-lg-4.col-md-4.col-sm-4.col-xs-12
+                select.form-control.cir.pub(data-url="${URL}", data-token="${Token}")
+                  option(value="", disabled="", selected="") 请选择角色
+                  c:forEach(items="${characters}", var="role")
+                    option(value="${role.id}") ${role.vname}
+              .col-lg-7.col-md-7.col-sm-7.col-xs-12
+                a.btn.btn-primary.get(href="javascript:void(-1)", role="button") 获取URL和Token
+            .form-group.row
+              label.control-label.col-lg-1.col-md-1.col-sm-1.col-xs-12 URL
+              .col-lg-10.col-md-10.col-sm-10.col-xs-12
+                input#pub-wxurl.form-control(type="text", placeholder="")
+              .col-lg-1.col-md-1.col-sm-1.col-xs-12
+                a.btn.btn-primary.copy1(href="javascript:void(-1)", role="button") 复制
+            .form-group.row
+              label.control-label.col-lg-1.col-md-1.col-sm-1.col-xs-12 Token
+              .col-lg-10.col-md-10.col-sm-10.col-xs-12
+                input#pub-wxtoken.form-control(type="text", placeholder="")
+              .col-lg-1.col-md-1.col-sm-1.col-xs-12
+                a.btn.btn-primary.copy2(href="javascript:void(-1)", role="button") 复制
+          hr
+          h2 对接流程详解
+          #wizard.form_wizard.wizard_horizontal
+            ul.wizard_steps
+              li
+                a(href="#step-1")
+                  span.step_no 1
+                  span.step_descr
+                    | Step 1
+                    br
+                    small 配置 URL 与 Token
+              li
+                a(href="#step-2")
+                  span.step_no 2
+                  span.step_descr
+                    | Step 2
+                    br
+                    small 启用服务配置
+              li
+                a(href="#step-3")
+                  span.step_no 3
+                  span.step_descr
+                    | Step 3
+                    br
+                    small 确定启用
+              li
+                a(href="#step-4")
+                  span.step_no 4
+                  span.step_descr
+                    | Step 4
+                    br
+                    small 智能机器人对接成功
+            #step-1
+              img.img-responsive(style="border: 2px dashed; margin: 5px auto 5px auto; display: block", align="middle", src="images/connstep1.jpg")
+            #step-2
+              img.img-responsive(style="border: 2px dashed; margin: 5px auto 5px auto; display: block", align="middle", src="images/connstep2.jpg")
+            #step-3
+              img.img-responsive(style="border: 2px dashed; margin: 5px auto 5px auto; display: block", align="middle", src="images/connstep3.jpg")
+            #step-4
+              img.img-responsive(style="border: 2px dashed; margin: 5px auto 5px auto; display: block", align="middle", src="images/connstep4.jpg")
+        #enterprise.tab-pane
+          h2 对接说明
+          blockquote
+            p 微信矩阵绑定微信消息接口后，可以让企业号为粉丝提供基于人工智能的机器人对话。您只需要将下面的URL、Token和EncodingAESKey填写到微信企业号后台应用中心的回调模式中，即可实现人机对话功能。
+          form.form-horizontal.form-label-left.input_mask
+            .form-group.row
+              label.control-label.col-lg-1.col-md-1.col-sm-1.col-xs-12 角色
+              .col-lg-4.col-md-4.col-sm-4.col-xs-12
+                select.form-control.cir.ent(data-url="${qyURL}", data-token="${Token}", data-sencodingaeskey="${sEncodingAESKey}")
+                  option(value="", disabled="", selected="") 请选择角色
+                  c:forEach(items="${characters}", var="role")
+                    option(value="${role.id}") ${role.vname}
+            .form-group.row
+              label.control-label.col-lg-1.col-md-1.col-sm-1.col-xs-12 CorpID
+              .col-lg-4.col-md-4.col-sm-4.col-xs-12
+                input#ent-corpId.form-control.cir(type="text", placeholder="请输入要对接的企业号CorpID")
+              .col-lg-7.col-md-7.col-sm-7.col-xs-12
+                a.btn.btn-primary.get(href="javascript:void(-1)", role="button") 获取URL和Token
+            .form-group.row
+              label.control-label.col-lg-1.col-md-1.col-sm-1.col-xs-12 URL
+              .col-lg-10.col-md-10.col-sm-10.col-xs-12
+                input#ent-wxurl.form-control(type="text", placeholder="")
+              .col-lg-1.col-md-1.col-sm-1.col-xs-12
+                a.btn.btn-primary.copy1(href="javascript:void(-1)", role="button") 复制
+            .form-group.row
+              label.control-label.col-lg-1.col-md-1.col-sm-1.col-xs-12 Token
+              .col-lg-10.col-md-10.col-sm-10.col-xs-12
+                input#ent-wxtoken.form-control(type="text", placeholder="")
+              .col-lg-1.col-md-1.col-sm-1.col-xs-12
+                a.btn.btn-primary.copy2(href="javascript:void(-1)",  role="button") 复制
+            .form-group.row
+              label.control-label.col-lg-1.col-md-1.col-sm-1.col-xs-12 EncodingAESKey
+              .col-lg-10.col-md-10.col-sm-10.col-xs-12
+                input#ent-EncodingAESKey.form-control(type="text", placeholder="")
+              .col-lg-1.col-md-1.col-sm-1.col-xs-12
+                a.btn.btn-primary.copy3(href="javascript:void(-1)", role="button") 复制
+          hr
+          h2 对接流程详解
+          #ent-wizard.form_wizard.wizard_horizontal
+            ul.wizard_steps
+              li
+                a(href="#step-1")
+                  span.step_no 1
+                  span.step_descr
+                    | Step 1
+                    br
+                    small 启用回调模式
+              li
+                a(href="#step-2")
+                  span.step_no 2
+                  span.step_descr
+                    | Step 2
+                    br
+                    small 配置URL
+              li
+                a(href="#step-3")
+                  span.step_no 3
+                  span.step_descr
+                    | Step 3
+                    br
+                    small 对接成功
+            #step-1
+              img.img-responsive(style="border: 2px dashed; margin: 5px auto 5px auto; display: block", align="middle", src="images/ent1.png")
+            #step-2
+              img.img-responsive(style="border: 2px dashed; margin: 5px auto 5px auto; display: block", align="middle", src="images/ent2.png")
+            #step-3
+              img.img-responsive(style="border: 2px dashed; margin: 5px auto 5px auto; display: block", align="middle", src="images/ent3.png")

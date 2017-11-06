@@ -1,0 +1,68 @@
+extends /layout/main.pug
+
+block variable
+  - const isadmin=true;
+  - const title="数据字典"
+prepend script
+  script.
+    var types=JSON.parse('${typeList}'.replace(/type/g,'text'));
+    var visibles=JSON.parse('${visibleList}'.replace(/name/g,'text').replace(/code/g,'id'));
+
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+        .clearfix
+          .form-group
+            label.cloud-input-title 类型
+            .cloud-input-content.cloud-lg
+              select#type.type.select.form-control
+          .form-group
+            label.cloud-input-title 名称
+            .cloud-input-content
+              input#name.form-control.input-sm(type='text')
+          .form-group
+            label.cloud-input-title code值
+            .cloud-input-content
+              input#code.form-control.input-sm(type='text')
+          .form-group
+            label.cloud-input-title 可见度
+            .cloud-input-content
+              select#visibleLevel.visible.select.form-control
+        .clearfix
+          +cBtngroup('dictionary')
+          +cPageChange
+      table#table.table.fixed-table
+block modal
+  .dictionary.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close.add-close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title
+        .modal-body
+          form.form-horizontal
+            .form-group
+              label.cloud-input-title 类型
+              .cloud-input-content
+                select.type.form-control
+            .form-group
+              label.cloud-input-title 名称
+              .cloud-input-content
+                input.name.form-control.input-sm(type='text',placeholder='下拉框显示的中文文本')
+            .form-group
+              label.cloud-input-title code值
+              .cloud-input-content
+                input.code.form-control.input-sm(type='text',placeholder='下拉框传到后台的数值')
+            .form-group
+              label.cloud-input-title 描述
+              .cloud-input-content
+                input.description.form-control.input-sm(type='text')
+            .form-group
+              label.cloud-input-title 可见度
+              .cloud-input-content
+                select.visible.visible_level.select.form-control
+        .modal-footer
+          button.submit-btn.btn.btn-success(type='button')
+          button.btn.btn-default.add-close(type='button', data-dismiss='modal') 取消

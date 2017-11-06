@@ -1,0 +1,39 @@
+main.resource-detail-main
+  form.col-xs-8.add-res
+    .form-group.clearfix
+      label 上传视频
+      .cloud-input-content
+        .imgcover.video-upload-wrap
+          #video-upload
+            input#video-upload-btn(type='file',accept=".3gp,.3g2,.mpeg,.ogv,.webm,.mp4")
+          img(src='images/upload_video.png')
+        p 视频格式：rm,rmvb,wmv,avi,mpg,mpeg,mp4
+        p 视频大小：不超过20M
+    .form-group
+      label 标题
+      input.title.input-sm.form-control(type="text",placeholder="请输入标题")
+    .form-group
+      label 简介
+      input.desc.input-sm.form-control(type="text",placeholder="请输入简介")
+    .row.cover-show
+    .btn-wrap
+      button#video-save.btn.btn-primary.btn-sm(type="button") 保存
+  .col-xs-4.resource-right-gray
+    .row.right-sider
+      .col-xs-12.right-innerBox
+        .card
+          .card-content
+            .title-preview 标题
+          .card-image
+          .card-content
+            .desc-preview 简介
+//- div.cover-footer
+//-   +btn('保存').save
+//-   a.waves-effect.btn-small.cancel.cancel-btn.btn-flat 取消
+
+
+
+
+
+
+

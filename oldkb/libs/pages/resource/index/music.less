@@ -1,0 +1,54 @@
+.music-pause,.music-play{
+    vertical-align: middle;
+}
+.music-wrap{
+    .music-play {
+        display: none;
+    }
+    &.active{
+        .music-play{
+        display:inline-block;
+    }
+        .music-pause{
+            display:none;
+        }
+    }
+}
+.online-music-wrap{
+    .mc{
+        font-size:13px;
+    }
+}
+.showML{
+    display:inline-block;
+    width:calc(~'100% - 60px');
+    height:60px
+}
+.showMR{
+    display:inline-block;
+    width:30px;
+    margin-left:20px;
+}
+.music-operation{
+    &:hover{
+        cursor:pointer;
+        text-decoration: underline;
+    }
+}
+.music-preview{
+    width:calc(~'100% - 120px')!important;
+    .preview-l{
+        display: inline-block;
+        width:calc(~'100% - 35px');
+    }
+    .preview-r{
+        // display: inline-block;
+        width:30px;
+        vertical-align:top;
+        margin-top:10px;
+        display:none;
+    }
+}
+.music-save{
+    margin-left:100px!important;
+}

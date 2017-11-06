@@ -1,0 +1,18 @@
+main.resource-detail-main
+  .add-res.col-lg-9.col-md-9.col-sm-9
+    form
+      .form-group
+        textarea#text-ctx.form-control(rows='30', maxlength='600', placeholder='请输入文本内容，不超过600字')
+        #face.faceBtn(style='background:url('+ctx+'/images/emoji/face.gif) 4px 4px no-repeat;') 添加表情
+    .btn-wrap
+      button.text-save.btn.btn-primary(type='button') 保存
+  .resource-right-gray.col-lg-3.col-md-3.col-sm-3
+    .row.right-sider
+      .chat-box
+        section.header
+          img(src= ctx+'/images/robot.jpg')
+        section.chat-ctx
+          section.text-ctx1
+            img(src= ctx+'/images/right.png')
+          section.text-ctx2
+            p(style='white-space: pre-wrap;')

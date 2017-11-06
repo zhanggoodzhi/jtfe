@@ -1,0 +1,313 @@
+extends /layout/main.pug
+
+block script
+  script.
+block variable
+  - var title="金童OPEN API"
+
+block mainbody
+  .x_panel
+    ul#myTab.nav.nav-tabs
+      li.active
+        a(href='#home', data-toggle='tab')  快速接入
+      li
+        a(href='#suanfa', data-toggle='tab') 签名算法
+      li
+        a(href='#api', data-toggle='tab') 接口详细
+      li
+        a(href='#apiTest', data-toggle='tab') 接口调试
+    #myTabContent.tab-content
+      #home.tab-pane.fade.in.active
+        .sub-title 开发者凭证
+        div
+          div Key:${key }
+          div Secret:${secret }
+        div 金童云服务平台针对开发者公布API接口，开发者可以通过访问API接口与云服务进行快速对接。
+      #suanfa.tab-pane.fade
+        .sub-title 概述
+        p
+          | 机器人API需要通过签名来访问，签名的过程是将App的key和secret以及随机数等参数根据一定签名算法生成的签名值，作为新的请求头中的一部分以此来提高访问过程中的防篡改性。签名值的生成详见下面的描述。
+        .sub-title 签名生成规则
+        p 所有机器人API的有效访问都必须包含签名
+        p 签名算法如下：
+        ol
+          li.li-margin-left 根据参数名称将所有请求参数及其值用英文"="连接
+          li.li-margin-left 将步骤一的各项按照字母先后顺序(自然顺序)排序
+          li.li-margin-left 将系统分配的secret拼接到步骤二的值的首尾
+          li.li-margin-left
+            | 使用密钥相关的哈希运算消息认证码(Hash-based Message Authentication Code,加密散列函数可以是MD5或者SHA-1)对步骤3的结果进行运算得到签名
+      #api.tab-pane.fade(style='overflow: auto;')
+        div
+          p.sub-title 描述
+          p 智能问答接口，基于HTTP协议的类REST调用方式，支持json输出格式，有普通和高级两种交互形式。
+        div
+          p.sub-title 调用入口
+          p 环境地址，即调用接口(API)时，都通过访问该地址，来获取该接口需要获取的数据
+          p 正式环境：http://open.jintongsoft.cn/router/rest
+          p 测试环境：http://open.jintongsoft.cn/router-sandbox/rest
+        div
+          p.sub-title 请求参数
+          div
+            table(border='1', cellspacing='0', cellpadding='0', width='100%')
+              tr
+                th 名称
+                th 类型
+                th 是否必须
+                th 描述
+              tr
+                td method
+                td string
+                td Y
+                td API接口名称,设为"jintong.qa.answer.get"
+              tr
+                td timestamp
+                td string
+                td Y
+                td 时间戳(格式: yyyy-MM-dd HH:mm:ss)，服务端允许客户端请求时间误差为5分钟。
+              tr
+                td format
+                td string
+                td N
+                td 可选，指定响应格式，默认是json。目前支持格式为json和xml
+              tr
+                td app_key
+                td string
+                td Y
+                td 分配给应用的AppKey，创建应用时可获得
+              tr
+                td v
+                td string
+                td Y
+                td API协议版本，可选值:2.0。
+              tr
+                td sign
+                td string
+                td Y
+                td 对API输入参数进行hmac加密获得
+              tr
+                td sign_method
+                td string
+                td Y
+                td 参数的加密方法选择，可选值是：md5,sha1
+              tr
+                td fields
+                td string
+                td Y
+                td 设置为空字符串即可
+              tr
+                td ip
+                td string
+                td Y
+                td 客户端ip地址
+              tr
+                td uid
+                td string
+                td Y
+                td 客户端用户id,如果是匿名用户,使用能唯一标识的字符串代替即可
+              tr
+                td anony
+                td integer
+                td Y
+                td 指明是0->注册用户还是1->匿名用户
+              tr
+                td view
+                td integer
+                td Y
+                td 指明平台1->pc端，2->移动端，3->微信，4->微博，5->易信，6->Android，7->IOS，8->论坛
+              tr
+                td type
+                td integer
+                td Y
+                td 响应格式（0-基础、1-高级）
+              tr
+                td q
+                td string
+                td Y
+                td question
+              tr
+                td sid
+                td string
+                td Y
+                td 跟踪此次会话的字段,如果不需要此字段,则用时间戳代替
+              tr
+                td character
+                td string
+                td N
+                td 角色编号，（请见角色管理界面）
+        div
+          p.sub-title 响应说明（普通）
+          table(border='1', cellspacing='0', cellpadding='0', width='100%')
+            tbody
+              tr
+                th(width='15%') 元素名
+                th(width='40%') 说明
+                th(width='45%') 示例
+              tr
+                td 无
+                td 直接纯文本响应
+                td 为纯文本类型。例如：“您好, 小金童很高兴为您服务!”。
+        div
+          p.sub-title 响应说明（高级）
+          table(border='1', cellspacing='0', cellpadding='0', width='100%')
+            tbody
+              tr
+                th(width='15%') 元素名
+                th(width='40%') 说明
+                th(width='45%') 示例
+              tr
+                td sid
+                td 跟踪标识
+                td 辅助作用字段
+              tr
+                td msgid
+                td 系统分配的消息id
+                td 辅助作用字段
+              tr
+                td question
+                td 原始问句
+                td 用户输入的原始问句，例如：“hi”
+              tr
+                td hasAnswer
+                td 标识是否具有业务意义上的答案
+                td 用户输入的原始问句，例如：“hi”
+              tr
+                td type
+                td 响应类型。STANDARD或COMPOSITE。标识这次答案的类型是标准的语义答案还是特殊的复合类型的答案。
+                td
+                  | type为STANDARD时从content或richContent中获取语义答案，type为COMPOSITE时可以从commands中依据各个command的名称解析其结构化信息作为答案
+              tr
+                td content
+                td 回复的文本内容。
+                td 为纯文本类型。例如：“您好, 小金童很高兴为您服务!”。
+              tr
+                td richContent
+                td 回复的富文本内容。包含了一些html标签渲染样式，可通过百度uparse解析。
+                td 为纯文本类型。例如：“您好, 小金童很高兴为您服务!”。
+              tr
+                td related
+                td 相关问题
+                td 包含推荐问题和相似问题
+              tr
+                td commands
+                td 非文本的语义表述。
+                td 根据command的名称解析相应的数据结构
+        div
+          p.sub-title 调用示例(请求)
+          textarea(rows='4', readonly='readonly', style='width: 80%; margin-left: 5%;')
+            | sign=xxx&anony=1&app_key=ed8ffe28ff7047afb47aa73b9a0c9790&fields=&ip=127.0.0.1&method=jintong.qa.answer.get&q=%E4%BD%A0%E4%BB%AC%E5%85%AC%E5%8F%B8%E5%9C%B0%E5%9D%80%E5%9C%A8%E5%93%AA%E9%87%8C&sid=1403508064000&sign_method=md5&timestamp=2014-06-23+15%3A21%3A04&type=1&uid=hgpkfafjn5er6r34j22jdcrn65&v=2.0&view=2
+        div
+          p.sub-title 调用示例(响应)(普通)
+          div
+            p 您好, 我们公司总部地址为: 北京市朝阳区酒仙桥北路7号电通时代广场区2号楼A区 邮编:100015
+        div
+          p.sub-title 调用示例(响应)(高级)
+          div
+            textarea(style='width: 100%; height: 350px; border: 1px grey dashed; resize: none;', readonly='readonly')
+              | {
+              | "sid" : "1403507050000",
+              | "msgid" : "11cf26a9b07f495588d0430fd1d08ebf",
+              | "question" : "你们公司地址在哪里",
+              | "hasAnswer" : true,
+              | "type" : "STANDARD",
+              | "content" : "您好, 我们公司总部地址为: 北京市朝阳区酒仙桥北路7号电通时代广场区2号楼A区 邮编:100015",
+              | "richContent" : "
+              p 您好, 我们公司总部地址为: 北京市朝阳区酒仙桥北路7号电通时代广场区2号楼A区 邮编:100015
+              | ",
+              |   "related" : [ {
+              |     "question" : "省/市/区/详细地址",
+              |     "answer" : "您好, 我们公司总部地址为: 北京市朝阳区酒仙桥北路7号电通时代广场区2号楼A区 邮编:100015"
+              |   } ],
+              |   "commands" : [ ]
+              | }
+      #apiTest.tab-pane.fade(style='overflow: auto;')
+        form(action='api/invoke')
+          table
+            tr
+              td.labelTb app_key:
+              td
+                input(name='key', value='${key }')
+            tr
+              td.labelTb app_secret:
+              td
+                input(name='secret', value='${secret }')
+          table
+            tr
+              td.labelTb method:
+              td
+                input(name='method', value='jintong.qa.answer.get')
+            tr
+              td.labelTb timestamp:
+              td
+                input(name='timestamp', value='${timestamp}')
+            tr
+              td.labelTb format:
+              td
+                input#json(type='radio', name='format', value='json', style='width: auto', checked='checked')
+                label(for='json') json
+                input#xml(type='radio', name='format', value='xml', style='width: auto')
+                label(for='xml') xml
+            tr
+              td.labelTb v:
+              td
+                input(name='v', value='2.0')
+            tr
+              td.labelTb sign_method:
+              td
+                select(name='sign_method')
+                  option(value='md5', selected='selected') md5
+                  option(value='sha1') sha1
+            tr
+              td.labelTb fields:
+              td
+                input(name='fields', value='', disabled='disabled')
+          table
+            tr
+              td.labelTb ip:
+              td
+                input(name='ip', value='${ip }')
+            tr
+              td.labelTb anony:
+              td
+                input#anony1(type='radio', name='anony', value='1', style='width: auto', checked='checked')
+                label(for='anony1') 来访游客
+                input#anony0(type='radio', name='anony', value='0', style='width: auto')
+                label(for='anony0') 注册用户
+            tr
+              td.labelTb uid:
+              td
+                input(name='uid', value='${uid }')
+            tr
+              td.labelTb view:
+              td
+                input#view1(type='radio', name='view', value='1', style='width: auto', checked='checked')
+                label(for='view1') PC端
+                input#view2(type='radio', name='view', value='2', style='width: auto')
+                label(for='view2') 移动端
+            tr
+              td.labelTb type:
+              td
+                input#type0(type='radio', name='type', value='0', style='width: auto', checked='checked')
+                label(for='type0') 基础
+                input#type1(type='radio', name='type', value='1', style='width: auto')
+                label(for='type1') 高级
+            tr
+              td.labelTb
+                b
+                  sup(style='color: red') *
+                  | 												q:
+              td
+                input(name='q', value='', placeholder='输入测试问句')
+            tr
+              td.labelTb sid:
+              td
+                input(name='sid', value='${sid }')
+          table
+            tr
+              td.labelTb
+              td
+                input#use(type='button', value='调用接口')
+        table
+          tr
+            td.labelTb response:
+            td
+              textarea#response(style='width: 600px; height: 250px; resize: none;', readonly='readonly')

@@ -1,0 +1,312 @@
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.input-wrap {
+    width: 115px;
+}
+
+.search-area .form-group {
+    float: left;
+}
+
+.search-area .form-btn-wrap {
+    float: right;
+}
+
+.input-wrap-sm {
+    width: 100px;
+}
+
+.date {
+    cursor: pointer;
+}
+
+.edit-table .input-wrap {
+    padding: 0;
+    width: 110px;
+}
+
+.modal-body .input-title {
+    text-align: left !important;
+    padding: 8px;
+    width: 40px;
+}
+
+.edit-select>.input-wrap {
+    width: 90px;
+}
+
+.edit-table .row-selected {
+    background-color: #f9f9f9 !important;
+    color: #000;
+}
+
+#edit-table_wrapper+.form-horizontal .form-group {
+    text-align: right;
+}
+
+.key-table .key-table-td,
+.edit-table .key-table-td {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+/*.key-table .key-table-td{
+    max-width: 200px;
+}
+.edit-table .key-table-td{
+    max-width: 150px;
+}*/
+
+.editor-wrap {
+    width: 100%;
+}
+
+#editor {
+    min-height: 180px;
+    max-width: 100%;
+    overflow: auto;
+}
+
+#question {
+    overflow: hidden;
+}
+
+.select-classify-wrap {
+    width: 210px;
+    position: relative;
+}
+
+.select-all {
+    margin-left: 35px;
+}
+
+.tree-wrap {
+    position: absolute;
+    z-index: 1050;
+    padding: 0;
+    top: 29px;
+    border: 1px solid #7A9CD3;
+    box-sizing: border-box;
+    background-color: #FFF;
+    font-size: 12px;
+    display: none;
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: visible;
+    padding-right: 10px;
+}
+
+.tree-wrap::-webkit-scrollbar {
+    display: none;
+    background-color: transparent;
+}
+
+.tree-wrap>ul {
+    list-style: none;
+    line-height: 20px;
+}
+
+#select-classify-text,
+#edit-select-classify-text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 20px;
+    cursor: default;
+}
+
+.question-error {
+    display: inline-block;
+    width: 100%;
+    color: #a94442;
+    padding: 5px 0;
+}
+
+.search-type-wrap {
+    margin-right: 15px;
+    display: inline-block;
+}
+
+.num-wrap>strong {
+    display: none;
+}
+
+.num-wrap>img {
+    position: relative;
+    top: -2px;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+}
+
+.edit-all-message {
+    color: #d9534f;
+}
+
+#edit-all-wrap {
+    display: none;
+}
+
+.rotate {
+    animation: rotate 1s infinite linear;
+    padding: 0 7px;
+    display: none;
+}
+
+.edit-table .row-selected::after {
+    content: "";
+    width: 100%;
+    height: 46px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: transparent;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: 1s;
+    z-index: -1;
+}
+
+.edit-table .show-warning::after {
+    border-color: #a94442;
+    z-index: 100;
+}
+
+.edit-table-modal>.modal-dialog {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.page-total {
+    margin-left: 30px;
+}
+
+.jump-wrap {
+    float: right;
+    height: 35px;
+    padding: 7px 0 5px 6px;
+    box-sizing: border-box;
+}
+
+.jump-wrap>input {
+    width: 40px;
+    height: 22px;
+    box-sizing: border-box;
+}
+
+#jump-btn {
+    margin-left: 5px;
+    margin-bottom: 1px;
+}
+
+#key-table_last {
+    display: none;
+}
+
+.form-date {
+    cursor: pointer;
+}
+
+.form-date-wrap {
+    width: 185px;
+}
+
+.month {
+    font-weight: normal;
+}
+
+.daterangepicker td,
+.daterangepicker th {
+    font-weight: normal;
+}
+
+.daterangepicker .ranges li.active,
+.daterangepicker .ranges li:hover {
+    background: #08c;
+    border: 1px solid #08c;
+    color: #fff;
+}
+
+.month>select {
+    height: 100%;
+}
+
+.file-wrap {
+    display: block;
+    width: 67px;
+    height: 70px;
+    position: relative;
+    float: right;
+    cursor: pointer;
+}
+
+#upload {
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.upload-bg {
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-image: url(/cloud/images/upload.png);
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.upload-msg {
+    display: block;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    text-align: center;
+}
+
+.file-message {
+    float: left;
+}
+
+.file-message>p {
+    line-height: 30px;
+}
+
+.show-title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 29px;
+    line-height: 29px;
+}
+
+.paging-num {
+    margin-left: 30px;
+    font-weight: bold;
+}
+
+@media only screen and (max-height:768px) {
+    footer {
+        display: none;
+    }
+}

@@ -1,0 +1,48 @@
+extends ./top.pug
+
+mixin linkText(linkText)
+  span.primary-title= linkText
+
+block body
+    nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href="./")
+            +linkText("金童软件")
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            -
+              const menuList=[
+                {
+                  href:"//www.jintongsoft.cn",
+                  linkText:"首页"
+                },
+                {
+                  href:"//openapi.jintongsoft.cn/qa",
+                  linkText:"社区"
+                },
+                {
+                  href:"//ta.jintongsoft.cn/",
+                  linkText:"TA情感社区"
+                },
+                {
+                  href:"//www.jintongsoft.cn/joinus.html",
+                  linkText:"加入我们"
+                },
+                {
+                  href:"${csclientUrl}68e84482012d42669c605187030e9e59",
+                  linkText:"智能客服体验"
+                },
+                {
+                  href:"./",
+                  linkText:"金童云平台"
+                }
+              ];
+            each menu in menuList
+              li
+                a(href=menu.href,target="_blank")
+                  +linkText(menu.linkText)
+    .container.primary-container
+      block mainbody
+    #particles
+

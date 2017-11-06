@@ -1,0 +1,66 @@
+extends /layout/main.pug
+block variable
+  - const wordName="关键词";
+  - const downloadHref="keyword";
+  - const source=true;
+block style
+  link(href='${ctx}/module/wangEditor/css/wangEditor.min.css', rel='stylesheet', type='text/css')
+  script(src="${ctx}/module/jquery/jquery.min.js")
+block script
+  +mDataTables
+  script(src="${ctx}/module/moment/moment.min.js")
+  //- script(src="${ctx}/dist/"+href+".js")
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+        .form-group
+          label.cloud-input-title= wordName
+          .cloud-input-content
+            input#keyword.form-control.input-sm(type="text",autofocus)
+        if source
+          .form-group
+            label.cloud-input-title 来源
+            .cloud-input-content
+              select#source.form-control.input-sm
+                option(value="") 全部
+                option(value="0") 人工添加
+                option(value="1") 批量上传
+                option(value="2") 自动获取
+        +cGainBtngroup
+        +cPageChange
+      table#key-table.table.fixed-table
+
+block modal
+  +cUploadModal("${ctx}/uploadFile/knowledge/"+downloadHref+"__template.xlsx",downloadHref+"__template.xlsx")
+  #edit-modal.spec-modal.modal.fade(data-backdrop="false")
+    .modal-dialog.modal-sm
+       .modal-content
+        .modal-header
+          button.close(type="button",data-dismiss="modal",aria-label="Close")
+            span(aria-hidden="true") &times;
+          h4.modal-title
+          | 编辑
+          = wordName
+        .modal-body
+          form#edit-modal-content
+        .modal-footer
+          button#edit-submit.btn.btn-success(type="button") 保存
+          button.btn.btn-default(type="button",data-dismiss="modal") 取消
+  #add-modal.modal.fade(data-backdrop="false")
+    .modal-dialog.modal-sm
+       .modal-content
+        .modal-header
+          button.close(type="button",data-dismiss="modal",aria-label="Close")
+            span(aria-hidden="true") &times;
+          h4.modal-title
+          | 添加
+          = wordName
+        .modal-body
+          form#add-modal-content
+            input#add-word.form-control.input-sm(maxlength="50")
+        .modal-footer
+          button#add-submit.btn.btn-success(type="button") 保存
+          button.btn.btn-default(type="button",data-dismiss="modal") 取消
+
+

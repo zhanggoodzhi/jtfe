@@ -1,0 +1,49 @@
+table#info-table
+  tr
+    td.title 留言ID:
+    td.content= id
+  tr
+    td.title 访客:
+    td.content= visitor
+  tr
+    td.title 留言时间:
+    td.content= messageTime
+  tr
+    td.title 称呼:
+    td.content= name
+  tr
+    td.title 性别:
+    td.content= sex
+  tr
+    td.title 期望回复方式:
+    td.content= expectReplyType
+  tr
+    td.title 期望回复时段:
+    td.content= expectReplyTimeStart+'~'+expectReplyTimeEnd
+  tr
+    td.title 留言内容:
+    td.content= replyContent
+  tr
+    td.title 状态:
+    td#status.content= status
+  tr
+    td.title 回复时间:
+    td#reply-time.content= replyTime
+  if status==='未回复'
+    tr#operation
+      td.title 操作:
+      td.content
+        button.btn.btn-link#reply(type="button") 设为已回复
+        button.btn.btn-link#online-reply(type="button") 在线回复
+        button.btn.btn-link#tele-reply(type="button") 电话回复
+  else
+    tr
+      td.title 回复方式:
+      td#reply-time.content= replyType
+    tr
+      td.title 回复内容:
+      td#reply-time.content= replyContent
+.btn-wrap
+  button.btn.btn-primary#submit(type="button") 发送
+  button.btn#cancel(type="button") 取消
+

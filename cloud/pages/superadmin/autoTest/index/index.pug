@@ -1,0 +1,79 @@
+extends /layout/main.pug
+
+
+mixin range
+  .row
+    .col-xs-4
+      input.form-control.input-sm(name="start",type="number",max="1",min="0",step="0.01",placeholder="最小值",value="0.5")
+    .col-xs-4
+      input.form-control.input-sm(name="end",type="number",max="1",min="0",step="0.01",placeholder="最大值",value="0.5")
+    .col-xs-4
+      input.form-control.input-sm(name="step",type="number",max="1",min="0.01",step="0.01",placeholder="步长",value="0.1")
+block variable
+  - const isadmin=true;
+  - const title="自动测试"
+
+
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+        .form-group
+          label.cloud-input-title 备注
+          .cloud-input-content
+            input#search-remark.form-control.input-sm(type='text')
+        .form-group
+          label.cloud-input-title 状态
+          .cloud-input-content
+            select#search-status.form-control.input-sm
+              option(value='') 全部状态
+              -
+                const map={
+                        '1': '准备就绪',
+                        '2': '正在测试',
+                        '3': '测试结束',
+                        '4': '计划取消',
+                        '5': '异常终止'
+                };
+
+              each val,key in map
+                option(value=key)= val
+        .form-group
+          button#search-btn.btn.btn-sm.btn-primary(type="button") 查询
+          button#create-btn.btn.btn-sm.btn-primary(type="button") 创建测试计划
+      table#table.table
+
+
+block modal
+  #create-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-default
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 创建测试计划
+        .modal-body
+          form
+            .form-group
+              label 测试文件
+              button#upload-file.btn.btn-sm.btn-primary(type="button") 选择文件
+              a.btn.btn-sm.btn-primary(href="template/自动化测试模板样例.xlsx") 下载模板
+              span#file-info
+            .form-group
+              label 执行时间
+              input#start-time.form-control.input-sm(type="text")
+            .form-group.settings(data-key="QUESTION_SIM",data-name="问题相似度")
+              label 问题相似度最小值/最大值/步长
+              +range
+            .form-group.settings(data-key="ANSWER_SIM",data-name="答案相似度")
+              label 答案相似度最小值/最大值/步长
+              +range
+            .form-group.settings(data-key="FRAME_SIM",data-name="骨架相似度")
+              label 骨架相似度最小值/最大值/步长
+              +range
+            .form-group
+              label 备注说明
+              input#remark.form-control.input-sm(type="text")
+        .modal-footer
+          button#create-submit-btn.btn.btn-success(type='button') 创建
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消

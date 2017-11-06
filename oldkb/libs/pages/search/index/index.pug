@@ -1,0 +1,60 @@
+extends /layouts/main.pug
+
+mixin searchbox(text,eid,name)
+  p.item
+    input.filled-in(type="checkbox",name=name,id=eid)
+    label(for=eid)= text
+
+block tabs
+  +tab('知识搜索')(href="#kb-search",id="kb-search-btn")
+block script
+  script(th:inline="javascript").
+    /*<![CDATA[*/
+        var alldirectory = [[${alldirectory}]];
+        var labels = [[${labels}]];
+    /*]]>*/
+block mainbody
+  .kb-tabs-content
+    //- .row#kb-search
+    .row#kb-search.search-default
+      .col.s9.kb-scroll.main
+        form.search-form
+          .row.smallrow.search-top
+            .col.s12
+              input#search-keyword
+              ul.associate-wrap
+              a.btn.waves-effect#search-btn
+                i.material-icons search
+          .row.smallrow.search-fields
+            .col.s12
+              .title 搜索范围：
+              +searchbox('不限', 'nofields','search-fields')
+              +searchbox('标题', 'title','search-fields')
+              +searchbox('全文', 'content','search-fields')
+              +searchbox('附件', 'attach','search-fields')
+              +searchbox('标签', 'label','search-fields')
+          .row.smallrow
+            .col.s12
+              .title 更新时间：
+              +searchbox('不限', 'noupdate','update-time')
+              .rangeDate-wrap
+                .input-field
+                  .range-date-wrap
+                    input.datepicker.input-small.date-start(type="date",placeholder="更新时间")
+                    i.small.material-icons trending_flat
+                    input.datepicker.input-small.date-end(type="date",placeholder='更新时间')
+        .hot-search-wrap
+          .hot-search
+            .title-wrap
+              img(src="/images/hot_search.png")
+              span 热门搜索：
+            .detail
+              ul
+        .row.kb-search-detail
+          .col.s12.show-wrap
+            ul
+          .col.s12
+            ul.detail-wrap
+            .pagination-wrap
+      .col.s3#right-side
+

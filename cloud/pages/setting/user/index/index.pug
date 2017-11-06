@@ -1,0 +1,148 @@
+extends /layout/main.pug
+//- block variable
+  //- - const href="setting/user/index";
+block script
+  //- jsp:include(page='../../headv2.jsp')
+  //- script(type='text/javascript', charset='utf-8', src='${ctx}/js/bootstrap-dialog.min.js')
+  // bootstrapMultiselect组件的引用
+  //- link(rel='stylesheet', href='${ctx}/js/bootstrap-multiselect/bootstrap-multiselect.css', type='text/css')
+  //- script(type='text/javascript', charset='utf-8', src='${ctx}/js/bootstrap-multiselect/bootstrap-multiselect.js')
+  //- script(type='text/javascript', src='${ctx}/js/jquery.form.js')
+  // select2
+  //- link(href='${ctx}/css/select/select2.min.css', rel='stylesheet')
+  //- script(src='${ctx}/js/select/select2.full.js')
+  //- script(type='text/javascript', charset='utf-8', src='${ctx}/js/user/app/index.js')
+
+
+block mainbody
+  .x_panel
+    .x_title
+      c:if(test='${roles.size()!=0}')
+        button.btn.btn-default(type='button', style='float: right', data-toggle='modal', data-target='#addUser') 添加应用成员
+      c:if(test='${roles.size()==0}')
+        button#addUserButton.uploadbtn.btn.btn-default(type='button', style='float: right; background-color: #F0F0F0;', data-container='body', data-toggle='popover', data-placement='bottom', data-content='需先添加成员角色') 添加应用成员
+      .clearfix
+    .x_content
+      table#usertable.table.fixed-table
+      //- table#usertable.table.table-striped.responsive-utilities.jambo_table
+      //-   theadff
+      //-     tr.headings
+      //-       th 名称
+      //-       th email
+      //-       th 手机号
+      //-       th 成员角色
+      //-       th 微信公众号
+      //-       th.no-link.last
+      //-         span.nobr 操作
+      //-   tbody
+      //-     c:foreach(var='adminUser', items='${adminUsers}')
+      //-       tr.even.pointer(id='record-${adminUser.id}')
+      //-         c:if(test="${adminUser.nickname==''}")
+      //-           td. 未指定
+      //-         c:if(test="${adminUser.nickname!=''}")
+      //-           td. ${adminUser.nickname }
+      //-         td. ${adminUser.email }
+      //-         td. ${adminUser.mobile }
+      //-         td.
+      //-           c:foreach(var='userRoleRel', items='${userRoleRels}')
+      //-             c:if(test='${userRoleRel.adminUser==adminUser}')
+      //-               | ${userRoleRel.role.name }&nbsp;&nbsp;
+      //-         td
+      //-           c:foreach(var='name', items='${idNames}')
+      //-             c:if(test='${name.id==adminUser.id}')
+      //-               c:if(test="${name.name==''}") 未指定
+      //-               c:if(test="${name.name!=''}")
+      //-                 c:foreach(var='wechatCredential', items='${wechatCredentials}')
+      //-                   c:if(test='${wechatCredential.appSecret==name.name}')
+      //-                     | ${wechatCredential.wxName }
+      //-         td.last
+      //-           a(onclick="editUser('${adminUser.id}')", href='javascript:;') 编辑
+      //-           a(onclick="delUser('${adminUser.id}')", href='javascript:;') 删除
+
+block modal
+  //- #addUser.modal.fade(tabindex='-1', role='dialog', aria-labelledby='addUserLabel')
+  //-   .modal-dialog.modal-dialog-mainform(role='document')
+  //-     .modal-content.modal-content-mainform
+  //-       .modal-header
+  //-         button.close(type='button', data-dismiss='modal', aria-label='Close')
+  //-           span(aria-hidden='true') ×
+  //-         h4#formtitle.modal-title 注册应用成员
+  //-       br
+  //-       .x_content.col-md-12
+  //-         .form-group
+  //-           input#email_input.form-control(style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/message.png') no-repeat 8px;", placeholder='邮箱', name='email', type='text', value='', onblur='emailCheckUnique()')
+  //-         .form-group
+  //-           input#mobile_input.form-control(style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/call.png') no-repeat 8px;", placeholder='手机号码', name='mobile', type='text', value='', onblur='tellCheckUnique()')
+  //-         .form-group
+  //-           input#alias_input.form-control(style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/contacts.png') no-repeat 8px;", placeholder='名称', name='alias', type='text', value='')
+  //-         .form-group
+  //-           input#pwd_input.form-control(style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/account.png') no-repeat 8px;", placeholder='输入密码', name='pwd', type='password', value='')
+  //-         .form-group
+  //-           input#repwd_input.form-control(style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/account.png') no-repeat 8px;", placeholder='再次输入密码', name='agpwd', type='password', value='')
+  //-         .form-group
+  //-           label.control-label(for='roleSelect_edit')
+  //-             | 成员角色
+  //-             span.required *
+  //-           select#roleSelect.multiselect(multiple='multiple')
+  //-             c:forEach(var='role', items='${roles}')
+  //-               option(value='${role.id }') ${role.name }
+  //-         .checkbox
+  //-           .form-group
+  //-             span(style='font-size: 14px; font-family: cursive; font-weight: bold; color: #908d88') 以下是选填内容
+  //-             span(style='color: #0095FF; cursor: pointer;') ◢
+  //-           .submenu
+  //-             .form-group
+  //-               input#qq_input.form-control(style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/qq.png') no-repeat 8px;", placeholder='QQ', name='qq', type='text', value='')
+  //-             .form-group.add-select-bg
+  //-               select#wxAppSecret-add-input.form-control.select
+  //-                 option
+  //-                 c:forEach(var='wechatCredential', items='${wechatCredentials}')
+  //-                   option(value='${wechatCredential.id }') ${wechatCredential.wxName }
+  //-         div(clas='ln_solid')
+  //-         br
+  //-         .form-group(style='margin: 0 auto; text-align: center;')
+  //-           button.btn.btn-success(type='button', style='margin: 0 auto; text-align: center;', onclick='doReg()') 注册
+  //-           button.btn.btn-primary(type='button', style='margin: 0 auto; text-align: center;', data-dismiss='modal') 取消
+  //- #editUser.modal.fade(tabindex='-1', role='dialog', aria-labelledby='addUserLabel')
+  //-   .modal-dialog.modal-dialog-mainform-1(role='document')
+  //-     .modal-content.modal-content-mainform-1
+  //-       .modal-header
+  //-         button.close(type='button', data-dismiss='modal', aria-label='Close')
+  //-           span(aria-hidden='true') ×
+  //-         h4#formtitle.modal-title 编辑应用成员
+  //-       br
+  //-       .x_content.col-md-12
+  //-         .form-group
+  //-           input#userid(name='userid', style='display: none')
+  //-         .form-group
+  //-           input#email_edit.form-control(style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/message.png') no-repeat 8px;", placeholder='邮箱', name='email', type='text', value='', readonly='true')
+  //-         .form-group
+  //-           input#mobile_edit.form-control(style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/call.png') no-repeat 8px;", placeholder='手机', name='mobile', type='text', value='', readonly='true')
+  //-         .form-group
+  //-           label.control-label(for='roleSelect_edit')
+  //-             | 成员角色
+  //-             span.required *
+  //-           select#roleSelect_edit.multiselect(multiple='multiple')
+  //-             c:forEach(var='role', items='${roles}')
+  //-               option.edit-options(value='${role.id }', id='select-${role.id }') ${role.name }
+  //-         .checkbox
+  //-           .form-group
+  //-             span(style='font-size: 14px; font-family: cursive; font-weight: bold; color: #908d88') 以下是选填内容
+  //-             span(style='color: #0095FF; cursor: pointer;') ◢
+  //-           .submenu
+  //-             .form-group
+  //-               input#alias_edit.form-control(style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/contacts.png') no-repeat 8px;", placeholder='名称', name='alias', type='text', value='')
+  //-             .form-group
+  //-               input#qq_edit.form-control(style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/qq.png') no-repeat 8px;", placeholder='QQ', name='qq', type='text', value='')
+  //-           .form-group.edit-select-bg
+  //-             select#wxAppSecret-edit-input.form-control.select(placeholder='AppSecret', name='wxAppSecret', style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/appsecrect.png') no-repeat 8px;")
+  //-               option
+  //-               c:forEach(var='wechatCredential', items='${wechatCredentials}')
+  //-                 option(value='${wechatCredential.id }') ${wechatCredential.wxName }
+  //-         div(clas='ln_solid')
+  //-         br
+  //-         .form-group(style='margin: 0 auto; text-align: center;')
+  //-           button.btn.btn-success(type='button', style='margin: 0 auto; text-align: center;', onclick='doEditUser()') 提交
+  //-           button.btn.btn-primary(type='button', style='margin: 0 auto; text-align: center;', data-dismiss='modal') 取消
+
+

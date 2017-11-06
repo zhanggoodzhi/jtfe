@@ -1,0 +1,46 @@
+extends /layout/main.pug
+
+block variable
+  - const title="系统调优"
+
+block script
+  script.
+    var switchItems={
+      <c:forEach var="item" items="${switchItems}">
+        '${item.key}':'${item.value}',
+      </c:forEach>
+    };
+    var thresholdItems={
+      <c:forEach var="item" items="${thresholdItems}">
+        '${item.key}':'${item.value}',
+      </c:forEach>
+    };
+
+
+block mainbody
+  .row
+    .col-xs-6.col-xs-offset-3
+      .x_panel
+        .x_content
+          form.form-horizontal
+            c:forEach(var="t",items="${thresholds}")
+              .form-group(data-name="${t.label}")
+                label.control-label.col-xs-4.col-xs-offset-2 ${t.label}
+                .col-xs-4
+                  c:if(test="${t.key!='MaxRepeat'}")
+                    input.form-control.input-sm(name="${t.key}",type="number",max="1",min="0",step="0.01",data-group="thresholds")
+                  c:if(test="${t.key=='MaxRepeat'}")
+                    input.form-control.input-sm(name="${t.key}",type="number",min="0",step="1",data-group="thresholds")
+
+            c:forEach(var="s",items="${switches}")
+              .form-group(data-name="${s.label}")
+                label.control-label.col-xs-4.col-xs-offset-2 ${s.label}
+                .col-xs-4
+                  .radio
+                    label
+                      input(type="radio",name="${s.key}",data-group="modules",value="true")
+                      | 开启
+                    label
+                      input(type="radio",name="${s.key}",data-group="modules",checked,value="false")
+                      | 关闭
+

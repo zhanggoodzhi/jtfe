@@ -1,0 +1,40 @@
+.IconWrap {
+    height: 26px;
+    display: flex;
+    align-items: center;
+}
+
+.Voice {
+    font-size: 25px;
+    flex: 1;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.VoiceActive {
+    flex: 1;
+    font-size: 25px;
+    cursor: pointer;
+    animation: play 1s infinite;
+    vertical-align: middle;
+}
+
+.Time {
+    flex: none;
+    vertical-align: middle;
+    float: right;
+}
+
+@keyframes play {
+    0% {
+        font-size: 25px;
+    }
+    50% {
+        font-size: 20px;
+        margin-left: 2px;
+        padding-top: 5px;
+    }
+    100% {
+        font-size: 25px;
+    }
+}

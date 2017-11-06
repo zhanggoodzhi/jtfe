@@ -1,0 +1,111 @@
+extends /layouts/main.pug
+mixin searchForm(name)
+  form.clearfix.row
+    +input(2)(placeholder='资源名称',id=name+"-name")
+    +input(3)(placeholder='资源简介',id=name+"-summary")
+    +rangeDate('上传时间')(id=name+"-uploadtime")
+    .col.s4.input-field
+      +btn('查询')(id=name+"-search")
+      +btn('清空条件')(id=name+"-clean")
+      a.btn.btn-small(id=name+"-add")
+        i.material-icons.left add
+        | 新增素材
+mixin searchAttach()
+  form.clearfix.row
+    +input(2)(placeholder='附件名称',id="attach-filename")
+    .col.s3.input-field
+      select.select-small(id="attach-type",multiple)
+        option(value="",disabled,selected) 附件类型
+        option(value="1") 文档
+        option(value="2") 音频
+        option(value="3") 视频
+        option(value="4") 图片
+    +rangeDate('上传时间')(id="attach-uploadtime")
+    .col.s4.input-field
+      +btn('查询')(id="attach-search")
+      +btn('清空条件')(id="attach-clean")
+mixin newsItem()
+  .news-item-wrap.col.s4
+    .news-item.resource-hover-item
+      .cover-wrap
+        .image-wrap
+          .name-wrap.ellipsis
+            span xxxxxxx.png
+      .child-wrap
+        .name-wrap 34343434343434
+        .image-wrap
+          img(src="/images/letter1.png")
+      .child-wrap
+        .name-wrap 34343434343434
+        .image-wrap
+          img(src="/images/letter1.png")
+      .toolbox-wrap
+        .toolbox
+          .icon-wrap
+            i.kb-icon.kb-edit
+          .icon-wrap
+            i.kb-icon.kb-delete
+block tabs
+  +tab('文本','text')
+  +tab('图片','image')
+  +tab('语音','voice')
+  +tab('视频','video')
+  +tab('音乐','music')
+  +tab('图文','news')
+  +tab('链接','link')
+  +tab('附件','attach')
+block script
+  script(th:inline="javascript").
+    /*<![CDATA[*/
+    /*]]>*/
+block mainbody
+  //- .test
+  //-   a(href="/resource/test/index") test
+  .kb-tabs-content
+    #text-tab.row
+      .col.m12
+        form.clearfix.row.kb-search-form
+          +searchForm('text')
+        table#text-table
+    #image-tab.row
+      .col.m12
+        form.clearfix.row.kb-search-form
+          +searchForm('image')
+        .kb-scroll
+          .image-box.row
+        .preview-wrap
+          a.btn-floating.btn-large.waves-effect.waves-light.red.close-btn
+            i.material-icons close
+          img.image-loading(src="/images/default.png")
+    #voice-tab.row
+      .col.m12
+        form.clearfix.row.kb-search-form
+          +searchForm('voice')
+        table#voice-table
+    #video-tab.row
+      .col.m12
+        form.clearfix.row.kb-search-form
+          +searchForm('video')
+        .kb-scroll
+          .video-box.row
+    #music-tab.row
+      .col.m12
+        form.clearfix.row.kb-search-form
+          +searchForm('music')
+          table#music-table
+    #news-tab.row
+      .col.m12
+        form.clearfix.row.kb-search-form
+          +searchForm('news')
+        .kb-scroll
+          .news-box.row.grid
+    #link-tab.row
+      .col.m12
+        form.clearfix.row.kb-search-form
+          +searchForm('link')
+          table#link-table
+    #attach-tab.row
+      .col.m12
+        form.clearfix.row.kb-search-form
+          +searchAttach('attach')
+          table#attach-table

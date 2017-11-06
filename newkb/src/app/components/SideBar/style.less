@@ -1,0 +1,65 @@
+.Wrapper {
+    &.visible {
+        .Container {
+            transform: translate3d(0, 0, 0);
+        }
+        .Overlay {
+            transform: translate3d(0, 0, 0);
+            opacity: 1;
+            transition: opacity .3s;
+        }
+    }
+}
+
+.Overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .2);
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+    transition: opacity .3s, transform 0s .3s;
+}
+
+.Container {
+    z-index: 999;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 70%;
+    background-color: #fff;
+    border-left: 1px solid #eee;
+    transform: translate3d(100%, 0, 0);
+    transition: transform .3s;
+}
+
+.Header {
+    height: 64px;
+    padding: 0 24px;
+    border-bottom: 1px solid #eee;
+}
+
+.Title {
+    line-height: 64px;
+    float: left;
+}
+
+.Buttons {
+    float: right;
+    line-height: 64px;
+    :global(.ant-btn) {
+        margin-left: 8px;
+    }
+}
+
+.Content {
+    position: absolute;
+    top: 65px;
+    bottom: 0;
+    width: 100%;
+    overflow: auto;
+    padding: 8px 24px;
+}

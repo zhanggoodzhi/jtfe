@@ -1,0 +1,144 @@
+include ../../layouts/components.pug
+.col.s12
+  section
+    +title('基本信息')
+    ul.basic-info-list.kb-detail-content
+      -
+        const basicInfo=[
+          {
+            name:'标题',
+            value:knowledgeName
+          },
+          {
+            name:'作者',
+          value:authorId
+          },
+          {
+            name:'类别',
+          value:directory.directoryName
+          },
+          {
+            name:'版本',
+            value:version
+          },
+          {
+            name:'更新时间',
+            value:updateAt
+          },
+          {
+            name:'状态',
+            value:status
+          }
+        ];
+      each info in basicInfo
+        li
+          span.list-title= info.name
+          if info.name=='状态'
+            case info.value
+              when '1'
+                span(style="color:#a0a0a0;") 草稿
+              when '2'
+                span(style="color:#dd5501;") 审核中
+              when '3'
+                span(style="color:#73a93a;") 已发布
+              when '4'
+                span(style="color:#c51f29;") 被驳回
+              when '5'
+                span(style="color:#1f9ce5;") 已归档
+              default
+                span 未知状态
+          else if info.name=="更新时间"
+            span(class="detail-update-time")= info.value
+          else
+            span= info.value
+      li.review-step
+        span.list-title.step-bar-title 审核进度
+        span.step-bar-wrap
+          .small-step-wrap
+            ul.anchor
+              //- li
+              //-   a
+              //-     span.line
+              //-     span.circle.tooltipped(data-position="bottom" data-delay="50" data-tooltip="审核者1")= 1
+              //- li
+              //-   a.active
+              //-     span.line
+              //-     span.circle.tooltipped(data-position="bottom" data-delay="50" data-tooltip="审核者2")= 2
+              //- li
+              //-   a
+              //-     span.line
+              //-     span.circle.tooltipped(data-position="bottom" data-delay="50" data-tooltip="审核者3")= 3
+  if labels.length!==0
+    section
+      +title('标签')
+      .kb-detail-content
+        each label in labels
+          span.label-item= label.name
+
+  if fields.length!==0
+    section
+      +title('简介')
+      //- p.introduction.kb-detail-content= introduction
+      ul.introduction-list.kb-detail-content
+        each field in fields
+          li
+            span.list-title= field.label
+            span= field.value
+
+  if attachments.length!==0
+    section
+      +title('附件')
+      ul.file-list.kb-detail-content
+        each attachment,index in attachments
+          -
+            var size;
+            var filesize=attachment.filesize;
+            if(filesize<1000){
+              size=filesize+'B';
+            }else{
+              size=(filesize/1000).toFixed(2)+'KB';
+            }
+          li.add-file-content-item.clearfix
+            .content-left.col.s2
+              span
+                |附件
+                span.file-index= index+1
+            .content-middle.col.s4
+              //- img.file-icon(src="/images/types/"+attachment.type+".png")
+              img.file-icon(src="/images/types/doc.png")
+              a.file-name= attachment.filename
+            .content-size-wrap.col.s2
+              |(
+              span.file-size= size
+              |)
+            .content-download-wrap.col.s2
+              i.kb-icon.kb-download(data-id=attachment.id,href=attachment.url)
+  section
+    .star-wrap
+      .star
+        i.material-icons grade
+      span.text
+        | 收藏：
+        span.number= collectionNum
+    ul.tabs.kb-detail-content
+      li.tab.comment-tab
+        a.active(href='#comment-tab') 评论
+      li.tab.version-tab
+        a(href='#version-tab') 版本记录
+      li.tab.review-tab
+        a(href='#review-tab') 审核记录
+      li.tab.modify-tab
+        a(href='#modify-tab') 变更记录
+    #comment-tab
+      .input-field.comment-textarea-wrap
+        textarea.materialize-textarea(placeholder='请输入评论...')
+      .input-field.right-align
+        a.btn.btn-small.publish 发布
+      ul.comment-list
+    #version-tab
+      table#version-table
+    #review-tab
+      table#review-table
+    #modify-tab
+      table#modify-table
+

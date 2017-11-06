@@ -1,0 +1,25 @@
+- const name=htmlWebpackPlugin.options.name;
+- const chunk=htmlWebpackPlugin.files.chunks[name];
+
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
+doctype html
+
+block variable
+
+html(lang="zh-CNM-Hans")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport",content="width=device-width,initial-scale=1,user-scalable=no")
+    meta(name="referrer",content="no-referrer")
+    meta(http-equiv="X-UA-Compatible",content="IE=edge,chrome=1")
+    meta(name="renderer",content="webkit")
+    if chunk.css && chunk.css.length>0
+      each href in chunk.css
+        link(href=href,type="text/css",rel="stylesheet")
+    title= htmlWebpackPlugin.options.title
+  body
+    #app
+    block script
+    script(src=chunk.entry,type="text/javascript")
+

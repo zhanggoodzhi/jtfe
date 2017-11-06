@@ -1,0 +1,96 @@
+extends /layout/main.pug
+
+block mainbody
+  .row
+    .col-sm-4.col-xs-4.col-md-4
+      .x_panel
+        .x_title
+          h5 分类层级
+        #classify-content.detail-content.x_content
+          .placeholder
+            i.fa.fa-spinner.fa-spin.fa-2x.fa-fw
+          #tree.tree
+    .col-sm-8.col-xs-8.col-md-8
+      .x_panel
+        .x_title
+          h5 分类详情
+        #detail-content.x_content
+          form#search-form.form-horizontal.cloud-search-area
+            .clearfix
+              .form-group
+                //- button#edit-top-classify-btn.btn.btn-primary.btn-sm(type='button') 编辑预置分类
+                button#edit-btn.btn.btn-primary.btn-sm(type='button') 编辑
+                button#add-btn.btn.btn-primary.btn-sm(type='button') 添加
+                button#del-btn.btn.btn-danger.btn-sm(type='button') 删除
+          table#table.table.table-hide.fixed-table
+
+block modal
+  #detail-moadl.modal.fade(data-backdrop='false')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title
+        .modal-body
+          form#detail-form.form-horizontal
+            .cloud-row
+              .form-group
+                label.control-label.col-md-2.col-sm-2.col-lg-2 分类名称
+                .col-md-4.col-sm-4.col-lg-4
+                  input#classify-name.form-control.input-sm(type='text')
+              .form-group
+                label.control-label.col-md-2.col-sm-2.col-lg-2 英文名
+                .col-md-4.col-sm-4.col-lg-4
+                  input#classify-engname.form-control.input-sm(type='text')
+              .form-group
+                label.control-label.col-md-2.col-sm-2.col-lg-2 父级分类
+                .col-md-4.col-sm-4.col-lg-4
+                  #classify.form-control.input-sm.cloud-select-tree
+              .form-group
+                label.control-label.col-md-2.col-sm-2.col-lg-2 优先级
+                .col-md-4.col-sm-4.col-lg-4
+                  input#classify-num.form-control.input-sm(type='number',min="0",max="100",value='1')
+              .form-group
+                label.control-label.col-md-2.col-sm-2.col-lg-2 类型简介
+                .col-md-6.col-sm-6.col-lg-10
+                  textarea#classify-remark.form-control.input-sm(row="5")
+            //-#param-wrap.cloud-row
+              .form-group.param-group
+            //-.cloud-row
+              .form-group.text-right
+                button#add-param-btn.btn.btn-sm.btn-primary(type='button') 添加参数
+        .modal-footer
+          button#detail-submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  #top-detail-moadl.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 编辑预置分类
+        .modal-body
+          form.form-horizontal
+            .form-group
+              label.control-label.col-md-3.col-sm-3.col-lg-3 优先级
+              .col-md-9.col-sm-9.col-lg-9
+                input#top-classify-num.form-control.input-sm(type='number',min="1",max="100",value='1')
+        .modal-footer
+          button#top-detail-submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  //- #top-moadl.modal.fade(data-backdrop='false')
+  //-   .modal-dialog.modal-sm
+  //-     .modal-content
+  //-       .modal-header
+  //-         button.close(type='button', data-dismiss='modal', aria-label='Close')
+  //-           span(aria-hidden='true') &times;
+  //-         h4.modal-title 编辑预置分类
+  //-       .modal-body
+  //-         table#top-table.table.fixed-table
+  //-           thead
+  //-             tr
+  //-               th.col-md-8.col-sm-8.col-lg-8 分类名称
+  //-               th.col-md-4.col-sm-4.col-lg-4.text-center 是否使用
+  //-           tbody
+  //-         p.text-danger *不使用分类会影响到现有数据，请谨慎选择

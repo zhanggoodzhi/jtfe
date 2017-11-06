@@ -1,0 +1,63 @@
+mixin tab(text,name)
+  li.tab
+    a(href="#"+name+"-tab",id=name+"-link")&attributes(attributes)= text
+
+mixin btn(text,size,flat)
+  a.waves-effect(class="btn-"+(size?size:"small")+" "+ (flat?"btn-flat":"btn"))&attributes(attributes)!= text
+
+mixin input(size)
+  .col.input-field(class="s"+size)
+    input.input-small&attributes(attributes)
+
+mixin select(size,options,placeholder)
+  .col.input-field(class="s"+size)
+    select.select-small
+      option(value="",disabled,selected)= placeholder
+      each option in options
+        option(value=option.value)= option.name
+
+//- mixin file(text,size)
+//-   .file-field.input-field
+//-     //- .btn(class="btn-"+(size?size:"small"))
+//-     //-   span= text||"上传"
+//-     input(type="file",class="input-"+(size?size:"small"))&attributes(attributes)
+//-     .file-path-wrapper
+//-       input.file-path.validate(type="text",class="input-"+(size?size:"small"),placeholder="请选择要上传的文件")
+
+//- 两个datePicker,额外属性加在.range-date-wrap上面
+mixin rangeDate(text,size)
+  .col.input-field(class=size?('s'+size):'s3')
+    .range-date-wrap&attributes(attributes)
+      input.datepicker.input-small.date-start(type="date",placeholder=text)
+      i.small.material-icons trending_flat
+      input.datepicker.input-small.date-end(type="date",placeholder=text)
+
+mixin title(text)
+  .kb-detail-title
+    .left
+      i.blue
+      span.text= text
+    .line
+
+//- a标签上加上.active控制当前步骤的样式
+mixin stepBar(strArr)
+  .kb-step-wrap
+      ul
+        each item,i in strArr
+          li
+            span.circle= i+1
+            span.text.ellipsis(title=item)= item
+            span.line
+
+mixin modal(title,btnText,fix)
+  .modal.kb-modal&attributes(attributes)
+    .modal-header
+      h5= title
+      i.small-close.material-icons.modal-action.modal-close.waves-effect clear
+    .modal-content
+      .row(class=fix?'fix-modal-row':'')
+        block
+    .modal-footer
+      a.btn.modal-action.modal-close.waves-effect.btn-small.kb-flat-btn 取消
+      a.modal-action.waves-effect.btn.kb-yes-btn.btn-small= btnText
+        //- +btn(btn.text,null)(class="modal-action")&attributes(btn.attr)

@@ -1,0 +1,70 @@
+extends /layout/main.pug
+
+block variable
+  - const href="spss/dataScreening/index";
+
+block script
+  script.
+    //- var selectData = ${classifys};
+
+block mainbody
+  -
+    var infoData=[{
+        nameT:'消息数',
+        nameB1:'问题消息数',
+        nameB2:'回复消息数',
+        image:'images/spss_total1.png',
+        class:'news'
+      },{
+        nameT:'智能客服解决率',
+        nameB1:'会话数',
+        nameB2:'转人工数',
+         image:'images/spss_total2.png',
+         class:'solve'
+      },{
+        nameT:'平均满意率',
+        nameB1:'参评数',
+        nameB2:'参评率 ',
+         image:'images/spss_total3.png',
+         class:'satisfy'
+      },{
+        nameT:'应答匹配率',
+        nameB1:'有答案',
+        nameB2:'无答案',
+         image:'images/spss_total4.png',
+         class:'match'
+      }];
+  .spss-time-container
+    .date-range-picker
+    .spss-main
+      .t-right
+        i.tip.fa.fa-question-circle
+      .spss-info-wrap
+        ul
+          each info in infoData
+            li(class=info.class)
+              .info-top
+                p
+                  img.icon(src=info.image)
+                  span= info.nameT
+                p.t
+                img.bt-triangle(src="images/spss_total5.png")
+              .info-bottom
+                p
+                  span.text= info.nameB1
+                  span.b1
+                p
+                  span.text= info.nameB2
+                  span.b2
+      form.form-horizontal.cloud-search-area
+        .form-group
+          label.cloud-input-title 数据筛选
+          .cloud-input-content.big-select
+            select#type-select.form-control.input-sm
+              option(value="0") 智能客服解决率
+              option(value="1") 消息数
+              option(value="2") 平均满意率
+              option(value="3") 应答匹配率
+      .chart-wrap
+        #chart.chart
+

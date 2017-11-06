@@ -1,0 +1,60 @@
+extends ./index.pug
+
+block script
+  script.
+    var ctx='${pageContext.request.contextPath}';
+    var moreLogs=${moreLogs}
+    //
+      // var userAgentInfo = navigator.userAgent;
+      // var mobileAgents=["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+      // var MOBILE="MOBILE",PC="PC",IFRAME="IFRAME";
+      // var style=window.innerWidth>=768?PC:MOBILE;
+      // var device,style;
+      //  初始默认为PC
+      // device=style=PC;
+      //  是否iframe引入
+      // window.parent !== window.self && (style=IFRAME);
+      // for(var i=0,len=mobileAgents.length;i<len;i++){
+      //   if(userAgentInfo.indexOf(mobileAgents[i])>=0){
+      //     device=style=MOBILE;
+      //     break;
+      //   }
+      // }
+    
+    window.__INITIAL_STATE__={
+      deploy:{
+        faq:true,
+        // device:device,
+        // style:style,
+        robotName : '${robotName}',
+        robotAvatar : '${cloudurl}${robotPic}',
+        visitorAvatar : '${cloudurl}${visitorPic}',
+        sessionId : '${sessionId}',
+        customsession : '${customsession}',
+        app_key: '${app_key}',
+        guide:'${guide}',
+        wsuri:'${wsuri}',
+        sjuri:'${sjuri}',
+        username:'访客'+'${sessionId}'.slice(0,10),
+        os:'${os}',
+        referer: '${referer}',
+        clientIP:'${clientIP}',
+        applyTime:${applyTime}||60,
+        applyMsg :'${applyMsg}',
+        timeoutLength :${timeoutLength}||300,
+        timeoutMsg:'${timeoutMsg}',
+        ishelpfulDisplay:!!${ishelpfulDisplay},
+        userHumanServicer:${userHumanServicer},
+        recomQuestionDisplay:!!${recomQuestionDisplay},
+        faqExpandDisplay:!!${faqExpandDisplay},
+        useNoanswerHuman : !!${useNoanswerHuman},
+        noanswerTimes : ${noanswerTimes}||5,
+        noanswerMsg:'${noanswerMsg}',
+        feedbackMsg:'${feedbackMsg}',
+        appid:${appid},
+        csclienturl:'${csclienturl}',
+        csserverurl:'${csserverurl}',
+        ifRecorder:false
+      }
+    };
+

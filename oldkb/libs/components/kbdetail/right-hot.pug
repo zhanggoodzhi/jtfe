@@ -1,0 +1,23 @@
+.bg
+.info-box-wrap
+  .hot-knowledge.info-box
+    .title-wrap.clearfix
+      i.column
+      span.title 最热知识
+      a.btn.btn-flat.hot-btn.dropdown-button(data-activates='hot-dropdown')
+        img(src="/images/rank.png")
+        span 按评论
+      ul#hot-dropdown.dropdown-content.kb-dropdown-content
+        li.drop-comment(data-type='comment')
+          a(href="#!") 按评论
+        li.drop-collect(data-type='collect')
+          a(href="#!") 按收藏
+    .content-wrap
+      ul.knowledge.comment
+      ul.knowledge.collect
+  .hot-label.info-box
+    .title-wrap
+      i.column
+      span.title 热门标签
+    .content-wrap
+      ul.label

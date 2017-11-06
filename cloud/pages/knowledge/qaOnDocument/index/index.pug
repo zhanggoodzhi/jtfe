@@ -1,0 +1,44 @@
+extends /layout/main.pug
+
+block variable
+  - const title="文本分析"
+
+block mainbody
+  .x_panel
+    .x_content
+      form.document-wrap
+        .form-group
+          button#upload-doc.btn.btn-sm.btn-primary(type="button") 上传文档
+          button#select-doc.btn.btn-sm.btn-primary(type="button") 选择已上传文档
+          p.doc-info-wrap 文档:
+            span#doc-name 暂未选择文档
+          //- h4 文档内容
+          //- textarea#document.form-control.input-sm(rows="20",autofocus)
+        .form-group
+          h4 测试问题
+          input#question.form-control.input-sm(type="text")
+        .form-group
+          h4 系统回复
+          div#answer.answer.form-control.input-sm
+        .form-group.text-center
+          button#ask-btn.btn.btn-primary(type="button") 提问
+
+block modal
+  #select-doc-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-lg
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 选择已上传文档
+        .modal-body.clearfix
+          form.form-inline
+            .form-group
+              label 文档名称
+              input#doc-name-search.form-control.input-sm(type='text')
+            .form-group
+              button#doc-search-btn.btn.btn-sm.btn-primary(type="button") 查询
+          table#select-doc-table.table
+        .modal-footer
+          button#select-doc-btn.btn.btn-primary(type='button') 确定
+          button.btn.btn-default(type='button', data-dismiss='modal') 关闭

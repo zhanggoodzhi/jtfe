@@ -1,0 +1,42 @@
+@base-bg: #f5f5f5;
+.Panel {
+    border: 1px solid #eee;
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }
+}
+
+.PanelHeader {
+    background-color: @base-bg;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+}
+
+.Menus {
+    padding-top: 30px;
+}
+
+.MenuCol {
+    float: left;
+}
+
+.Menu {
+    width: 160px;
+    background-color: @base-bg;
+    text-align: center;
+    margin: 0 auto 20px;
+    padding: 10px;
+    display: block;
+    font-weight: bold;
+    color: #bbb;
+    img {
+        margin: 0 auto 10px;
+        width: 40%;
+    }
+    img,
+    span {
+        display: block;
+    }
+}

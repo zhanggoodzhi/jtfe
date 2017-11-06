@@ -1,0 +1,47 @@
+extends /layout/main.pug
+
+block variable
+  - const title="错别字"
+
+block mainbody
+  .x_panel
+    .x_content
+      form#search-form.form-horizontal.cloud-search-area
+        .form-group
+          label.cloud-input-title 错别字
+          .cloud-input-content
+            input#keywrods.form-control.input-sm(type='text')
+        .form-group
+          label.cloud-input-title 修正字
+          .cloud-input-content.cloud-md
+            input#correct.form-control.input-sm.form-date(type='text')
+        .form-group
+          label.cloud-input-title 更新时间
+          .cloud-input-content.cloud-md
+            input#form-date.form-control.input-sm.form-date(type='text')
+        +cUploadBtngroup
+        +cPageChange
+      table#key-table.table.fixed-table
+
+block modal
+  +cUploadModal("${ctx}/uploadFile/knowledge/typo__template.xlsx",'typo__template.xlsx')
+  #add-modal.modal.fade(data-backdrop='false')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title
+        .modal-body
+          form.form-horizontal
+            .form-group.clearfix
+              label.control-label.word-name.col-md-3 纠正为
+              .word-title-wrap.word-wrap.col-md-5
+                input#input-title.form-control.input-sm(type='text',maxlength="50")
+            .form-group.clearfix
+              label.control-label.word-name.col-md-3 用户输入的错字
+              .word-content-wrap.word-wrap.col-md-9
+                input#input-tag.form-control(type='text',maxlength="50")
+        .modal-footer
+          button#submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消

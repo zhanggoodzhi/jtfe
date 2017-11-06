@@ -1,0 +1,124 @@
+.Bread {
+    border-bottom: 1px solid #e9e9e9;
+}
+
+.StatusWrap {
+    position: relative;
+    h5 {
+        border-bottom: 1px dashed #e9e9e9;
+        padding: 10px;
+    }
+    .Solve {
+        position: absolute;
+        top: 5px;
+        right: 165px;
+        z-index: 9;
+    }
+    .Submit {
+        position: absolute;
+        top: 5px;
+        right: 90px;
+        z-index: 9;
+    }
+    .Cancel {
+        position: absolute;
+        top: 5px;
+        right: 15px;
+        ;
+        z-index: 9;
+    }
+}
+
+.Flex {
+    height: 750px;
+    display: flex;
+    flex-direction: column;
+    .ChartBox {
+        flex: 1;
+        padding: 10px 5px;
+        overflow: auto;
+        .ChartItem {
+            padding: 20px 0;
+            .Pop {
+                vertical-align: middle;
+                display: inline-block;
+                position: relative;
+                padding-left: 10px;
+                .Arrow {
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    position: absolute;
+                    border: 5px solid transparent;
+                    border-right: 5px solid #eee;
+                }
+                .CloneArrow {
+                    left: 1px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    position: absolute;
+                    border: 5px solid transparent;
+                    border-right: 5px solid white;
+                }
+                .Content {
+                    border: 1px solid #eee;
+                    border-radius: 5px;
+                    padding: 5px;
+                    p {
+                        padding: 5px;
+                        img {
+                            max-width: 1000px;
+                        }
+                    }
+                }
+                .Time {
+                    position: absolute;
+                    bottom: -20px;
+                    width: 70px;
+                }
+            }
+            .Speaker {
+                vertical-align: middle;
+            }
+            &.Right {
+                text-align: right;
+                .Pop {
+                    padding-right: 10px;
+                    .Arrow {
+                        right: 0;
+                        left: initial;
+                        border: 5px solid transparent;
+                        border-left: 5px solid #eee;
+                    }
+                    .CloneArrow {
+                        right: 1px;
+                        left: initial;
+                        border: 5px solid transparent;
+                        border-left: 5px solid white;
+                    }
+                    .Time {
+                        right: 13px;
+                    }
+                }
+            }
+        }
+    }
+    .InputArea {
+        flex: none;
+        border-top: 1px solid #e9e9e9;
+        .Edit {
+            overflow: auto;
+            height: 200px;
+        }
+        .Buttom {
+            position: relative;
+            padding: 5px;
+            .ImgButton {}
+            .Number {
+                position: absolute;
+                right: 5px;
+                bottom: 7px;
+            }
+        }
+    }
+}

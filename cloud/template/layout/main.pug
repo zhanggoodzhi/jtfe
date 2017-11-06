@@ -1,0 +1,83 @@
+extends ./top.pug
+block body
+  .main_container
+    .left_col
+      .cloud-left-title
+        a(href='index')
+          i.fa.fa-cloud
+          span 金童云平台
+      .cloud-profile
+        .cloud-heading
+          img.img-circle.cloud-heading-image(src='${ctx}${headicon}',alt='机器人头像')
+        .cloud-profile-info.force-width
+          h3 ${appRead}
+          h2 ${user.nickname}
+      include ./menus.pug
+    nav.navbar.navbar-default.cloud-top-nav
+      .container-fluid
+        .navbar-header
+          .navbar-brand
+            a#menu_toggle(href="javascript:;",style='padding:15px 0 0 15px')
+              i.fa.fa-bars
+            span(style="font-size: 18px;padding-left:8px;opacity: 0.7;color: #555;position: relative;top: -2px;").cloud-top-title= title?title:"${title}"
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            li
+              c:if(test="${usertype=='admin'}")
+                a(href='${ctx}/superadmin/user/index',target="_blank")
+                  i.fa.fa-user
+                  | 超级管理员
+            li
+              c:if(test="${usertype=='admin' or usertype=='manager' or fn:contains(accesslist, 'online_test')}")
+                a(href='${csclientUrl}${appKey}',target="_blank")
+                  i.fa.fa-comments-o
+                  | 在线体验
+            li
+              c:if(test="${usertype=='admin' or usertype=='manager' or fn:contains(accesslist, 'connect_manual')}")
+                a(href='${csserverUrl}${appKey}',target="_blank")
+                  i.fa.fa-headphones
+                  | 人工客服接入
+            li
+              c:if(test="${usertype=='admin' or usertype=='manager' or fn:contains(accesslist, 'train_robot')}")
+                a(href='${ctx}/knowledge/training',target="_blank")
+                  i.fa.fa-rocket
+                  | 训练机器人
+            li
+              c:if(test='${applicationOnly==false }')
+                a(href='${ctx}/appswitch')
+                  i.fa.fa-th
+                  | 切换应用
+            li
+              a.dropdown-toggle.export-main-sign(data-toggle='dropdown',href="javascript:;",aria-expanded='false')
+                i.fa.fa-cogs
+                | &nbsp;&nbsp;${user.adminName}
+                //- | &nbsp;&nbsp;${user.nickname}
+                span.fa.fa-angle-down
+                c:if(test="${hasNewExport}")
+                  span(style="width:8px;height:8px;border-radius:50%;background-color:#e51c23;display:inline-block;position:absolute;top:10px;right:20px")
+              ul.dropdown-menu
+                li.export-sign
+                  c:if(test="${hasNewExport}")
+                    span(style="width:8px;height:8px;border-radius:50%;background-color:#e51c23;display:inline-block;position:absolute;top:17px;left:5px")
+                  a(href='${ctx}/knowledge/corpus/export/index') 导出记录
+                li.divider
+                c:if(test="${usertype=='admin' or usertype=='manager' or fn:contains(accesslist, 'help_top')}")
+                  li
+                    a(href='uploadFile/help.pdf', target='_blank') 帮助中心
+                li.divider
+                c:if(test="${usertype=='admin' or usertype=='manager' or fn:contains(accesslist, 'pwd_edit')}")
+                  li
+                    a(href='user/pwd') 修改密码
+                li
+                  a(href='${ctx}/logout')
+                    //- i.fa.fa-sign-out.pull-right
+                    | 退出
+    #right_col.right_col(role="main")
+      block mainbody
+    footer#footer.footer
+      p.pull-right
+        a(href="${ctx}") 金童软件&nbsp;Jintong Software&nbsp;
+        span.lead
+          i.fa.fa-cloud
+          |  云平台系统
+  block modal

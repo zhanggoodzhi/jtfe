@@ -1,0 +1,94 @@
+.message-container {
+    .card-wrap {
+        .center {
+            p {
+                text-align: center;
+                i {
+                    margin-right: 10px;
+                }
+                .green {
+                    color: #169551;
+                }
+                .red {
+                    color: red;
+                }
+                .yellow {
+                    color: orange;
+                }
+                .percent {
+                    width: 20px;
+                    display: inline-block;
+                }
+            }
+            &:not(:last-child) {
+                border-right: 1px solid #ccc;
+            }
+        }
+    }
+    .mtt {
+        margin-top: 50px;
+    }
+    .mt {
+        margin-top: 30px;
+    }
+    .title-wrap {
+        .title {
+            height: 32px;
+            span {
+                line-height: 32px;
+            }
+        }
+        .ant-input-group {
+            margin-top: 4px;
+            width: 200px;
+        }
+    }
+    .chart-wrap {
+        .chart-title {
+            margin-bottom: -1px;
+            z-index: 2;
+            .ant-radio-group {
+                width: 100%;
+            }
+            .bl {
+                border-bottom-left-radius: 0;
+            }
+            .r {
+                border-bottom-right-radius: 0;
+                border-top-right-radius: 0;
+            }
+            .ant-radio-button-wrapper {
+                width: 25%;
+                text-align: center;
+            }
+            .ant-calendar-picker {
+                width: 100%!important;
+                .ant-calendar-range-picker {
+                    width: 100%!important;
+                    height: 32px;
+                    padding-top: 6px;
+                    border-bottom-right-radius: 0;
+                    border-bottom-left-radius: 0;
+                    border-top-left-radius: 0;
+                }
+            }
+            .ant-calendar-picker-icon {
+                right: 20px!important;
+            }
+        }
+        .chart-content {
+            padding: 20px 0;
+            border: #e9e9e9 1px solid;
+            .title {
+                width: 100%;
+            }
+            #line-chart, #bar-chart {
+                height: 500px;
+                width: 100%;
+            }
+        }
+    }
+    .table-wrap {
+        padding: 20px;
+    }
+}

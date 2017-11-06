@@ -1,0 +1,97 @@
+extends /layout/main.pug
+
+block script
+  script.
+    var selectData = JSON.parse('${selectmap}');
+
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+        .form-group
+          label.cloud-input-title 关键词
+          .cloud-input-content
+            input#keyword.form-control.input-sm(type='text')
+        .form-group
+          button#search-btn.btn.btn-primary.btn-sm(type='button') 查询
+          button#add-btn.btn.btn-primary.btn-sm(type='button') 添加
+          button#update-btn.btn.btn-primary.btn-sm(type='button') 编辑
+          button#produce-btn.btn.btn-primary.btn-sm(type='button') 复述生成
+          button#add-repeat-btn.btn.btn-primary.btn-sm(type='button') 添加复述
+          button#del-btn.btn.btn-danger.btn-sm(type='button') 删除
+        +cPageChange
+      table#table.table.fixed-table
+
+block modal
+  #produce-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-lg
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 复述生成
+        .modal-body
+          form.form-horizontal
+            .clearfix
+              h6.pull-left.rule-title-wrap
+                | 规则名称:
+                span#rule-title.rule-title
+              .pull-right
+                .form-group.pull-left
+                  label.cloud-input-title 类型
+                  .cloud-input-content.cloud-lg
+                    #set-classify.cloud-select-tree.form-control.input-sm
+                .form-group.pull-left
+                  button#preview-btn.btn.btn-primary.btn-sm(type='button') 预览
+            #lable-area.lable-area.clearfix
+          textarea#preview-area.preview-area(name='preview-area', readonly='readonly', placeholder='预览区域...')
+          form.form-horizontal.answer-form
+            .clearfix
+              //- .form-group
+              //-   label.cloud-input-title 状态
+              //-   .cloud-input-content
+              //-     select#status.form-control.input-sm(type='text', value='8')
+              //-       c:forEach(var='status', items='${selectmapObject.status}')
+              //-         c:if(test='${status.id!=3}')
+              //-           option(value='${status.id}') ${status.name}
+              .form-group
+                label.cloud-input-title 角色
+                .cloud-input-content
+                  select#character.form-control.input-sm(type='text')
+                    c:forEach(var='character', items='${selectmapObject.character}')
+                      option(value='${character.id}')
+                        | ${character.name}
+              .form-group
+                label.cloud-input-title 渠道
+                .cloud-input-content
+                  select#pushway.form-control.input-sm
+                    c:forEach(var='pushway', items='${selectmapObject.pushway}')
+                      option(value='${pushway.id}') ${pushway.name}
+              .form-group
+                label.cloud-input-title 生效时间
+                .cloud-input-content
+                  input#start-date.form-control.input-sm.cloud-date(type='text')
+              .form-group
+                label.cloud-input-title 失效时间
+                .cloud-input-content
+                  input#end-date.form-control.input-sm.cloud-date(type='text')
+          h6 回复内容
+          #editor.cloud-editor
+            p 无回复
+        .modal-footer
+          button#produce-save-btn.btn.btn-primary(type='button') 确定
+          button.btn.btn-default(type='button', data-dismiss='modal') 关闭
+
+
+  #del-modal.modal.fade
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 温馨提示
+        .modal-body
+          p 确认删除选中的规则吗？
+        .modal-footer
+          button#confirm-del-btn.btn.btn-danger(type='button', data-dismiss='modal') 删除
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消

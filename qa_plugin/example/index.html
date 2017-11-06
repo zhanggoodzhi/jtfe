@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Jintong Example</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .container {
+            width: 600px;
+            margin: 0 auto;
+        }
+
+        #question-form {
+            text-align: right;
+            padding: 16px 0;
+        }
+
+        #message-box {
+            margin-top: 100px;
+            border: 1px solid #eee;
+            border-radius: 3px;
+            padding: 16px;
+        }
+
+        .message-item {
+            padding: 8px;
+        }
+
+
+        .message-info {
+            color: #108ee9;
+            margin-bottom: 8px;
+        }
+
+        .message-content {
+            color: #555;
+        }
+
+        .loading-text {
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="message-box">
+            <p class="loading-text">loading...</p>
+        </div>
+        <form id="question-form">
+            <input id="question-input" type="text">
+            <button>发送</button>
+        </form>
+    </div>
+    <script src="./qa-plugin.min.js"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>

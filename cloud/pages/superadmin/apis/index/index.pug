@@ -1,0 +1,63 @@
+extends /layout/main.pug
+
+block variable
+  - const title="API管理"
+
+prepend script
+  script.
+    const appList=JSON.parse('${appList}'.replace(/name/g,'text'));
+
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+        .clearfix
+          .form-group
+            label.cloud-input-title 名称
+            .cloud-input-content
+              input#apiName.form-control.input-sm(type='text')
+          .form-group
+            label.cloud-input-title 描述
+            .cloud-input-content
+              input#apiDesc.form-control.input-sm(type='text')
+          .form-group
+            label.cloud-input-title 链接
+            .cloud-input-content
+              input#apiUrl.form-control.input-sm(type='text')
+          .form-group
+            label.cloud-input-title 应用名称
+            .cloud-input-content
+              select#appid.appid.select.form-control
+        .clearfix
+          +cBtngroup('apis')
+          +cPageChange
+      table#table.table.fixed-table
+block modal
+  .apis.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close.add-close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title
+        .modal-body
+          form.form-horizontal
+            .form-group
+              label.cloud-input-title 名称
+              .cloud-input-content
+                input.apiName.form-control.input-sm(type='text',placeholder='填写api的名称')
+            .form-group
+              label.cloud-input-title 描述
+              .cloud-input-content
+                input.apiDesc.form-control.input-sm(type='text',placeholder='填写api的描述')
+            .form-group
+              label.cloud-input-title 链接
+              .cloud-input-content
+                input.apiUrl.form-control.input-sm(type='text',placeholder='填写api的链接')
+            .form-group
+              label.cloud-input-title 应用名称
+              .cloud-input-content
+                select.appid.select.form-control
+        .modal-footer
+          button.submit-btn.btn.btn-success(type='button')
+          button.btn.btn-default.add-close(type='button', data-dismiss='modal') 取消

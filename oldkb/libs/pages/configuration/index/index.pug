@@ -1,0 +1,134 @@
+extends /layouts/main.pug
+block tabs
+  +tab('类别管理','classify')
+  +tab('模版管理','template')
+  +tab('标签管理','label')
+  +tab('审核流程管理','check')
+  +tab('初始设置','config')
+  +tab('知识库成员','member')
+  +tab('权限设置','auth')
+block script
+  script(th:inline="javascript").
+    var templates = [[${templates}]];
+    var roles = [[${roles}]];
+    var privileges=[[${privileges}]];
+block mainbody
+  .kb-tabs-content
+    #classify-tab.row.kb-block-wrap
+      .col.s3.kb-block
+        header.kb-block-header
+          h5 知识类别
+        .kb-block-content
+          #classify-tree.kb-scroll.kb-select-tree
+      .col.s9.kb-block
+        header.kb-block-header
+          h5 类别编辑
+          .kb-block-menu
+            +btn('添加类别')(id='add-clissify-btn')
+        .kb-block-content
+          table#classify-table
+    #template-tab.row
+      .col.s12
+        form
+          .input-field.right-align
+            +btn('添加模板')(id='add-template-btn')
+        table#template-table
+          //- thead
+          //-   tr
+          //-     th ID
+          //-     th 名称
+          //-     th 说明
+          //-     th 操作
+          //- tbody
+          //-   tr(th:each="template:${templates}")
+          //-     td(th:text="${template.id}")
+          //-     td(th:text="${template.name}")
+          //-     td(th:text="${template.comments}")
+          //-     td.prevent
+          //-       a(th:href="${'/template/detail?knowledgeTemplateId='+template.id}") 详情
+    #label-tab.row
+      .col.s12
+        form
+          .input-field.right-align
+            +btn('添加标签')(id='add-label-btn')
+        table#label-table
+
+    #check-tab.row.kb-scroll
+      .col.s12
+        +stepBar([])
+        form
+          .input-field.right-align
+            +btn('编辑审核顺序')(id='edit-check-flow-btn')
+            +btn('添加审核者')(id='add-check-user-btn')
+        table#check-table
+    #config-tab.row
+      .col.s12
+        form
+          .input-field.right-align
+            +btn('上传数据集')(id='import-knowledge-btn')
+    #member-tab.row
+      .col.s12
+        form.clearfix.kb-search-form
+          //- div(th:text="${roles}")
+          +input(3)(placeholder="邮箱",id="member-email")
+          //- +select(2,[{name:1,value:1},{name:2,value:2}],'角色')
+          .col.input-field.s3
+            select#member-role.select-small(multiple)
+              option(value="",selected,disabled) 请选择角色
+              option(th:each="role:${roles}",th:value="${role.id}",th:text="${role.remark}")
+          .input-field.col.s3
+            +btn('查询')(id='member-search-btn')
+            +btn('添加成员')(id='member-add-btn')
+        table#member-table
+    #auth-tab.kb-block-wrap
+      .row
+        .col.s6.kb-space
+          .kb-block
+            i.material-icons.arrow keyboard_arrow_right
+            .kb-block-header
+              h5 角色列表
+              .kb-block-menu
+                +btn('添加角色')(id='add-character-btn')
+            .kb-block-content
+              table#role-table
+              .kb
+        .col.s6.kb-space
+          .kb-block
+            .kb-block-header
+              h5 角色权限
+              .kb-block-menu
+                +btn('编辑权限')(id='edit-auth-btn')
+            .kb-block-content
+              table#auth-table
+
+block modal
+  +modal('添加分类','保存',true)(id='classify-modal')
+    .input-group
+      input#classify-name(placeholder='分类名称')
+    .input-group
+      #parent-node.select-small
+    .input-group
+      select#related-module(multiple)
+        option(value='',disabled,selected) 关联模板
+        th:block(th:each="template:${templates}")
+          option(th:value="${template.id}",th:text="${template.name}")
+  +modal('添加角色','保存')(id='character-modal')
+    .col.s6
+      form.clearfix
+        +input(12)(placeholder='角色类型',id="auth-classify")
+        +input(12)(placeholder='角色简介',id="auth-desc")
+        h6 角色成员
+        .table-wrap
+          i.material-icons.arrow keyboard_arrow_left
+          table#role-member-table
+        //- .input-field.col.s12
+        //-   textarea.materialize-textarea(placeholder='角色简介')
+    .col.s6
+      form.clearfix
+        +input(12)(placeholder='姓名/邮箱',id="auth-name")
+        .input-field.col.s12
+          +btn('查询')(id='auth-search-btn')
+        h6 所有成员
+        .table-wrap
+          table#all-member-table
+

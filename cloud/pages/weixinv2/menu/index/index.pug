@@ -1,0 +1,67 @@
+extends /layout/main.pug
+
+block script
+  script.
+    const credentialId="${wechatCredential.id}";
+
+block mainbody
+  .x_panel
+    .x_content.clearfix
+      .weixin-list
+        h5.weixin-list-titile 微信公众号
+        .weixin-list-content
+          c:forEach(var='wechatCredentialAll', items='${wechatCredentials}')
+            .weixin-list-item(class!="<c:if test='${wechatCredential.id==wechatCredentialAll.id}'>selected</c:if>")
+              a.force-width(href='weixinv2/menu/index?id=${wechatCredentialAll.id}') ${wechatCredentialAll.wxName}
+      .weixin-menu.clearfix
+        .weixin-menu-display
+          #weixin-resync.weixin-resync
+            i#resync-icon.fa.fa-refresh
+            span.resync-text 重新同步微信菜单
+
+          ul#weixin-menu-list.weixin-menu-list
+            c:forEach(var='menu', items='${menus}')
+              c:if(test='${menu.priority%10==0}')
+                li
+                  span.weixin-parent-menu.weixin-menu-item(data-name='${menu.name}', data-type='${menu.type}', data-menukey='${menu.menuKey}', data-url='${menu.url}') ${menu.name}
+                  ul.sub-menu-list
+                    c:forEach(var='submenu', items='${menus}')
+                      c:if(test!='${submenu.priority-menu.priority>0&&submenu.priority-menu.priority<10}')
+                        li
+                          span.weixin-sub-menu.weixin-menu-item(data-name='${submenu.name}', data-type='${submenu.type}', data-menukey='${submenu.menuKey}', data-url='${submenu.url}') ${submenu.name}
+                    c:if(test!='${menu.child<5}')
+                      li
+                        span.weixin-sub-menu.weixin-menu-item.add-sub-menu
+                          i.fa.fa-plus.add-icon
+            c:if(test!='${mainmenuNum<3}')
+              li
+                span.weixin-parent-menu.weixin-menu-item.add-parent-menu
+                  i.fa.fa-plus.add-icon
+        #weixin-menu-edit.weixin-menu-edit
+          #weixin-edit-container.weixin-edit-container
+            .weixin-edit-title
+              h5
+                span#menu-name-static 菜单名称
+                a#del-menu-btn.pull-right(href="javascript:;") 删除菜单
+            .weixin-edit-content
+              .cloud-row
+                .detail-title 菜单名称
+                .detail-name
+                  input#menu-name.form-control.input-sm(type="text",maxlength="20")
+              #menu-detial.no-submenu.cloud-row
+                .detail-title 菜单内容
+                .radio
+                  label
+                    input(type='radio', name='type', value='click',data-param="menukey")
+                    | Key
+                  label
+                    input(type='radio', name='type', value='view',data-param="url")
+                    | 链接
+                .cloud-row
+                  .detail-content
+                    textarea#menu-content.form-control
+          .weixin-edit-action
+            .cloud-row.menu-info#menu-info
+              p#menu-info-text.text-warning
+            .cloud-row.text-center.btn-wrap
+              button#save-btn.btn.btn-success(type="button") 保存

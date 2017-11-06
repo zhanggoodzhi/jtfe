@@ -1,0 +1,103 @@
+extends /layout/main.pug
+
+block variable
+  - const href="spss/msgData/index";
+block script
+  //- link(type="text/css",rel="stylesheet",href='${ctx}/module/jqCloud/jqcloud.css')
+  //- script(src='${ctx}/module/jqCloud/jqcloud-1.0.4.min.js')
+  script.
+    //- var selectData = ${classifys};
+
+block mainbody
+  -
+    var infoData=[{
+        nameT:'消息数',
+        nameB1:'人工客服',
+        nameB2:'智能客服'
+      },{
+        nameT:'机器人解决率',
+        nameB1:'会话数',
+        nameB2:'转人工数'
+      },{
+        nameT:'平均满意率',
+        nameB1:'参评数',
+        nameB2:'参评率 '
+      },{
+        nameT:'应答匹配率',
+        nameB1:'有答案',
+        nameB2:'无答案'
+      }];
+  .spss-time-container
+    .date-range-picker
+    .spss-main
+      .t-right
+        i#main-tip.tip.fa.fa-question-circle
+      section
+        .spss-info-wrap
+          ul
+            li.title
+              h5 消息数
+              h5 问题消息数
+              h5 回复消息数
+              h5 会话数
+              h5 平均响应时长
+            li.special.smart
+              span.title 智能客服
+              span
+              span
+              span
+              span
+              span
+            li.special.person
+              span.title 人工客服
+              span
+              span
+              span
+              span
+              span
+      section
+        form.form-horizontal.cloud-search-area
+          .form-group
+            label.cloud-input-title 数据筛选
+            .cloud-input-content.big-select
+              select#type-select.form-control.input-sm
+                option(value="0") 消息数
+                option(value="1") 会话数
+                option(value="2") 平均响应时长
+        .chart-wrap
+          #chart.chart
+      section
+        form.form-horizontal.cloud-search-area
+          .form-group
+            label.cloud-input-title 消息类型统计
+            .cloud-input-content.tip-wrap
+              i#log-tip.tip.fa.fa-question-circle
+          .excel
+            button#export1(type="button").btn.btn-primary.btn-sm 导出为excel
+        .chart-wrap.row
+          .classify-rank-wrap.col-md-6
+            table#percent-table.table
+          .info-chart-wrap.col-md-6
+            #info-chart
+      section
+        form.form-horizontal.cloud-search-area
+          .form-group
+            label.cloud-input-title 热点问题
+            .cloud-input-content.tip-wrap
+              i#hot-problem-tip.tip.fa.fa-question-circle
+          .excel
+            button#export2(type="button").btn.btn-primary.btn-sm 导出为excel
+        .table-wrap
+          table#hot-table.table
+      section
+        form.form-horizontal.cloud-search-area
+          .form-group
+            label.cloud-input-title 热门词汇
+            .cloud-input-content.tip-wrap
+              i#hot-word-tip.tip.fa.fa-question-circle
+          .excel
+            button#export3(type="button").btn.btn-primary.btn-sm 导出为excel
+        .chart-wrap.tag-cloud-wrap
+
+
+

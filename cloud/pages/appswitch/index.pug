@@ -1,0 +1,32 @@
+extends /layout/primary.pug
+
+block script
+  script.
+    var appStatus=JSON.parse('${appStatusJson}');
+
+block mainbody
+  .col-xs-10.col-xs-offset-1
+    .x_panel
+      //- .x_title
+      //-   h4 选择应用
+      .x_content
+        form#search-form.form-horizontal.cloud-search-area
+            .form-group
+                label.cloud-input-title 应用编号
+                .cloud-input-content
+                  input#app-number.form-control.input-sm(type='text')
+            .form-group
+                label.cloud-input-title 应用名称
+                .cloud-input-content
+                  input#app-name.form-control.input-sm(type='text')
+            .form-group
+                label.cloud-input-title 审核状态
+                .cloud-input-content
+                  select#app-status.form-control.input-sm(type='text')
+                    option(value="") 全部
+                    c:forEach(var="status",items="${appStatus}")
+                      option(value="${status.code}") ${status.name}
+            .form-group
+              button#search-btn.btn.btn-primary.btn-sm(type='button') 查询
+            +cPageChange
+        table#table.table.fixed-table

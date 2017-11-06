@@ -1,0 +1,79 @@
+extends /layout/main.pug
+
+block variable
+  - const title="消息数据分析"
+
+
+block script
+  script.
+    var selectData = ${classifys};
+block mainbody
+  .row
+    .col-sm-6.col-xs-6.col-md-6
+      .content
+        .year-wrap-wrap.chart-wrap
+          .btn-wrap
+            a.line(data-type="y")
+              img(src='${ctx}/images/line.png',width='17px',height='15px',title='折线图')
+            a.bar(data-type="y")
+              img(src='${ctx}/images/bar.png',width='17px',height='15px',title='柱状图')
+          #year-chart.chart
+        .month-wrap-wrap.chart-wrap
+          .btn-wrap
+            a.line(data-type="m")
+              img(src='${ctx}/images/line.png',width='17px',height='15px',title='折线图')
+            a.bar(data-type="m")
+              img(src='${ctx}/images/bar.png',width='17px',height='15px',title='柱状图')
+          #month-chart.chart
+        .day-wrap-wrap.chart-wrap
+          .btn-wrap
+            a.line(data-type="d")
+              img(src='${ctx}/images/line.png',width='17px',height='15px',title='折线图')
+            a.bar(data-type="d")
+              img(src='${ctx}/images/bar.png',width='17px',height='15px',title='柱状图')
+          #day-chart.chart
+        .hour-wrap-wrap.chart-wrap
+          .btn-wrap
+            a.line(data-type="h")
+              img(src='${ctx}/images/line.png',width='17px',height='15px',title='折线图')
+            a.bar(data-type="h")
+              img(src='${ctx}/images/bar.png',width='17px',height='15px',title='柱状图')
+          #hour-chart.chart
+    .col-sm-6.col-xs-6.col-md-6
+      .content.clearfix
+        form#search-form.form-horizontal.cloud-search-area
+          .clearfix
+            .form-group
+              label.cloud-input-title 用户
+              .cloud-input-content
+                input#sender.form-control.input-sm(type='text', placeholder='用户')
+            .form-group
+              label.cloud-input-title 关键词
+              .cloud-input-content
+                input#keyword.form-control.input-sm(type='text', placeholder='关键词')
+            +cClassify("main")
+            .form-group
+              label.cloud-input-title 角色
+              .cloud-input-content
+                select#character.form-control.input-sm(name='character')
+                  option(value="") 全部
+                    c:forEach(items="${characters}",var="character")
+                      option(value="${character.id}") ${character.name}
+            .form-group
+              label.cloud-input-title 来源
+              .cloud-input-content
+                select#device.form-control.input-sm(name='device')
+                  option(value="") 全部
+                  c:forEach(items="${kvpair.device}",var="device")
+                    option(value="${device.key}") ${device.value}
+            .form-group
+              label.cloud-input-title 状态
+              .cloud-input-content
+                select#status.form-control.input-sm(name='status')
+                  option(value="") 全部
+                  c:forEach(items="${kvpair.hasAnswer}",var="hasAnswer")
+                    option(value="${hasAnswer.key}") ${hasAnswer.value}
+            .form-group.special
+              button#search.btn.btn-primary.btn-sm(type='button') 查询
+              button#reset-btn.btn.btn-primary.btn-sm(type='reset') 重置查询条件
+        table#table.table.table-hide.fixed-table

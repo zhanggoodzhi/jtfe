@@ -1,0 +1,93 @@
+.show-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.no-data {
+    font-size: 13px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.cps-list {
+    margin-bottom: 0;
+    li, .no-data {
+        line-height: 24px;
+    }
+}
+
+.upload-icon-wrap {
+    color: #ccc;
+    text-align: center;
+    margin: 20px 20px 15px!important;
+    padding: 5px!important;
+    font-size: 65px;
+    cursor: pointer;
+    border: 2px dotted #f1f1f1;
+    transition: .25s;
+    &:hover, &:active, &:focus {
+        color: #666;
+        border-color: #ccc;
+    }
+    .upload-icon {
+        cursor: pointer;
+    }
+}
+.info-wrap{
+    margin: 0 20px;
+}
+
+/*.show-corpus, .show-problem-corpus {
+    margin-right: 5px;
+    cursor: pointer;
+}*/
+
+.c-wrap, .c-problem-wrap {
+    td {
+        border-top: 0!important;
+    }
+    .c-problem, .c-answer {
+        padding-left: 26px;
+    }
+}
+.table {
+    td.disabled>.fa{
+        opacity: 0.65;
+        cursor: not-allowed;
+    }
+}
+// .table .show-corpus,.table .show-action{
+//     cursor: pointer;
+//     position: relative;
+//     right: -5px;
+//     padding: 0;
+//     &.fa-spinner{
+//         cursor: not-allowed;
+//     }
+// }
+.table {
+    .cps-details,.action-details{
+        li{
+            line-height: 30px;
+            span{
+                display: inline-block;
+                padding: 0 8px;
+            }
+            .action-detial-title{
+                width: 80px;
+            }
+        }
+    }
+}
+.dialog-answer{
+    overflow: auto;
+    height: 200px;
+}
+.dialog{
+    overflow: auto;
+    height: 283px;
+}
+.modal [aria-level="1"]>a{
+    font-weight: bold;
+}

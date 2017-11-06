@@ -1,0 +1,107 @@
+extends /layout/main.pug
+
+block variable
+  - const href="paraphrase/index";
+
+block script
+  c:if(test='${type!=null}')
+    script.
+      var isUpdate = true;
+      var type = {
+        id: "${type.id}"
+      };
+  c:if(test='${type==null}')
+    script.
+      var isUpdate = false;
+  script.
+    var classifyData = JSON.parse('${selectmap}').classify;
+
+block mainbody
+  .row
+    .col-md-7.col-sm-7
+      .x_panel
+        .x_title
+          h5 选择语料
+        .x_content
+          .cloud-search-area
+            form.form-horizontal
+              +cClassify
+              .form-group
+                label.cloud-input-title 状态
+                .cloud-input-content
+                  select#status.form-control.input-sm(type='text')
+                    option(value='') 全部
+                    c:forEach(var='status', items='${selectmapObject.status}')
+                      option(value='${status.id}')
+                        | ${status.name}
+              .form-group
+                label.cloud-input-title 问题
+                .cloud-input-content
+                  input#question.form-control.input-sm(type='text', placeholder='关键词')
+              .form-group
+                button#search-btn.btn.btn-primary.btn-sm(type='button') 查询
+              //- +cPageChange
+          table#table.table.fixed-table
+    .col-md-5.col-sm-5
+      .x_panel
+        .x_title
+          h5 编辑复述规则
+        .x_content
+          form#edit-form.edit-form.form-horizontal
+            h6 规则
+            .form-group
+              label.cloud-input-title.rule-title 规则名称
+              .cloud-input-content.cloud-lg
+                c:if(test='${type!=null}')
+                  input#rule-name.form-control.input-sm(type='text', value='${type.typeName}')
+                c:if(test='${type==null}')
+                  input#rule-name.form-control.input-sm(type='text')
+            c:if(test='${type==null}')
+              .form-group.tag-item
+                .cloud-input-content.cloud-sm
+                  input.form-control.input-sm.label-name(type='text', placeholder='标签名称')
+                .cloud-input-content.cloud-lg
+                  input.form-control.input-sm.label-value(type='text', placeholder='替换内容')
+                span.remove-this
+                  img(src='images/close.png', alt='删除标签', title='删除标签')
+              .form-group
+                button#create-label-btn.btn.btn-primary.btn-sm.pull-right(type='button') 新建标签
+            c:if(test='${type!=null}')
+              h6 替换内容
+              .form-group.tag-items
+                #rel-content.cloud-input-title.rule-title(title="${type.typeTag}") ${type.content}
+                c:forEach(items="${fn:split(type.typeTag,',')}", var='tag')
+                  .cloud-input-content.cloud-sm
+                    input.form-control.input-sm.label-name(type='text', data-name='${tag}', value='${tag}')
+            h6 规则条目
+            ul#cloud-list.cloud-list.list-group
+              c:if(test='${rules!=null}')
+                c:forEach(items='${rules}', var='rule')
+                  li.list-group-item(data-text='${rule.ptext}', data-id='${rule.id}')
+                    span.remove-this
+                      img(src='images/close.png', alt='删除条目', title='删除条目')
+                    |  ${rule.ptext}
+            .form-group
+              label.cloud-input-title.rule-title 自定条目
+              .cloud-input-content.cloud-lg
+                input#user-create.form-control.input-sm(type='text')
+            .form-group.text-right
+              button#add-btn.btn.btn-primary.btn-sm(type='button') 添加
+              button.btn.btn-danger.btn-sm(type='button', data-toggle='modal', data-target='#empty-modal') 清空
+            .form-group.text-center
+              button#save-btn.btn.btn-success(type='button') 保存
+              a.btn.btn-primary(type='button', href='paraphrase/index') 返回
+
+block modal
+  #empty-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 温馨提示
+        .modal-body
+          p 确认清空所有语料吗？
+        .modal-footer
+          button#empty-btn.btn.btn-danger(type='button', data-dismiss='modal') 清空
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消

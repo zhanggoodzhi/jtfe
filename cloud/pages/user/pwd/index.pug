@@ -1,0 +1,30 @@
+extends /layout/word.pug
+
+block script
+  script.
+   var userName='${user.name}';
+   var appName = '${ctx}';
+block variable
+  - var title="修改密码"
+
+block mainbody
+  - var userName='${user.name}';
+  - var appName = '${ctx}';
+  .x_panel
+    .x_content
+      form#form
+        .form-group
+          label 旧密码
+          input#old.form-control(data-remote-error="旧密码错误",data-remote=appName + '/user/isUniqueUserPwd?username='+userName,type='password',data-length, name='oldPwd',required)
+          .help-block.with-errors
+        .form-group
+          label 新密码
+          input#new.form-control(type='password',data-length, name='newPsd',required)
+          .help-block.with-errors
+        .form-group
+          label 确认新密码
+          input#renew.form-control(data-match-error="两次密码输入不一致",data-match="#new",data-length,type='password', name='rePsd',required)
+          .help-block.with-errors
+        .form-group
+          button.btn.btn-primary#save(type='submit') 保存
+          button.btn.btn-default#return(type='button') 返回

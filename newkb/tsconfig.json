@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "src/app/*",
+        "src/app/redux/*"
+      ]
+    },
+    "target": "es6",
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
+}

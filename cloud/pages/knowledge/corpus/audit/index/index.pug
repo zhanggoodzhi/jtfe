@@ -1,0 +1,53 @@
+extends /layout/main.pug
+
+
+block script
+  script.
+    var selectData=${selectmap}[0];
+    var fromData;
+    <c:if test="${param.from=='update'&&param.id!=null}">
+      fromData={
+        id: "${param.id}"
+      };
+    </c:if>
+
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+        .clearfix
+          .form-group
+            label.cloud-input-title 无答案问题
+            .cloud-input-content
+              input#question.form-control.input-sm(type='text', placeholder='关键词')
+            +cInput('创建时间','date','md')(readonly,value="1970-01-01 - 2038-12-31")
+          button#search-btn.btn.btn-primary.btn-sm(type='button') 查询
+          button#reset-btn.btn.btn-primary.btn-sm(type='reset') 重置
+        .clearfix
+          .form-group
+            button.action-btn.btn.btn-primary.btn-sm(type='button',data-type="add") 添加为新语料
+            button.action-btn.btn.btn-primary.btn-sm(type='button',data-type="link") 关联到已有语料
+            button.action-btn.btn.btn-primary.btn-sm(type='button',data-type="ignore") 忽略
+            button.action-btn.btn.btn-primary.btn-sm(type='button',data-type="ignore-forever") 永久忽略
+            button#refresh-btn.btn.btn-primary.btn-sm(type='button') 刷新
+      table#table.table.fixed-table
+//- block modal
+  #link-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-lg
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 关联到已有语料
+        .modal-body.clearfix
+          form.form-horizontal.cloud-form
+            +cCorpusSearch
+            .form-group
+              button#form-search-btn.btn.btn-primary.btn-sm(type='button') 查询
+          table#edit-table.table.fixed-table
+        .modal-footer
+          button#edit-submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+    table.table-bordered.table.fixed-table
+      tbody#detial-content.detial-content
+

@@ -1,0 +1,31 @@
+extends /layout/main.pug
+
+block variable
+  - const title="客服配置";
+
+block mainbody
+  .x_panel
+    .x_content
+      .row
+        .col-xs-8.col-xs-offset-2
+          form#form
+            #radio-area
+            .form-group
+              label 人工客服欢迎语
+              textarea#greetings.form-control.input-sm(name="greetings",readonly)
+              div.text-right
+                a#edit-greetings-btn(href="javascript:;") 编辑
+
+//- block modal
+//-   #editor-modal.modal.fade(data-backdrop='false')
+//-     .modal-dialog
+//-       .modal-content
+//-         .modal-header
+//-           button.close(type='button', data-dismiss='modal', aria-label='Close')
+//-             span(aria-hidden='true') &times;
+//-           h4.modal-title 编辑人工客服欢迎语
+//-         .modal-body
+//-           textarea#editor
+//-         .modal-footer
+//-           button#editor-yes-btn.btn.btn-primary(type='button') 确定
+//-           button.btn.btn-default(type='button', data-dismiss='modal') 取消

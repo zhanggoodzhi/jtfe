@@ -1,0 +1,102 @@
+extends /layout/main.pug
+
+block variable
+  - const isadmin=true;
+  - const title='复述模板管理';
+  //- - const href='superadmin/rehearsalTemplate/index';
+
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+        .clearfix
+          .form-group
+            label.cloud-input-title 关键词
+            .cloud-input-content.cloud-lg
+              input#keyword.form-control.input-sm(type='tel',maxlength='11',placeholder='请输入要查询的关键词' )
+          .form-group
+            label.cloud-input-title 状态
+            .cloud-input-content
+              select#status.form-control.input-sm
+                option(value='') 全部
+                option(value='1') 已启用
+                option(value='0') 已停用
+                //- c:forEach(items='${kvpair.isenable}',var='enable')
+                //-   option(value='${enable.key}') ${enable.value}
+        .clearfix
+          .form-group
+            button#search-btn.btn.btn-primary.btn-sm(type='button') 查询
+            button#add-btn.btn.btn-primary.btn-sm(type='button') 添加
+            button#batch-upload-btn.btn.btn-primary.btn-sm(type='button') 批量上传
+            button#export-btn.btn.btn-primary.btn-sm(type='button') 导出
+            button#batch-del-btn.btn.btn-danger.btn-sm(type='button') 批量删除
+          +cPageChange
+      table#table.table.fixed-table
+block modal
+  #add-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-md
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 添加复述模板
+        .modal-body
+          form.form-horizontal
+            .form-group
+              .cloud-input-content.review-input
+                input.form-control.input-md(type='text',placeholder='请输入复述模板，点击右侧添加按钮添加')
+                span.add-operation
+                  i.cloud-fa-icon.fa.fa-plus-circle.add-repeat(title='添加复述问法')
+              span.validate-msg
+                img(src='${ctx}/images/validate/error.png')
+                span.validate-ctx 请输入模板内容！
+        .modal-footer
+          button#add-submit-btn.btn.btn-success(type='button') 确认
+          button.btn.btn-default(type='button', data-dismiss='modal') 关闭
+  #upload-doc-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-md
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 批量上传
+        .modal-body
+          p.text-center
+            |请按照模板格式上传，
+            a(href="${ctx}/uploadFile/corpus/templateDemo.xls") 点此下载指定格式的模板
+          #upload-wrap.upload-icon-wrap
+            i.upload-icon.wangeditor-menu-img-upload
+          #info-wrap.info-wrap
+        .modal-footer
+          button#upload.btn.btn-primary(type='button') 上传
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  #review-q-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-md
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 查看复述问法
+        .modal-body
+          table#review-table.table.fixed-table
+        //- .modal-footer
+        //-   button#upload.btn.btn-primary(type='button') 上传
+        //-   button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  #del-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-md
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 温馨提示
+        .modal-body
+          p.del-inner
+            span.inner-title 选中的
+            | 模板已生成
+            span(style='color:red')
+              span.q-num 100
+              | 条复述问法
+            | ，此模板及其所有复述问法将被删除，您确定吗？
+        .modal-footer
+          button#del-template-only.btn.btn-default(type='button') 不，只删除模板
+          button#del-t-q.btn.btn-danger(type='button', data-dismiss='modal') 是，删除模板及所有复述问法

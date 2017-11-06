@@ -1,0 +1,53 @@
+include ../../../layouts/components.pug
+
+main.resource-detail-main
+  form.col.s7.add-res
+    .row
+      .input-field.col.s9
+        input.title(type='text',placeholder="请输入标题")
+        label.active(for='title') 标题
+    .row
+      .input-field.col.s11
+        textarea.desc.materialize-textarea#wang-editor
+          p 请输入内容
+        label.active(for='content') 内容
+    .row
+      .input-field.col.s9
+        textarea.desc.materialize-textarea(type='text',placeholder="请输入简介")
+        label.active(for='desc') 简介
+    .row
+      .input-field.col.s9
+        input.link(type='text',placeholder="请输入原文链接")
+        label.active(for='link') 原文链接
+    .row
+      .input-field.col.s9
+        +btn('上传')(id='upload-news')
+        label.active(for='cover',style='height:30px;') 封面
+    .row.cover-show
+  .col.s5.news-preview-wrap.resource-right-gray
+    .news-item
+      .cover-wrap.resource-hover-item
+        .image-wrap
+          .name-wrap.ellipsis
+            span 标题
+        .toolbox-wrap
+          .toolbox
+            .icon-wrap
+              i.material-icons arrow_upward
+            .icon-wrap
+              i.material-icons arrow_downward
+            .icon-wrap
+              i.kb-icon.kb-delete
+      .add-wrap
+        .icon-wrap
+          i.medium.material-icons add
+//- div.cover-footer
+//-   +btn('保存').save
+//-   a.waves-effect.btn-small.cancel.cancel-btn.btn-flat 取消
+
+
+
+
+
+
+

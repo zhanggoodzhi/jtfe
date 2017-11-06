@@ -1,0 +1,107 @@
+{
+  "extends": [
+    "tslint:latest"
+  ],
+  "rules": {
+    "no-submodule-imports": false,
+    "no-namespace": false,
+    "no-object-literal-type-assertion": false,
+    "space-before-function-paren": false,
+    "radix": false,
+    "max-classes-per-file": [
+      false
+    ],
+    "one-variable-per-declaration": [
+      false
+    ],
+    "only-arrow-functions": [
+      false
+    ],
+    "member-access": false,
+    "arrow-parens": false,
+    "interface-name": [
+      false
+    ],
+    "no-console": [true, "log"],
+    "no-empty-interface": false,
+    "max-line-length": [
+      false
+    ],
+    "variable-name": [
+      false
+    ],
+    "no-unused-variable": [
+      true,
+      "warning"
+    ],
+    "indent": [
+      true,
+      "spaces"
+    ],
+    "quotemark": [
+      true,
+      "single",
+      "jsx-double"
+    ],
+    "no-var-requires": false,
+    "ordered-imports": [
+      false
+    ],
+    "member-ordering": [
+      false
+    ],
+    "object-literal-sort-keys": false,
+    "no-shadowed-variable": false,
+    "trailing-comma": [
+      false
+    ]
+  },
+  "jsRules": {
+    "jsx-no-multiline-js": false,
+    "jsx-no-lambda": false,
+    "jsx-boolean-value": false,
+    "jsx-alignment": [
+      false
+    ],
+    "only-arrow-functions": [
+      false
+    ],
+    "member-access": false,
+    "arrow-parens": false,
+    "interface-name": [
+      false
+    ],
+    "no-empty-interface": false,
+    "max-line-length": [
+      false
+    ],
+    "variable-name": [
+      false
+    ],
+    "no-unused-variable": [
+      true,
+      "warning"
+    ],
+    "indent": [
+      true,
+      "spaces"
+    ],
+    "quotemark": [
+      true,
+      "single",
+      "jsx-double"
+    ],
+    "no-var-requires": false,
+    "ordered-imports": [
+      false
+    ],
+    "member-ordering": [
+      false
+    ],
+    "object-literal-sort-keys": false,
+    "no-shadowed-variable": false,
+    "trailing-comma": [
+      false
+    ]
+  }
+}

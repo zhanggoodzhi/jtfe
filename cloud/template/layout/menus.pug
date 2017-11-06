@@ -1,0 +1,44 @@
+mixin parentMenu(parent)
+  - let has=false;
+  each child in parent.children
+    if (href||dir)===child.href
+      - has=true
+  li
+    div.cloud-menu-group-title(class=has?"active":"")
+      i.fa.fa-fw.cloud-menu-group-title-icon(class=parent.icon)
+      span.cloud-menu-group-title-text= parent.title
+      i.fa.fa-chevron-down
+    ul.cloud-menu-group(style=has?{display:"block"}:"")
+      each child in parent.children
+        if child.access
+          c:if(test="${fn:contains(accesslist,'"+child.access+"')}")
+            +childMenu(child)
+        else
+          +childMenu(child)
+
+mixin menu(child)
+  if (href||dir)===child.href
+    a(href=child.href,class="current")= child.title
+  else
+    a(href=child.href)= child.title
+
+mixin childMenu(child)
+  c:set(var="sign",value="${null}")
+  c:forEach(var="menu",items="${menuSigns}")
+    c:if(test!="${menu.url=='"+child.href+"'}")
+      c:set(var="sign",value="${menu}")
+  c:if(test="${sign==null}")
+    li.cloud-menu-item
+      +menu(child)
+  c:if(test="${sign!=null}")
+    li.cloud-menu-item(class="cloud-menu-sign",data-type="${menu.type}",data-num="${menu.num}")
+      +menu(child)
+
+.cloud-sidebar-menu
+  ul#cloud-menu-list.cloud-menu-list
+    each parent in isadmin?adminMenus:menus
+      if parent.access
+        c:if(test="${fn:contains(accesslist,'"+parent.access+"')}")
+          +parentMenu(parent)
+      else
+        +parentMenu(parent)

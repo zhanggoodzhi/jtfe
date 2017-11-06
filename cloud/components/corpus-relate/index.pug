@@ -1,0 +1,48 @@
+
+#edit-modal.modal.fade(data-backdrop='false')
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+        h4.modal-title 关联到已有语料
+      .modal-body.clearfix
+        form.form-horizontal.cloud-form
+          .form-group
+            label.cloud-input-title 类型
+            .cloud-input-content.cloud-lg
+              .form-control.input-sm(id='classify')
+          .form-group
+            label.cloud-input-title 问题
+            .cloud-input-content
+              input#form-question.form-control.input-sm(type='text', placeholder='关键词',maxlength='30')
+          .form-group
+            label.cloud-input-title 回复
+            .cloud-input-content
+              input#form-answer.form-control.input-sm(type='text', placeholder='关键词',maxlength='30')
+          .form-group
+            label.cloud-input-title 渠道
+            .cloud-input-content
+              select#select-pushway.form-control.input-sm(name='pushway')
+                option(value='') 全部
+                - var items=pushway
+                each item in items
+                  option(value=item.id) #{item.name}
+          .form-group
+            label.cloud-input-title 角色
+            .cloud-input-content
+              select#select-character.form-control.input-sm(name='character')
+                option(value='') 全部
+                - var items=character
+                each item in items
+                  option(value=item.id) #{item.name}
+          .form-group
+            label.cloud-input-title 更新时间
+            .cloud-input-content(class='cloud-md')
+              input.form-control.input-sm(id='form-date',type='text',readonly)
+          .form-group
+            button#form-search-btn.btn.btn-primary.btn-sm(type='button') 查询
+        table#edit-table.table.fixed-table
+      .modal-footer
+        button#edit-submit-btn.btn.btn-success(type='button') 保存
+        button.btn.btn-default(type='button', data-dismiss='modal') 取消

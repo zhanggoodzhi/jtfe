@@ -1,0 +1,304 @@
+.no-padding {
+	padding: 0;
+}
+
+.classify-title {
+	text-align: center;
+}
+
+.autocomplete-suggestions {
+	background: white!important;
+}
+
+.question-wrap {
+	width: auto !important;
+	float: none !important;
+	margin-left: 24px;
+	position: relative;
+}
+
+.exist-wrap {
+	display: none;
+}
+
+#edit-q-modal {
+	.modal-dialog {
+		width: 850px!important;
+	}
+}
+
+.question-number {
+	color: #d9534f;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.question-detail {
+	color: #d9534f;
+}
+
+.wangEditor-container {
+	height: 100%; // overflow: hidden;
+}
+
+.editor {
+	height: 240px;
+	overflow: hidden;
+}
+
+#similar {
+	width: 82px;
+}
+
+.btn-wrap {
+	margin-top: 10px;
+}
+
+.exist-wrap {
+	color: #a94442;
+	margin: 0;
+	position: absolute;
+	bottom: -20px;
+	left: 0;
+	display: none;
+	font-size: 12px;
+	padding: 0 10px;
+	a {
+		color: inherit;
+	}
+}
+
+.loading-wrap {
+	.fa {
+		font-size: 24px;
+	}
+	margin: 30px 0;
+}
+
+.result-wrap {
+	padding: 20px 10px;
+	li {
+		cursor: pointer;
+	}
+}
+
+.link-loading {
+	.fa {
+		font-size: 24px;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		padding: 0;
+		transform: translate(-50%, -50%);
+	}
+	z-index: 1052;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+	&.show+.result-wrap {
+		filter: blur(2px);
+	}
+}
+
+.link-btn-wrap {
+	margin-left: 12px;
+	float: left;
+}
+
+.table .cloud-input-content {
+	padding: 0;
+}
+
+.link-wrap {
+	margin: 6px 0;
+}
+
+.common-wrap .form-group {
+	float: left;
+}
+
+.radio>label>input {
+	top: -1px;
+}
+
+.radio>label+label {
+	margin-left: 10px;
+}
+
+#extras-add {
+	margin-bottom: 10px;
+}
+
+.extras-row {
+	position: relative;
+	margin-bottom: 10px;
+}
+
+.remove-this {
+	// position: absolute;
+	// background-image: url(../../../../public/images/close.png);
+	// background-size: 100% 100%;
+	// background-repeat: no-repeat;
+	// width: 15px;
+	// height: 15px;
+	// top: -6px;
+	// right: 4px;
+	cursor: pointer;
+	width: 15%;
+	height: 30px;
+	display: inline-block;
+	.fa-times-circle {
+		position: relative;
+		left: -19px;
+		top: -2px;
+		z-index: 10;
+		font-size: 18px;
+		color: #ea1717;
+	}
+}
+
+form.add-text {
+	.cloud-input-content {
+		padding-left: 0;
+		width: 465px;
+	}
+}
+
+#corpus-wrapper {
+	.title-wrap {
+		h4 {
+			display: inline-block;
+			vertical-align: middle;
+			margin-right: 10px;
+		}
+		margin-bottom: 15px;
+	}
+}
+
+#recommend-question {
+	margin-top: 20px;
+	.title-wrap {
+		img {
+			cursor: pointer;
+			margin: 0 10px;
+		}
+	}
+	.rec-q-ctx {
+		li {
+			padding: 10px;
+			font-size: 14px;
+			span {
+				width: 650px;
+				display: inline-block;
+				text-overflow: ellipsis; //溢出用…代替
+				white-space: nowrap; //不换行，直到遇到<br/>标签
+				overflow: hidden;
+				// height: 20px;
+				vertical-align: middle;
+				line-height: 30px;
+			}
+			i {
+				color: #bd2121;
+				font-size: 20px;
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+#add-recommend-modal {
+	.dataTables_scrollHead {
+		display: none;
+	}
+}
+
+.record-wrap {
+	padding: 20px;
+	.chart-left-item {
+		padding: 10px 0;
+		.headIcon {
+			width: 50px;
+			height: 50px;
+			border-radius: 50px;
+			float: left;
+		}
+		.content {
+			float: left;
+			padding-left: 20px;
+			.text-wrap {
+				.text {
+					border: 1px solid #e7e7ec;
+					padding: 20px;
+					border-radius: 8px;
+					max-width: 550px;
+					color: black;
+					line-height: 25px;
+					a:hover {
+						cursor: pointer;
+					}
+				}
+			}
+		}
+	}
+	.chart-right-item {
+		padding: 10px 0;
+		.headIcon {
+			width: 50px;
+			height: 50px;
+			border-radius: 50px;
+			float: right;
+		}
+		.content {
+			float: right;
+			padding-right: 20px;
+			.text-wrap {
+				.text {
+					text-align: right;
+					border: 1px solid #e7e7ec;
+					padding: 20px;
+					border-radius: 8px;
+					max-width: 550px;
+					color: black;
+					background-color: #eee;
+				}
+			}
+		}
+	}
+}
+
+.question-selections {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	background-color: #fff;
+	border: 1px solid #eee;
+	left: 10px;
+	right: 10px;
+	top: 30px;
+	z-index: 1;
+	display: none; // width:100%;
+	// display: none;
+	li {
+		cursor: pointer;
+		padding: 5px 10px;
+		line-height: 18px;
+		&.selected {
+			background-color: #ddd;
+		}
+		&:hover {
+			background-color: #e7f4fd;
+		}
+		&+li {
+			margin-top: 1px solid #eee;
+		}
+	}
+}
+
+.add-operation {
+	display: inline-block;
+	padding: 3px 0;
+}

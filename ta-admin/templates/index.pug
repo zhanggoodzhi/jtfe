@@ -1,0 +1,25 @@
+- const options=htmlWebpackPlugin.options;
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+doctype html
+html(lang="zh-CNM-Hans")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport",content="width=device-width,initial-scale=1")
+    meta(name="referrer",content="no-referrer")
+    meta(http-equiv="X-UA-Compatible",content="IE=edge,chrome=1")
+    meta(name="renderer",content="webkit")
+    title JINTONG SOFT
+    script.
+      window.APP_STATE={
+        sessionInfo:'${TA_ADMIN_USERNAME}',
+        right:'${TA_ADMIN_APP_LIST.size()}',
+        appName:'${TA_ADMIN_SELECTED_APP.name}',
+        appImg:'${TA_ADMIN_SELECTED_APP.icon}'
+      }
+      //- var sessionInfo='${TA_ADMIN_USERNAME}';
+      //- var right='${TA_ADMIN_APP_LIST.size()}';
+      //- var appName='${TA_ADMIN_SELECTED_APP.name}';
+      //- var appImg='${TA_ADMIN_SELECTED_APP.icon}';
+  body
+    #app
+

@@ -1,0 +1,29 @@
+extends /layout/main.pug
+
+block variable
+  - const href="spss/satisfactionAnalysis/index";
+
+block script
+  script.
+    //- var selectData = ${classifys};
+
+block mainbody
+  .spss-time-container
+    .date-range-picker
+    .spss-main
+      section
+        form.form-horizontal.cloud-search-area
+          .form-group
+            label.cloud-input-title 满意度统计
+            .cloud-input-content.tip-wrap
+              i#num-tip.tip.fa.fa-question-circle
+        .chart-wrap
+          #pie-chart.chart
+      section
+        form.form-horizontal.cloud-search-area
+          .form-group
+            label.cloud-input-title 满意率分析
+            .cloud-input-content.tip-wrap
+              i#percent-tip.tip.fa.fa-question-circle
+        .chart-wrap
+          #line-chart.chart

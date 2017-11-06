@@ -1,0 +1,109 @@
+extends /layout/main.pug
+
+block style
+  link(href='${ctx}/module/jstree/themes/default/style.min.css', rel='stylesheet', type='text/css')
+  link(href='${ctx}/module/wangEditor/css/wangEditor.min.css', rel='stylesheet', type='text/css')
+
+block variable
+  - const href="knowledge/editByA/index";
+
+block script
+  script.
+    var selectData = JSON.parse('${selectmap}');
+    var isreturn ="${param.isreturn}"?JSON.parse("${param.isreturn}"):false;
+
+
+block mainbody
+  .x_panel
+    .x_content
+      form#search-form.form-horizontal.cloud-search-area
+        .clearfix
+          +cCorpusSearch
+        .clearfix
+          .form-group
+            button#search-btn.btn.btn-primary.btn-sm(type='button') 查询
+            button#edit-btn.btn.btn-primary.btn-sm(type='button') 编辑
+            a.btn.btn-primary.btn-sm(type='button',href='knowledge/corpusManage/update') 添加
+            button#batch-upload-btn.btn.btn-primary.btn-sm(type='button') 批量上传
+            button#export-btn.btn.btn-primary.btn-sm(type='button') 导出语料
+            button#merge-btn.btn.btn-primary.btn-sm(type='button') 合并语料
+            c:if(test="${usertype=='admin'}")
+              button#nolimit-export-btn.btn.btn-primary.btn-sm(type='button') 无限制导出
+            button#action-btn.btn.btn-primary.btn-sm(type='button') 查看操作记录
+            button#reset-btn.btn.btn-primary.btn-sm(type='reset') 重置查询条件
+            button#del-btn.btn.btn-danger.btn-sm(type='button') 删除
+          +cPageChange
+      table#table.table.fixed-table
+block modal
+  #confirm.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 温馨提示
+        .modal-body
+          p 确认删除选中的语料吗？
+        .modal-footer
+          button#delete-submit-btn.btn.btn-danger(type='button') 删除
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  #upload.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 温馨提示
+        .modal-body
+          p.text-center
+            |请按照模板格式上传语料，
+            a(href="${ctx}/uploadFile/corpus/jintongsoft.xls") 点此下载模板
+          p.text-center
+            |下载最新的
+            a(href="${ctx}/knowledge/virtualCharactersFile") 语料角色信息
+            | &nbsp;&&nbsp;
+            a(href="${ctx}/knowledge/classifysFile") 语料类型信息
+          #upload-wrap.upload-icon-wrap
+            i.upload-icon.wangeditor-menu-img-upload
+          #info-wrap.info-wrap
+            p#info-name
+        .modal-footer
+          button#upload-submit-btn.btn.btn-primary(type='button') 确定
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  #dialog-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-lg
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 查看对话模型
+        .modal-body
+          .row
+            .col-md-5.col-xs-5.col-lg-5
+              h5 对话模型层级
+              #dialog.dialog
+            .col-md-7.col-xs-7.col-lg-7
+              h5 对话模型详情
+              form.form-horizontal
+                .form-group
+                  label.cloud-input-title 问题
+                  .col-md-6.col-sm-6.col-lg-6
+                    .cloud-input-content.cloud-full
+                      input#dialog-question.form-control.input-sm(type='text',readonly)
+                .form-group
+                  h6 回答
+                  #dialog-answer.dialog-answer.form-control(readonly)
+        .modal-footer
+          button#dialog-edit-btn.btn.btn-primary(type='button') 编辑
+          button.btn.btn-default(type='button', data-dismiss='modal') 关闭
+  #action-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-lg
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 查看操作记录
+        .modal-body.clearfix
+          table#action-table.table.fixed-table
+        .modal-footer
+          button.btn.btn-default(type='button', data-dismiss='modal') 关闭

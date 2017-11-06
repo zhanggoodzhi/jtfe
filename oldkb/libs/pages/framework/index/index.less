@@ -1,0 +1,218 @@
+.kb-default-hidden .kb-create {
+    display: none;
+}
+
+.kb-group .input-field .material-icons {
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    color: #444;
+    cursor: pointer;
+    font-size: 2rem;
+    transition: .3s color;
+    user-select: none;
+}
+
+.kb-tree-title {
+    margin-bottom: 0;
+}
+
+.kb-icon-create::after {
+    content: 'create'
+}
+
+.kb-icon-delete::after {
+    content: 'delete'
+}
+
+.kb-icon-view::after {
+    content: 'search'
+}
+
+.individuals-content {
+    position: relative;
+    transition: .3s;
+    &.show-items {
+        .individuals-tree {
+            transform: translateX(-100%);
+            opacity: 0;
+            visibility: hidden;
+        }
+        .individuals-items {
+            transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.individuals-tree {
+    transition: inherit;
+    opacity: 1;
+    visibility: visible;
+}
+
+.individuals-items {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    transform: translateX(100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: inherit;
+}
+
+//chart.less start
+// #chart-tab {
+//     .link {
+//         stroke: green;
+//         stroke-width: 0.5;
+//         marker-end: url(#arrow);
+//     }
+//     .nodetext {
+//         font: 12px sans-serif;
+//         user-select: none;
+//         stroke-linejoin: bevel;
+//     }
+//     .can_expand {
+//         cursor: pointer;
+//     }
+//     .minus circle {
+//         fill: aquamarine!important;
+//     }
+//     .add circle {
+//         fill: blueviolet!important;
+//     }
+//     // .d3-chart {
+//     //     height: 500px;
+//     // }
+//     // .chart-wrap {
+//     //     border-left: 1px solid #eee;
+//     // }
+//     // .tree-wrap {
+//     //     padding: 20px 10px;
+//     // }
+// }
+.chart-wrap {
+    canvas {
+        display: block;
+    }
+}
+
+//chart.less end
+//inference start
+.inference-update {
+    padding: 10px 0;
+    .variable-wrap {
+        line-height: 40px;
+        margin-top: 5px;
+        background: #eee;
+        padding: 5px;
+        border-radius: 5px;
+        .variable-add {
+            float: right;
+            margin-left: 5px;
+        }
+        .variable-remove {
+            float: right;
+        }
+    }
+    .rules {
+        margin: 0 10px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        .title-wrap {
+            background: #eee;
+            padding: 10px;
+            .title {
+                line-height: 40px;
+            }
+            .add {
+                float: right;
+            }
+        }
+        .delete-wrap {
+            padding: 20px 0;
+        }
+    }
+    .results {
+        margin: 10px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        .title-wrap {
+            background: #eee;
+            padding: 10px;
+            .title {
+                line-height: 40px;
+            }
+            .add {
+                float: right;
+            }
+        }
+        .delete-wrap {
+            padding: 20px 0;
+        }
+    }
+}
+
+//inference end
+@active-color: #1f9ee8;
+#net-chart {
+    display: block;
+    user-select: none;
+    cursor: default;
+}
+
+text {
+    text-anchor: middle;
+    alignment-baseline: middle;
+    font-size: 12px;
+    stroke: none;
+    fill: #666;
+}
+
+.node {
+    &.active {
+        circle,
+        rect {
+            stroke: @active-color;
+        }
+        use,
+        text {
+            fill: @active-color
+        }
+    }
+    circle,
+    rect {
+        fill: #f2f2f2;
+        stroke: #666;
+        stroke-width: 2;
+    }
+    use {
+        cursor: pointer;
+        fill: #666;
+    }
+}
+
+.link {
+    &:hover text {
+        display: block;
+    }
+    text {
+        display: none;
+        font-size: 14px;
+        font-weight: bold;
+        z-index: 2;
+    }
+    line {
+        fill: none;
+        stroke-width: 3;
+    }
+}
+
+.reflow-btn {
+    position: absolute;
+    top: 15px;
+    right: 11.25px;
+}

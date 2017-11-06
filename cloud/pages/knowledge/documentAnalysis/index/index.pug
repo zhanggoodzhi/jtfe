@@ -1,0 +1,154 @@
+extends /layout/main.pug
+block variable
+  - const title='文档分析';
+block script
+  script.
+    var selectData = JSON.parse('${selectmap}');
+block mainbody
+  .x_panel
+    .x_content
+      ul#tablist.nav.nav-tabs(role="tablist")
+        li.active(role="presentation")
+          a(href="#doc-mgr",role="tab",data-toggle="tab") 文档管理
+        li(role="presentation")
+          a#pre-audit-tab(href="#pre-audit",role="tab",data-toggle="tab") 待审核
+        li(role="presentation")
+          a#audited-tab(href="#audited",role="tab",data-toggle="tab") 已审核
+      .tab-content
+        #doc-mgr.tab-pane.fade.in.active(rol="tabpanel")
+          form#mgr-search-form.form-horizontal.cloud-search-area
+            .clearfix
+              .form-group
+                label.cloud-input-title 文档
+                .cloud-input-content
+                  input#doc-title.form-control.input-sm(type='text', placeholder='关键词')
+              .form-group
+                label.cloud-input-title 生成语料状态
+                .cloud-input-content
+                  select#corpus-status.form-control.input-sm
+                    option(value='') 全部
+                    option(value='true') 已生成
+                    option(value='false') 未生成
+              .form-group
+                label.cloud-input-title 更新时间
+                .cloud-input-content.cloud-md
+                  input#mgr-form-date.doc-form-date.form-control.input-sm.form-date(type='text')
+              button#mgr-search-btn.btn.btn-primary.btn-sm(type='button') 查询
+              button#mgr-reset-btn.btn.btn-primary.btn-sm(type='button') 重置
+            .clearfix
+              .form-group
+                button#upload-btn.btn.btn-primary.btn-sm(type='button') 上传文档
+                button#generate-btn.btn.btn-primary.btn-sm(type='button') 批量生成语料
+                button#del-btn.btn.btn-danger.btn-sm(type='button') 批量删除
+          table#mgr-table.table.fixed-table
+        #pre-audit.tab-pane.fade(rol="tabpanel")
+          form#pre-audit-search-form.form-horizontal.cloud-search-area
+            .clearfix
+              .form-group
+                label.cloud-input-title 问题
+                .cloud-input-content
+                  input#pre-q.form-control.input-sm(type='text', placeholder='关键词')
+              .form-group
+                label.cloud-input-title 回复
+                .cloud-input-content
+                  input#pre-a.form-control.input-sm(type='text', placeholder='关键词')
+              .form-group
+                label.cloud-input-title 文档
+                .cloud-input-content
+                  input#pre-doc.form-control.input-sm(type='text', placeholder='关键词')
+              .form-group
+                label.cloud-input-title 更新时间
+                .cloud-input-content.cloud-md
+                  input#pre-form-date.pre-form-date.form-control.input-sm.form-date(type='text',readonly)
+              button#pre-search-btn.btn.btn-primary.btn-sm(type='button') 查询
+              button#pre-reset-btn.btn.btn-primary.btn-sm(type='button') 重置
+            .clearfix
+              .form-group
+                button#pre-batch-audit-btn.btn.btn-primary.btn-sm(type='button') 批量审核
+                button#pre-batch-edit-btn.btn.btn-primary.btn-sm(type='button') 批量编辑
+                button#pre-batch-del-btn.btn.btn-danger.btn-sm(type='button') 批量删除
+          table#pre-table.table.fixed-table
+        #audited.tab-pane.fade(rol="tabpanel")
+          form#audited-search-form.form-horizontal.cloud-search-area
+            .clearfix
+              .form-group
+                label.cloud-input-title 问题
+                .cloud-input-content
+                  input#audited-q.form-control.input-sm(type='text', placeholder='关键词')
+              .form-group
+                label.cloud-input-title 回复
+                .cloud-input-content
+                  input#audited-a.form-control.input-sm(type='text', placeholder='关键词')
+              .form-group
+                label.cloud-input-title 文档
+                .cloud-input-content
+                  input#audited-doc.form-control.input-sm(type='text', placeholder='关键词')
+              .form-group
+                label.cloud-input-title 更新时间
+                .cloud-input-content.cloud-md
+                  input#audited-form-date.audited-form-date.form-control.input-sm.form-date(type='text',readonly)
+              button#audited-search-btn.btn.btn-primary.btn-sm(type='button') 查询
+              button#audited-reset-btn.btn.btn-primary.btn-sm(type='button') 重置
+            .clearfix
+              .form-group
+                button#audited-batch-edit-btn.btn.btn-primary.btn-sm(type='button') 批量编辑
+                button#audited-export-btn.btn.btn-primary.btn-sm(type='button') 导出
+                button#audited-batch-del-btn.btn.btn-danger.btn-sm(type='button') 批量删除
+          table#audited-table.table.fixed-table
+
+
+block modal
+  #upload-doc-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-md
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 上传文档
+        .modal-body
+          #upload-wrap.upload-icon-wrap
+            i.upload-icon.wangeditor-menu-img-upload
+          #info-wrap.info-wrap
+        .modal-footer
+          button#only-upload.btn.btn-primary(type='button') 仅上传
+          button#upload-and-generate.btn.btn-primary(type='button') 上传并生成语料
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  #generate-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-md
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 完善要生成语料的信息
+        .modal-body
+          form.form-horizontal
+            .form-group
+              label.control-label.word-name.col-md-3 类型
+              .word-title-wrap.word-wrap.col-md-5
+                .form-control.input-sm#doc-classify
+            .form-group.clearfix
+              label.control-label.word-name.col-md-3 角色
+              .word-title-wrap.word-wrap.col-md-5
+                select#select-character.form-control.input-sm(name='character')
+                  option(value='',disabled,selected) 请选择角色
+                  c:forEach(var='character', items='${selectmapObject.character}')
+                    option(value='${character.id}') ${character.name}
+            .form-group
+              label.control-label.word-name.col-md-3 渠道
+              .word-title-wrap.word-wrap.col-md-5
+                select#select-pushway.form-control.input-sm(name='pushway')
+                  option(value='',disabled,selected) 请选择渠道
+                  c:forEach(var='pushway', items='${selectmapObject.pushway}')
+                    option(value='${pushway.id}') ${pushway.name}
+            .form-group.clearfix
+              label.control-label.word-name.col-md-3 生效日期
+              .word-title-wrap.word-wrap.col-md-5
+                input#start-date.form-control.input-sm(type='text')
+            .form-group.clearfix
+              label.control-label.word-name.col-md-3 失效日期
+              .word-title-wrap.word-wrap.col-md-5
+                input#end-date.form-control.input-sm(type='text')
+        .modal-footer
+          button#generate-modal-btn.btn.btn-primary(type='button') 生成
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+

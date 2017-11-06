@@ -1,0 +1,89 @@
+extends /layout/main.pug
+
+block script
+  script.
+    var selectData =${selectmap}[0];
+    var expectClassify=${expectClassify};
+    <c:if test="${param.from=='update'&&param.id!=null}">
+      var fromData={
+        id: "${param.id}"
+      };
+    </c:if>
+
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+        .clearfix
+          +cClassify("main")
+          .form-group
+            label.cloud-input-title 问题
+            .cloud-input-content
+              input#question.form-control.input-sm(type='text', placeholder='关键词')
+          .form-group
+            label.cloud-input-title 相似句
+            .cloud-input-content
+              input#similar.form-control.input-sm(type='text', placeholder='关键词')
+          .form-group
+            label.cloud-input-title 回复
+            .cloud-input-content
+              input#answer.form-control.input-sm(type='text', placeholder='关键词')
+          .form-group
+            label.cloud-input-title 相似度
+            .cloud-input-content
+              select#select-similar.form-control.input-sm(name='character')
+                option(value="0.01-1") 全部
+                option(value='1-1') 100%
+                option(value='0.8-1') 大于80%
+                option(value='0.6-1') 大于60%
+                option(value='0.01-0.59',selected) 小于60%
+                //- option(value='0.5-0') 小于50%
+                //- option(value='0.3-0') 小于30%
+                //- option(value='0-0') 无答案问题
+          +cDate
+        .clearfix
+          .form-group
+            button#search-btn.btn.btn-primary.btn-sm(type='button') 查询
+            button#check-btn.btn.btn-primary.btn-sm.btn-trigger(type='button') 审核通过
+            button#edit-btn.btn.btn-primary.btn-sm.btn-trigger(type='button') 重选最相似语料
+            button#save-new-btn.btn.btn-primary.btn-sm.btn-trigger(type='button') 编辑为新语料
+            button#export-btn.btn.btn-primary.btn-sm(type='button') 生成测试报告
+            button#show-detial-btn.btn.btn-primary.btn-sm(type='button') 查看详情
+            button#del-btn.btn.btn-danger.btn-sm(type='button') 删除
+          +cPageChange
+      table#table.table.fixed-table
+block modal
+  #edit-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-lg
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 选择相似语料
+        .modal-body.clearfix
+          form.form-horizontal.cloud-form
+            +cCorpusSearch
+            .form-group
+              button#form-search-btn.btn.btn-primary.btn-sm(type='button') 查询
+          table#edit-table.table.fixed-table
+        .modal-footer
+          button#edit-submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  +cModal({
+    name:'detial-modal',
+    title:'语料详情',
+    defaultBtn:false,
+    class:'detial-modal-dialog',
+    btns:[
+      {
+        text:"确定",
+        attr:{
+          class:'btn-primary',
+          'data-dismiss':'modal'
+        }
+      }
+    ]
+  })
+    table.table-bordered.table.fixed-table
+      tbody#detial-content.detial-content
+

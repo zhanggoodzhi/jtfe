@@ -1,0 +1,35 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+        "es6": true,
+        "node": true,
+        "browser": true,
+        "jquery": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "no-console": [
+            "warn",
+            {
+                "allow": [
+                    "warn",
+                    "error",
+                    "info"
+                ]
+            }
+        ]
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ]
+}

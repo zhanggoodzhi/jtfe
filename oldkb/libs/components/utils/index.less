@@ -1,0 +1,126 @@
+@import '../global/pub.less';
+.kb-loading-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.kb-loading-wrap {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.kb-loading {
+    position: relative;
+}
+
+.kb-btn-loading {
+    .kb-icon {
+        .kb-rotate;
+    }
+}
+
+.kb-side-detail {
+    position: fixed;
+    width: 300px;
+    background-color: #fff;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    transform: translateX(100%);
+    z-index: 999;
+    visibility: hidden;
+    transition: .3s ease-in-out;
+    &.show {
+        transform: translateX(0);
+        visibility: visible;
+    }
+    .kb-side-header {
+        padding: 16px 0;
+        border-bottom: 1px solid #eee;
+        margin: 0;
+    }
+    .kb-header-title, .kb-header-menus {
+        margin: 0;
+        padding: 0 10px;
+    }
+    .kb-header-title {
+        float: left;
+        font-size: 1.4rem;
+        height: 30px;
+        line-height: 30px;
+    }
+    .kb-header-menus {
+        float: right;
+        .btn {
+            margin-right: 10px;
+        }
+        &>li {
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            float: left;
+        }
+    }
+    .kb-side-body {
+        position: absolute;
+        top: 63px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: auto;
+        padding: 0 10px;
+    }
+    .kb-close {
+        .material-icons {
+            font-size: 20px;
+            height: 30px;
+            width: 30px;
+            line-height: 30px;
+        }
+    }
+}
+
+.kb-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: none;
+    z-index: 997;
+    &.show {
+        display: block;
+    }
+}
+
+.kb-rangeDate-btn {
+    overflow: hidden;
+    opacity: 0;
+    height: 0;
+    transition: height 0.3s;
+    width: 280px;
+    position: absolute;
+    z-index: 999;
+    background: white;
+    border: 1px solid #ccc;
+    .rangeDate-btn-wrap {
+        margin: 0;
+        text-align: center;
+    }
+}
+
+.kb-rangeDate-btn-active {
+    opacity: 1;
+    height: 100px;
+}
+
+.below-loading {
+    height:50px;
+    width: 100%;
+    overflow: hidden;
+}

@@ -1,0 +1,41 @@
+include ../../../layouts/components.pug
+
+main.resource-detail-main
+  form.col.s8.add-res
+    .row
+      .input-field.col.s8
+        input#title.required(type='text',length="64",placeholder="请输入链接标题，不能超过64个字")
+        label.active(for='title') 标题
+    .row
+      .input-field.col.s8
+        input#link.required(type='text',length="64",placeholder="请输入合法的链接地址")
+        label.active(for='link') 链接
+    .row
+      .input-field.col.s8
+        textarea#desc.materialize-textarea(type='text',length="120",placeholder="请输入摘要")
+        label.active(for='desc') 摘要（选填）
+    .row
+      .input-field.col.s8
+        +btn('上传')(id='upload-img')
+        span(style='color:#9e9e9e;font-size:13px;') &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;推荐尺寸：900像素*500像素
+        label.active(for='cover',style='height:30px;') 封面图片（选填）
+    .row.cover-show
+  .col.s4.resource-right-gray
+    .row.right-sider
+      a.col.s12.m12.l12.right-innerBox(href='#',target='_blank')
+        .card
+          .card-content
+            #title-preview 标题
+          .card-image
+          .card-content
+            #desc-preview 摘要
+//- div.cover-footer
+//-   +btn('保存').link-save
+//-   a.waves-effect.btn-small.link-cancel.cancel-btn.btn-flat 取消
+
+
+
+
+
+
+

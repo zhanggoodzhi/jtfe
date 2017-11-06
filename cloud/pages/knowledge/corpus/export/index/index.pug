@@ -1,0 +1,34 @@
+extends /layout/main.pug
+
+block variable
+  - const href="knowledge/corpus/export/index";
+  - const title='导出记录';
+block mainbody
+  .x_panel
+    .x_content
+      table#record-table.table.fixed-table
+block modal
+  #delete-confirm-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 温馨提示
+        .modal-body
+          p 删除后该条导出记录将被清除，无法找回，您确定吗？
+        .modal-footer
+          button#delete-submit-btn.btn.btn-danger(type='button') 删除
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  #abort-confirm-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 温馨提示
+        .modal-body
+          p 终止后导出任务将结束，您确定吗？
+        .modal-footer
+          button#abort-submit-btn.btn.btn-danger(type='button') 终止
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消

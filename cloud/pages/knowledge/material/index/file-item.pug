@@ -1,0 +1,18 @@
+.col-xs-2
+  .file-item-wrap
+    .file-item.resource-hover-item(data-id= msg.id)
+      .file(style='background-image:url('+smallUrl+')')
+      .name-wrap.ellipsis
+        - var type=msg.fileext.split('.')[1];
+        - var name=msg.filename.slice(0,msg.filename.length-type.length-1);
+        span(data-type= type,data-name= name,data-msg=msg)= name
+        input.input-small
+      .toolbox-wrap
+        .toolbox
+            .icon-wrap.view-download(data-msg= msg)
+              img(src= ctx+'/images/materialIcon/download.png',title='下载',width='20px',height='20px')
+            .icon-wrap.view-edit(data-id= msg.id)
+              img(src= ctx+'/images/materialIcon/editIcon.png',title='编辑',width='20px',height='20px')
+            .icon-wrap.view-delete(data-id= msg.id)
+              img(src= ctx+'/images/materialIcon/delIcon.png',title='删除',width='20px',height='20px')
+

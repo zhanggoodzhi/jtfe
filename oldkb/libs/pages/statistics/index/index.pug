@@ -1,0 +1,170 @@
+extends /layouts/main.pug
+block tabs
+  +tab('知识统计')(href="#kb-knowledge",id="kb-knowledge-btn")
+  +tab('本体统计')(href="#kb-body",id="kb-body-btn")
+block script
+  script(th:inline="javascript").
+    /*<![CDATA[*/
+        var data = [[${data}]];
+    /*]]>*/
+block mainbody
+  .kb-tabs-content
+    .count-wrap
+      #kb-knowledge.kb-scroll
+        .top-title 数据总览
+        .top-content
+          ul.row
+            li.col.s4
+              p.name 知识数
+              p.value(th:text="${data.knowledgeNum}")
+            li.col.s4
+              p.name 评论数
+              p.value(th:text="${data.commentNum}")
+            li.col.s4
+              p.name 收藏数
+              p.value(th:text="${data.collectionNum}")
+        .title-wrap
+          span.title 新增数据:
+          ul.new-data
+            li.active.waves-effect 新增知识
+            li.waves-effect 新增评论
+            li.waves-effect 新增收藏
+        .content-wrap
+          .btn-wrap
+            ul.new-data-time
+              li.active(data-value="w")
+                span.triangle
+                | 最近7天
+              li(data-value="m")
+                span.triangle
+                | 最近30天
+              li(data-value="y")
+                span.triangle
+                | 每月数据
+              li(data-value="t")
+                span.triangle
+                | 每年数据
+              li.define#new-data-rangeTime
+                span.triangle
+                | 自定义
+          .chart-wrap
+            #new-data-chart
+        .title-wrap
+          span.title 知识热度:
+          ul.knowledge-hot
+            li.active.waves-effect 收藏
+            li.waves-effect 评论
+          a.btn.waves-effect.right#knowledge-hot-excel 导出为excel
+        .content-wrap
+          .btn-wrap
+            ul.knowledge-hot-time
+              li.active(data-value="w")
+                span.triangle
+                | 最近7天
+              li(data-value="m")
+                span.triangle
+                | 最近30天
+              li(data-value="y")
+                span.triangle
+                | 每月数据
+              li(data-value="t")
+                span.triangle
+                | 每年数据
+              li.define#knowledge-hot-rangeTime
+                span.triangle
+                | 自定义
+          .table-wrap
+            table#knowledge-hot-table
+        .title-wrap.special
+          span.title 类别热度:
+          a.btn.waves-effect.right#classify-hot-excel 导出为excel
+        .content-wrap
+          .btn-wrap
+            ul.classify-hot-time
+              li.active(data-value="w")
+                span.triangle
+                | 最近7天
+              li(data-value="m")
+                span.triangle
+                | 最近30天
+              li(data-value="y")
+                span.triangle
+                | 每月数据
+              li(data-value="t")
+                span.triangle
+                | 每年数据
+              li.define#classify-hot-rangeTime
+                span.triangle
+                | 自定义
+          .table-wrap
+            table#classify-hot-table
+      #kb-body.kb-scroll
+        .title-wrap.special
+          span.title 本体热度
+        .content-wrap
+          .btn-wrap
+            ul.body-hot-time
+              li.active(data-value="w")
+                span.triangle
+                | 最近7天
+              li(data-value="m")
+                span.triangle
+                | 最近30天
+              li(data-value="y")
+                span.triangle
+                | 每月数据
+              li(data-value="t")
+                span.triangle
+                | 每年数据
+              li.define#body-hot-rangeTime
+                span.triangle
+                | 自定义
+          .chart-wrap
+            #body-hot-chart
+        .title-wrap.special
+          span.title 实例热度:
+          a.btn.waves-effect.right#example-hot-excel 导出为excel
+        .content-wrap
+          .btn-wrap
+            ul.example-hot-time
+              li.active(data-value="w")
+                span.triangle
+                | 最近7天
+              li(data-value="m")
+                span.triangle
+                | 最近30天
+              li(data-value="y")
+                span.triangle
+                | 每月数据
+              li(data-value="t")
+                span.triangle
+                | 每年数据
+              li.define#example-hot-rangeTime
+                span.triangle
+                | 自定义
+          .table-wrap
+            table#example-hot-table
+        .title-wrap.special
+          span.title 类热度:
+          a.btn.waves-effect.right#class-hot-excel 导出为excel
+        .content-wrap
+          .btn-wrap
+            ul.class-hot-time
+              li.active(data-value="w")
+                span.triangle
+                | 最近7天
+              li(data-value="m")
+                span.triangle
+                | 最近30天
+              li(data-value="y")
+                span.triangle
+                | 每月数据
+              li(data-value="t")
+                span.triangle
+                | 每年数据
+              li.define#class-hot-rangeTime
+                span.triangle
+                | 自定义
+          .table-wrap
+            table#class-hot-table
+

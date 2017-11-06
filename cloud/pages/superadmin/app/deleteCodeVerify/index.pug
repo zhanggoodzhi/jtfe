@@ -1,0 +1,22 @@
+extends /layout/main.pug
+
+block variable
+  - const isadmin=true;
+  //- - const href="superadmin/app/deleteCodeVerify"
+  - const title="应用管理"
+
+//- prepend script
+//-   +mDataTables
+
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+        .form-group
+          label.cloud-input-title 请输入验证码
+          .cloud-input-content
+            input#code.form-control.input-sm(type='text')
+        .form-group
+          //- button#submit.btn.btn-primary.btn-sm(type='button') 提交
+          button#confirm-delete.btn.btn-primary.btn-sm(type='button') 确认删除
+          button#cancel-delete.btn.btn-primary.btn-sm(type='button') 取消删除

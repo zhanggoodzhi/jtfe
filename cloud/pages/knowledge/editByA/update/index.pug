@@ -1,0 +1,186 @@
+extends /layout/main.pug
+
+mixin answerRadio({text,value,checked})
+  .col-sm-6
+    .radio
+      label
+        input(type='radio',name='answerType',value=value)
+        = text
+block variable
+  - const href="knowledge/editByA/index";
+  -
+    const answerTypes=[
+      {
+        text:'普通回复',
+        value:'1'
+      },
+      {
+        text:'图片',
+        value:'2'
+      },
+      {
+        text:'音频',
+        value:'3'
+      },
+      {
+        text:'视频',
+        value:'4'
+      },
+      {
+        text:'图文消息',
+        value:'6'
+      },
+      {
+        text:'链接',
+        value:'5'
+      }
+    ];
+
+block script
+  script.
+    var selectData = JSON.parse('${selectmap}');
+    var pairId='${pairId}' || undefined;
+    var hrefType='${param.type}';
+    var reviewId='${param.id}';
+
+
+block mainbody
+  .x_panel
+    .x_content
+      .common-wrap#common-wrap
+        h4#title 标准问法
+        form.form-horizontal(role='form')
+          +cClassify
+          .form-group.col-xs-12.col-sm-6
+            label.cloud-input-title.classify-title 问题
+            .cloud-input-content.question-wrap
+              input.form-control.input-sm#question
+              p.exist
+                a#exist-link(href="#")
+                  i.fa.fa-warning
+                  span#exist-text 该问题已经存在，点击前往该问题
+          .form-group.pull-right.hidden
+            button#link-btn.link-btn.btn.btn-sm.btn-primary(type="button") 关联知识点
+      #link-wrap.link-wrap.clearfix
+      #repeat-wrap
+        .title-wrap
+          h4 复述问法
+          button.btn.btn-primary.btn-sm#auto-repeat(type="button") 自动复述
+        form.form-horizontal.cloud-search-area.add-text
+          .form-group
+            .cloud-input-content
+              input.form-control.input-sm#add-question-text(type="text",placeholder="请输入复述问法，点击添加按钮添加")
+          .form-group
+            button.btn.btn-primary.btn-sm(type="button")#add-question 添加
+        .q-table-wrap
+          table#q-table.table.fixed-table
+          //- form.hidden
+          //-   .form-group.text-right.btn-wrap
+          //-       button#edit-q-btn.btn.btn-primary.btn-sm(type="button") 编辑
+          //-       button#add-q-btn.btn.btn-primary.btn-sm(type="button") 添加
+          //-       button#del-q-btn.btn.btn-danger.btn-sm(type="button") 删除
+        .a-table-wrap
+          table#a-table.table.fixed-table
+          form.hidden
+            .form-group.similar-control.btn-wrap.clearfix
+              .form-group.pull-left
+                .radio
+                  label
+                    input(type="radio",name="answer-type",value="common",checked)
+                    | 普通文本
+                  label
+                    input(type="radio",name="answer-type",value="intent")
+                    | 意图
+              .form-group.pull-right
+                  button#add-a-btn.btn.btn-primary.btn-sm(type="button") 添加
+                  button#del-a-btn.btn.btn-danger.btn-sm(type="button") 删除
+          #editor.editor
+        .form-group.text-center.btn-wrap
+          button#save-btn.btn.btn-success(type="button") 保存
+          button#back-btn.btn.btn-default(type="button") 返回
+
+block modal
+  .modal.fade#edit-q-modal(data-backdrop="false")
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 请选择复述问法
+        .modal-body
+          table#q-select-table.table.fixed-table
+        .modal-footer
+          button#q-edit-confirm-btn.btn.btn-primary.btn-sm(type='button') 确定
+          button.btn.btn-default.btn-sm(type='button', data-dismiss='modal') 关闭
+  .modal.fade#intent-modal(data-backdrop="false")
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 添加意图
+        .modal-body
+          form
+            .form-group
+              label intentKey
+              input#intent-code.form-control.input-sm
+            .form-group
+              label extras
+              #extras-add.row
+                .col-sm-6
+                  input.form-control.input-sm(placeholder="key")
+                .col-sm-6
+                  input.form-control.input-sm(placeholder="value")
+        .modal-footer
+          button#intent-confirm-btn.btn.btn-primary.btn-sm(type='button') 确定
+          button.btn.btn-default.btn-sm(type='button', data-dismiss='modal') 取消
+
+  //- .modal.fade#swicth-answer-type(data-backdrop="false")
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header 选择回复类型
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title
+        .modal-body
+          #answer-type-list.row
+            each t in answerTypes
+              +answerRadio(t)
+          #answer-type-content
+            .answer-content-group.form-group(data-type='2')
+              label 请选择图片文件
+              input(type='file',accept='.jpe, .jpg, .jpeg, .gif, .png, .bmp, .ico')
+            .answer-content-group.form-group(data-type='3')
+              label 请选择音频文件
+              input(type='file',accept='audio/*')
+            .answer-content-group.form-group(data-type='4')
+              label 请选择视频文件
+              input(type='file',accept='video/*')
+            .answer-content-group.form-group(data-type='5')
+              label 请输入链接
+              input.form-control.input-sm(type='url')
+        .modal-footer
+          button#switch-answer-btn.btn.btn-primary.btn-sm(type='button') 确定
+          button.btn.btn-default.btn-sm(type='button', data-dismiss='modal') 取消
+  //- .modal.fade#link-modal(data-backdrop="false")
+  //-   .modal-dialog.modal-sm
+  //-     .modal-content
+  //-       .modal-header
+  //-         button.close(type='button', data-dismiss='modal', aria-label='Close')
+  //-           span(aria-hidden='true') &times;
+  //-         h4.modal-title 关联知识点
+  //-       .modal-body
+  //-         .row
+  //-           form
+  //-             input#link-input.input-sm.form-control(placeholder="请输入关键词")
+  //-         .row
+  //-           #link-loading.link-loading.show
+  //-             i.fa.fa-spinner.fa-spin.fa-2x.fa-fw
+  //-           ul#result-wrap.result-wrap
+  //-           #link-paging.pull-right
+
+  //-       .modal-footer
+  //-         button#link-submit-btn.btn.btn-primary.btn-sm(type='button') 确定
+  //-         button.btn.btn-default.btn-sm(type='button', data-dismiss='modal') 关闭
+
+

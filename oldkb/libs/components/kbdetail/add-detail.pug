@@ -1,0 +1,61 @@
+include ../../layouts/components.pug
+.add-detail
+  .content
+    +stepBar(['基本信息','完善知识内容','上传附件'])
+    form.form.step1.step
+      .row
+        .input-field.col.s12
+          input.required#title(type="text")
+          label(for="title") 标题
+      .row
+        .input-field.col.s12
+          #select-tree
+      .row
+        .input-field.col.s12
+          select.required#add-select2(multiple="multiple")
+      .row.center-align
+        +btn('<i class="material-icons right">fast_forward</i>下一步')(class='step1next')
+          //- a.waves-effect.waves-light.btn.step1next.btn-small
+          //-   i.material-icons.right fast_forward
+          //-   | 下一步
+    form.form.step2.step
+      .fields-wrap
+      .row.center-align
+        +btn('<i class="material-icons right">fast_rewind</i>上一步')(class='step2before')
+        +btn('<i class="material-icons right">fast_forward</i>下一步')(class='step2next')
+          //- a.waves-effect.waves-light.btn.step2before.btn-small
+          //-   i.material-icons.right fast_rewind
+          //-   | 上一步
+          //- a.waves-effect.waves-light.btn.step2next.btn-small
+          //-   i.material-icons.right fast_forward
+          //-   | 下一步
+    form.form.step3.step
+      .row
+        .input-field.col.s12.right-align
+          +btn('选择文件')(id='upload-attache')
+            //- input(placeholder='请选择上传文件',readonly)
+      //-   .file-field.input-field
+      //-     .btn
+      //-       span 上传附件
+      //-       input#addFile(type="file" multiple,accept=".txt,image/*,.xls,.xlsx,.doc,.docx,.ppt,.pptx,.pdf,audio/*,video/*")
+      //-     .file-path-wrapper
+      //-       input.file-path.validate(type="text")
+      .add-file-content-wrap
+      //-   .add-file-content-item
+      //-     .content-left.col.s2
+      //-       span
+      //-         |附件
+      //-         span.file-index 1
+      //-     .content-middle.col.s4
+      //-       image.file-icon(src="../../../public/images/types/doc.png")
+      //-       a.file-name 文件名
+      //-     .content-size-wrap.col.s4
+      //-       |(
+      //-       span.file-size 20KB
+      //-       |)
+      //-     .content-delete-wrap.col.s2
+      //-       span.file-delete 删除
+      .row.center-align
+        +btn('<i class="material-icons right">fast_rewind</i>上一步')(class='step3before')
+
+

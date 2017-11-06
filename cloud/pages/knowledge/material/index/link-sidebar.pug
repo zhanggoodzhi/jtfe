@@ -1,0 +1,33 @@
+main.resource-detail-main
+  .add-link-res.col-lg-9.col-md-9.col-sm-9
+    form.form-horizontal
+      .form-group
+        label.cloud-input-title.title-width 标题
+        .cloud-input-content
+          textarea#title.required.form-control.input-sm(maxlength='64', placeholder='请输入标题，不能超过64字')
+      .form-group
+        label.cloud-input-title.title-width 链接
+        .cloud-input-content
+          textarea#link.required.form-control.input-sm(maxlength='64', placeholder='请输入合法的链接地址')
+      .form-group
+        label.cloud-input-title.title-width 摘要（选填）
+        .cloud-input-content
+          textarea#desc.required.form-control.input-sm(maxlength='120', placeholder='请输入链接摘要，不超过120字')
+      .form-group
+        label.cloud-input-title.title-width 封面图片（选填）
+        .cloud-input-content
+          #imgcover.imgcover(style='background-image:url('+ctx+'/images/upImg.png)')
+            input#upload-btn(type='file',accept="image/png,image/jpeg")
+          p 推荐尺寸：900像素*500像素
+    .btn-wrap
+      button.link-save.btn.btn-primary.btn-sm(type='button') 保存
+  .resource-right-gray.col-lg-3.col-md-3.col-sm-3
+    .row.right-sider
+      .chat-box.right-innerBox(data-href='')
+        .card
+          .card-content.link-title
+            span.glyphicon.glyphicon-link
+            a#title-preview 标题
+          .card-image
+          .card-content
+            #desc-preview 摘要

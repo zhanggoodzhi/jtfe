@@ -1,0 +1,134 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>语料问题分析</title>
+<jsp:include page="../headv2.jsp" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/calendar.js"></script> 
+
+</head>
+<body>
+
+<form action="log" method="get" name="myfrom">
+开始时间：<input name="startDate" type="text" style="padding-left:5px;" size="10" id="startDate" value="${startDate }" onclick="SelectDate(this)" readonly="readonly" />
+结束时间：<input name="endDate" type="text" style="padding-left:5px;" size="10" id="endDate" value="${endDate }" onclick="SelectDate(this)" readonly="readonly" />
+<input type="radio" name="quickChoose" id="thisWeek" value="thisWeek" />本周   
+<input type="radio" name="quickChoose" id="thisMonth" value="thisMonth"  />本月
+<input type="submit" id="sbm_search" value="查询">
+</form>
+
+<div>
+	<table border="1">
+		<tr>
+			<th>问答概况</th>
+		</tr>
+		<tr>
+			<td>		</td>
+			<td>信息类问答</td>
+			<td>聊天类问答</td>
+			<td>搜索类问答</td>
+			<td>操作类问答</td>
+		</tr>
+		<tr>
+			<td>今日</td>
+			<td>${todayInfo }</td>
+			<td>${todayChat }</td>
+			<td>${todaySearch }</td>
+			<td>${todayOp }</td>
+		</tr>
+		<tr>
+			<td>昨日</td>
+			<td>${yesterdayInfo }</td>
+			<td>${yesterdayChat }</td>
+			<td>${yesterdaySearch }</td>
+			<td>${yesterdayOp }</td>
+		</tr>
+		<tr>
+			<td>每日平均</td>
+			<td>${aveInfo }</td>
+			<td>${aveChat }</td>
+			<td>${aveSearch }</td>
+			<td>${aveOp }</td>
+		</tr>
+		<tr>
+			<td>历史最高</td>
+			<td>${mostInfo }(${infoDate })</td>
+			<td>${mostChat }(${chatDate })</td>
+			<td>${mostSearch }(${searchDate })</td>
+			<td>${mostOp }(${opDate })</td>
+		</tr>
+		<tr>
+			<td>历史累计</td>
+			<td>${Info }</td>
+			<td>${Chat }</td>
+			<td>${Search }</td>
+			<td>${Op }</td>
+		</tr>
+	</table>
+</div>
+
+<div id="myechart" style="height:500px;border:1px solid #ccc;padding:30px;"></div></div>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/esl.js"></script>
+<script type="text/javascript">
+require.config({
+    paths:{ 
+        echarts:'${pageContext.request.contextPath}/js/echarts',
+        'echarts/chart/bar' : '${pageContext.request.contextPath}/js/echarts-map',
+        'echarts/chart/line': '${pageContext.request.contextPath}/js/echarts-map',
+        'echarts/chart/map' : '${pageContext.request.contextPath}/js/echarts-map'
+    }
+});
+
+require(
+    [
+        'echarts',
+        'echarts/chart/bar',
+        'echarts/chart/line',
+        'echarts/chart/map'
+    ],
+    function(ec) {
+        var myChart = ec.init(document.getElementById('myechart'));
+        myChart.setOption({
+        	title : {
+                text: '最近7天问答趋势',
+            },
+            tooltip : {
+                trigger: 'axis',
+            },
+            legend: {
+                data:['信息类问答','聊天类问答','搜索类问答','操作类问答']
+            },
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : true,
+                    dataView : {readOnly: false},
+                    magicType:['line', 'bar'],
+                    restore : true,
+                    saveAsImage : true
+                }
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    boundaryGap : false,
+                    data : ${day}
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    splitArea : {show : true}
+                }
+            ],
+            series : ${data2}
+         });
+        
+    }
+);
+    </script>
+</body>
+</html>

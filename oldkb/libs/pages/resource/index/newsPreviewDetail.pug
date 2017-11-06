@@ -1,0 +1,20 @@
+include ../../../layouts/components.pug
+.main-wrap
+  .main
+    h4.title= title
+    .info
+      span= createTime
+      span
+    .image-wrap
+      img(src=picUrl)
+    .content-wrap!= content
+    if(url)
+      .link-wrap
+        a(target="_blank" href=url) 阅读原文
+
+
+
+
+
+
+

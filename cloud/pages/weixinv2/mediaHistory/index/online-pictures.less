@@ -1,0 +1,88 @@
+#view-net{
+	.view-search-header{
+		margin:10px 3px;
+	}
+	.view-ctx{
+		// height:670px;
+		overflow-x:hidden;
+		.view-scroll{
+			.single-img{
+				.download-cover{
+					width:calc(~'100% - 20px');
+					height:120px;
+					background-color:grey;
+					opacity:0.6;
+					position:absolute;
+					margin:6px 0;
+					text-align:center;
+					display: none;
+					.download-btn{
+						margin-top:45px;
+						a{
+							text-decoration: none;
+						}
+					}
+				}
+				.img-box{
+					height: 120px;
+					cursor: pointer;
+					background-size: cover!important;
+					background-repeat: no-repeat!important;
+					margin:6px 0px;
+				}
+			}
+		}
+		.view-loading{
+			text-align:center;
+			margin-top:20px;
+			margin-bottom:20px;
+			i{
+				vertical-align:middle;
+			}
+		}
+	}
+}
+.download-record-sign{
+	position:absolute;
+	top:10px;
+	right:20px;
+	i{
+		font-size:20px;
+		&:hover{
+			cursor:pointer;
+		}
+	}
+}
+.right-sub{
+	display:none;
+	.download-back{
+		position:absolute;
+		top:5px;
+		right:20px;
+		button{
+			border-radius:9px;
+			padding:4px 13px;
+			i{
+				font-size:12px;
+			}
+			span{
+				font-family: Helvetica Neue,Roboto,Arial,Droid Sans,Microsoft Yahei,Hiragino Sans GB,WenQuanYi Micro Hei,Verdana,Aril,sans-serif;
+			}
+			&:hover{
+				cursor:pointer;
+			}
+		}
+	}
+	.record-img{
+		background-repeat: no-repeat!important;
+		background-size: cover!important;
+		cursor: pointer;
+		width:45px;
+		height:30px;
+	}
+}
+#record-modal{
+	.close{
+		font-size:45px;
+	}
+}

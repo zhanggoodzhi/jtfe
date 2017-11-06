@@ -1,0 +1,670 @@
+@import "./variables.less";
+.disable_click {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 99999999;
+}
+
+
+/*覆盖/重写custom样式*/
+
+html.fixed {
+	height: 100%;
+	body {
+		height: 100%;
+		overflow: hidden;
+	}
+}
+
+body {
+	font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, Verdana, Aril, sans-serif;
+}
+
+p {
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+textarea {
+	resize: none;
+}
+
+iframe {
+	border: none;
+}
+
+form.form-inline {
+	.form-group+.form-group {
+		margin-left: 10px;
+	}
+	label {
+		font-weight: normal;
+		&+.form-control {
+			margin-left: 10px;
+		}
+	}
+}
+
+form.flex-form {
+	&>.form-group {
+		display: flex;
+		label {
+			padding: 8px 10px 8px 0;
+			margin: 0;
+			font-weight: normal;
+			flex: none;
+		}
+		.form-control {
+			flex: 1;
+		}
+	}
+}
+
+.cloud-div-loading {
+	.fa-spin {
+		font-size: 40px;
+	}
+}
+
+.remove-input {
+	position: relative;
+	.remove-icon {
+		position: absolute;
+		background-image: url(../../public/images/close.png);
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		width: 15px;
+		height: 15px;
+		top: -6px;
+		right: -6px;
+		cursor: pointer;
+	}
+}
+
+.daterangepicker .month {
+	.monthselect, .yearselect {
+		float: left;
+	}
+}
+
+.cloud-top-nav {
+	position: absolute;
+	right: 0;
+	top: 0;
+	left: @mdLeftMenu;
+	z-index:999;
+	.dropdown-menu {
+		min-width: 180px;
+		&>li>a {
+			line-height: 1.8;
+		}
+	}
+	.navbar-brand .fa {
+		font-size: 24px;
+	}
+}
+
+.right_col {
+	margin-left: @mdLeftMenu;
+	padding: 68px 20px 63px;
+	background-color: #F7F7F7;
+	&>.x_panel {
+		margin-bottom: 0;
+	}
+}
+
+.left_col {
+	width: @mdLeftMenu;
+	position: fixed;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 2;
+	background-color: #2a3f54;
+}
+
+.footer {
+	position: absolute;
+	left: @mdLeftMenu;
+	right: 0;
+	bottom: 0;
+	z-index: 2;
+}
+
+.menu_section {
+	margin-bottom: 0;
+}
+
+// .profile {
+//     height: 80px;
+//     .profile_pic{
+//         width: 80px;
+//         height: 100%;
+//         padding: 12px 0;
+//         text-align: center;
+//         .profile_img{
+//             width: 56px;
+//             height: 56px;
+//             background: #fff;
+//             border: 1px solid rgba(52, 73, 94, 0.44);
+//             padding: 4px;
+//         }
+//     }
+//     .profile_info{
+//         width: 130px;
+//         height: 100%;
+//         padding: 24px 10px 12px;
+//         float: left;
+//         span{
+//             font-size: 13px;
+//             line-height: 22px;
+//             color: #BAB8B8;
+//         }
+//         h2{
+//             line-height: 22px;
+//             font-size: 14px;
+//             color: #ECF0F1;
+//             margin: 0;
+//         }
+//     }
+// }
+.main_container {
+	position: relative;
+}
+
+.x_content>.tab-content {
+	padding: 16px 0;
+}
+
+.modal-dialog {
+	position: absolute;
+	top: 10%;
+	left: 0;
+	right: 0;
+	margin: 50px auto;
+}
+
+.cloud-top-title {
+	font-size: 18px;
+	padding-left: 10px;
+	opacity: 0.7;
+	color: #555;
+	position: relative;
+	top: -2px;
+}
+
+.cloud-left-title {
+	line-height: 60px;
+	height: 55px;
+	padding: 0 16px;
+	margin-bottom: 20px;
+	a {
+		display: block;
+		color: #ECF0F1;
+		&:hover {
+			text-decoration: none;
+		}
+		span {
+			font-size: 22px;
+			margin-left: 12px;
+		}
+		.fa {
+			font-size: 28px;
+			position: relative;
+			top: 2px;
+		}
+	}
+}
+
+body>.ui-pnotify {
+	z-index: 9999;
+}
+
+.cloud-profile {
+	padding: 12px 16px;
+	margin-bottom: 10px;
+	.cloud-heading {
+		width: 56px;
+		height: 56px;
+		float: left;
+		.cloud-heading-image {
+			width: 100%;
+			height: 100%;
+			display: block;
+			padding: 4px;
+			border: 1px solid rgba(52, 73, 94, .4);
+			background-color: #FFF;
+		}
+	}
+	.cloud-profile-info {
+		margin-left: 56px;
+		height: 56px;
+		padding-top: 12px;
+		padding-left: 26px;
+		h2, h3 {
+			margin: 0;
+			line-height: 28px;
+			height: 22px;
+		}
+		h3 {
+			color: #bab8b8;
+			font-size: 13px;
+		}
+		h2 {
+			color: #ecf0f1;
+			font-size: 14px;
+		}
+	}
+}
+
+.cloud-sidebar-menu {
+	user-select: none;
+	ul {
+		list-style: none;
+		padding: 0;
+	}
+	.cloud-menu-list {
+		.cloud-menu-group-title.active {
+			box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
+			.fa-chevron-down {
+				transform: rotate(180deg);
+			}
+		}
+		.cloud-menu-group-title {
+			padding: 10px 15px;
+			cursor: pointer;
+			.cloud-menu-group-title-icon {
+				font-size: 18px;
+				margin-right: 10px;
+			}
+			.fa-chevron-down {
+				transition: transform .3s;
+				transform: rotate(0deg);
+				float: right;
+			}
+		}
+		.cloud-menu-group {
+			padding: 5px 0;
+			display: none;
+			.cloud-menu-item {
+				position: relative;
+				&.cloud-menu-sign {
+					&::after {
+						content: '';
+						display: block;
+						position: absolute;
+						left: 45px;
+						top: 7px;
+						width: 8px;
+						height: 8px;
+						border-radius: 50%;
+						background-color: #e51c23;
+					}
+				}
+				&>a {
+					padding: 0 20px;
+					height: 35px;
+					line-height: 35px;
+					display: block;
+					transition: background-color 0.15s;
+					position: relative;
+					&:hover, &.current {
+						text-decoration: none;
+						background-color: rgba(255, 255, 255, 0.06);
+					}
+				}
+			}
+		}
+		a, .cloud-menu-group-title {
+			color: #e7e7e7;
+			font-weight: 500;
+		}
+	}
+}
+
+.navbar-default {
+	margin-bottom: 0;
+	font-size: 14px;
+	a {
+		color: #555 !important;
+		transition: opacity 0.3s;
+		opacity: 0.7;
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+
+.nav-md {
+	.left_col {
+		overflow-y: auto;
+	}
+	.cloud-sidebar-menu .cloud-menu-list .cloud-menu-group .cloud-menu-item>a {
+		padding-left: 55px;
+		&::before {
+			content: " ";
+			width: 9px;
+			height: 9px;
+			background-color: #425668;
+			position: absolute;
+			left: 22px;
+			top: 13px;
+			border-radius: 50%;
+		}
+		&::after {
+			content: " ";
+			width: 1px;
+			position: absolute;
+			left: 26px;
+			top: 0;
+			bottom: 0;
+			background-color: #425668;
+		}
+	}
+}
+
+.nav-sm {
+	.cloud-top-nav, .footer {
+		left: @smLeftMenu;
+	}
+	.right_col {
+		margin-left: @smLeftMenu;
+	}
+	.left_col {
+		width: @smLeftMenu;
+	}
+	.cloud-left-title {
+		margin-bottom: 0;
+		a {
+			text-align: center;
+			span {
+				display: none;
+			}
+		}
+	}
+	.cloud-profile {
+		display: none;
+	}
+	.cloud-menu-list {
+		font-size: 12px;
+		&>li {
+			position: relative;
+		}
+		.cloud-menu-group {
+			width: 160px;
+			position: absolute;
+			left: 100%;
+			background-color: #3E5367;
+			top: 0;
+		}
+		.cloud-menu-group-title {
+			padding: 10px 0;
+			.cloud-menu-group-title-icon {
+				display: block;
+				margin: 0 auto;
+			}
+			.cloud-menu-group-title-text {
+				display: block;
+				text-align: center;
+			}
+			.fa-chevron-down {
+				display: none;
+			}
+		}
+	}
+}
+
+@media (max-width: 991px) {
+	.nav-md {
+		.cloud-top-nav {
+			left: 0;
+		}
+		.left_col {
+			display: none;
+		}
+		.right_col {
+			padding-bottom: 18px;
+			margin-left: 0;
+		}
+	}
+	.footer {
+		display: none;
+	}
+}
+
+
+/*end*/
+
+
+/*全局样式*/
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #ddd;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #666;
+}
+
+.cloud-fa-icon {
+	cursor: pointer;
+	font-size: 20px;
+	vertical-align: middle;
+	margin-right: 10px;
+	transition: color 0.5s;
+	&:hover {
+		color: black;
+	}
+}
+
+.cloud-image-icon {
+	display: inline-block;
+	padding: 5px;
+	border: 1px solid transparent;
+	cursor: pointer;
+	&:hover {
+		background: #f9f9f9;
+		border: 1px solid #dfdfdf;
+		border-radius: 5px;
+	}
+	img {
+		width: 20px;
+		height: auto;
+	}
+}
+
+.cloud-input-title, .cloud-input-content {
+	font-size: 12px;
+	font-weight: normal;
+	float: left;
+}
+
+.modal-dialog.modal-default {
+	.cloud-input-title {
+		min-width: 110px;
+	}
+	.cloud-input-content {
+		width: 458px;
+	}
+}
+
+.modal-dialog.modal-sm {
+	.cloud-input-title {
+		min-width: 46px;
+	}
+	.cloud-input-content {
+		width: 210px;
+	}
+}
+
+.cloud-input-title {
+	padding-top: 8px;
+}
+
+.modal-dialog .cloud-input-content, .cloud-input-content {
+	width: 120px;
+	padding: 0 10px;
+	&.cloud-sm {
+		width: 90px;
+	}
+	&.cloud-nm {
+		width: 150px;
+	}
+	&.cloud-md {
+		width: 180px;
+	}
+	&.cloud-lg {
+		width: 210px;
+	}
+	&.cloud-full {
+		width: 100%;
+	}
+}
+
+.title-width {
+	width: 36px;
+}
+
+.cloud-search-area, .cloud-form {
+	.form-group {
+		float: left;
+	}
+}
+
+.force-width {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+body>div>input[type="file"] {
+	display: none;
+}
+
+.cloud-scroll {
+	overflow: auto;
+}
+
+
+/*end*/
+
+
+/*组件全局样式*/
+
+div .select2-container--default .select2-selection--single {
+	border-radius: 0;
+	border-color: #CCC;
+}
+
+.cloud-input-content>.select2 {
+	width: 100% !important;
+	.select2-selection {
+		height: 30px;
+		line-height: 30px;
+		.select2-selection__rendered {
+			color: #555;
+		}
+	}
+}
+
+
+/*end*/
+
+.disabled-form {
+	label.control-label {
+		text-align: right;
+		padding-top: 11px;
+		+div {
+			p {
+				border: 1px solid #ccc;
+				padding: 10px 15px;
+				border-radius: 5px;
+				min-height: 41px;
+			}
+		}
+	}
+}
+
+.cloud-table-action {
+	.fa {
+		font-size: 18px;
+		cursor: pointer;
+		opacity: 0.85;
+		transition: opacity 0.2s;
+		&:hover {
+			opacity: 1;
+		}
+	}
+	.fa+.fa, .fa+a, .a+.fa, a+a {
+		margin-left: 6px;
+	}
+	a, a:hover, a:focus, a:active {
+		color: #73879C;
+	}
+}
+
+.radio>label+label {
+	margin-left: 10px;
+}
+
+.resource-hover-item:hover {
+	.toolbox-wrap {
+		display: block !important;
+	}
+}
+
+.nav-tabs>li>a {
+	background-color: transparent !important;
+	border: none !important;
+}
+
+.nav-tabs>li {
+	&.active {
+		color: #108ee9;
+	}
+	&>a {
+		color: inherit !important;
+	}
+	&.active::after {
+		opacity: 1;
+	}
+	&::after {
+		content: ' ';
+		transition: 0.2s;
+		display: block;
+		position: absolute;
+		bottom: 1px;
+		width: 100%;
+		height: 2px;
+		background-color: #108ee9;
+		opacity: 0;
+	}
+}
+
+// select2的样式
+.cloud-input-content>.select2 .select2-selection {
+	height: auto!important;
+	line-height: 1.471!important;
+	border: 1px solid #ccc!important;
+	border-radius: 0!important;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	&:focus {
+		box-shadow: none!important;
+	}
+	.select2-selection__clear {
+		margin-top: 6px!important;
+	}
+	.select2-search__field {
+		margin-top: 6px;
+		margin-left: 5px;
+	}
+}

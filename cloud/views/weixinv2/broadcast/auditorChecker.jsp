@@ -1,0 +1,10 @@
+<!DOCTYPE html><%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%
+  String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()+ request.getContextPath() + "/";
+%><c:set var="ctx" value="${pageContext.request.contextPath}"/><html lang="zh-cmn-Hans"><head><!-- Copyright 2017 by Jintongsoft
+@author Ding <ding.yuchao@jintongsoft.cn> --><base href="<%=basePath%>"><meta charset="utf-8"><meta name="referrer" content="no-referrer"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="renderer" content="webkit"><meta name="keyword" content="金童云平台,金童,云平台,智能机器人"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><link type="text/css" rel="stylesheet" href="//localhost:9243/74.css"><link type="text/css" rel="stylesheet" href="//localhost:9243/35.css"><title>审核公众号群发请求</title></head><body><c:if test="${broadcastStatus!=null}"><center>群发审核已处理, 处理结果为:${broadcastStatus}</center></c:if><c:if test="${broadcastStatus==null}"><div class="container-fluid" id="mainbody"><p class="bg-warning">请问您是否允许执行本次图文群发请求?</p><div class="commander"><div class="row"><div class="col-xs-9"><button class="btn btn-success btn-block" id="approve-btn" type="button">允许</button></div><div class="col-xs-3"><button class="btn btn-danger btn-block" id="reject-btn" type="button">拒绝</button></div></div></div><h4>图文详情</h4><div class="newscontainer"><c:forEach var="news" items="${newslist}"><div class="news"><img class="newsimg" src="${news.identifierUrl}"><div class="title">${news.title}</div></div><div class="clearfix"></div></c:forEach></div><div></div></div></c:if><script>var ctx="${ctx}";
+var processid = "${processid}";
+var isVcg=false;</script><script src="//localhost:9243/74.js"></script><script src="//localhost:9243/35.js"></script></body></html>

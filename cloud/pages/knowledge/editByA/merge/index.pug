@@ -1,0 +1,66 @@
+extends /layout/main.pug
+
+block variable
+  - const href="knowledge/editByA/index";
+  - const title="${param.title}";
+
+block script
+  script.
+    var selectData = ${selectmap}[0];
+    var ids='${param.ids}';
+    var selectQ =${selectQ}[0].selectQ.map(v=>{
+      return {
+        text:v.name,
+        id:v.name
+      };
+    });
+block mainbody
+  .x_panel
+    .x_content
+      .common-wrap#common-wrap
+        h4#title 标准问法
+        form.form-horizontal(role='form')
+          +cClassify
+          .form-group
+            label.cloud-input-title 问题
+            .cloud-input-content.selectInput
+              select#questionSelect.select.form-control
+          .form-group
+            label.cloud-input-title
+              p.exist
+                a#exist-link(href="#")
+                  i.fa.fa-warning
+                  span#exist-text 该问题已经存在，点击前往该问题
+      #repeat-wrap
+        h4 复述问法
+        .q-table-wrap
+          table#q-table.table.fixed-table
+          form.hidden
+            .form-group.text-right.btn-wrap
+                button#edit-q-btn.btn.btn-primary.btn-sm(type="button") 编辑
+                button#add-q-btn.btn.btn-primary.btn-sm(type="button") 添加
+                button#del-q-btn.btn.btn-danger.btn-sm(type="button") 删除
+        .a-table-wrap
+          table#a-table.table.fixed-table
+          form.hidden
+            .form-group.text-right.similar-control.btn-wrap
+                button#add-a-btn.btn.btn-primary.btn-sm(type="button") 添加
+                button#del-a-btn.btn.btn-danger.btn-sm(type="button") 删除
+          #editor.editor
+        .form-group.text-center.btn-wrap
+          button#save-btn.btn.btn-success(type="button") 保存
+          button#back-btn.btn.btn-default(type="button") 返回
+
+block modal
+  .modal.fade#edit-q-modal(data-backdrop="false")
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title
+        .modal-body
+          input#q-input.form-control.input-sm(type="text")
+        .modal-footer
+          button#q-edit-confirm-btn.btn.btn-primary.btn-sm(type='button') 确定
+          button.btn.btn-default.btn-sm(type='button', data-dismiss='modal') 关闭

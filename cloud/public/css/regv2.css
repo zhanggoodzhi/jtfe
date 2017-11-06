@@ -1,0 +1,87 @@
+@CHARSET "UTF-8";
+
+* {
+	font-family: "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+	font-size: 16px;
+}
+
+a {
+	color: #fff;
+}
+
+a:hover {
+	color: #fff;
+}
+
+.login_reg {
+	background-color: #fff;
+	border: 1px solid #000;
+	text-align: center;
+	padding: 15px 20px;
+	width:300px;
+	margin:20% auto;
+}
+
+.phone_forget_button {
+	display: none;
+	position: absolute;
+	border: 1px solid red;
+	margin-top: -30px;
+	margin-left: 10px;
+	width: 58%;
+	background-color: #fff;
+	padding-top: 6px;
+	padding: 10px;
+}
+
+.note {
+	position: absolute;
+	overflow: hidden;
+	color: white;
+	background-color: #9b59b6;
+	z-index: 1000;
+}
+
+.note--info {
+	background-color: #0095FF;
+}
+
+.flag {
+	display: none;
+	left: 60px;
+	width: 300px;
+	margin-top: 95px;
+	margin-bottom: 24px;
+}
+
+.note__icon {
+	text-align: center;
+	font-size: 32px;
+	font-size: 2rem;
+	background-color: rgba(0, 0, 0, 0.25);
+}
+
+.note__icon, .note__text {
+	padding: 8px;
+}
+
+.flag__image {
+	padding-right: -2px;
+}
+
+.flag__image, .flag__body {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.fa {
+	font-weight: bold;
+	display: inline-block;
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}

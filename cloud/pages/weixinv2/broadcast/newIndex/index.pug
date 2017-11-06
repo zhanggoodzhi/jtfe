@@ -1,0 +1,62 @@
+extends /layout/main.pug
+block variable
+  - const href="weixinv2/broadcast/index.to";
+block script
+  script.
+     var selectData=JSON.parse('${output}'.replace(/wxName/g,'text'));
+     var status=selectData[0].status;
+     var wechatCredentials=selectData[0].wechatCredentials;
+block mainbody
+  .x_panel
+    .x_content
+        .cloud-search-area
+          form.form-horizontal
+            .cloud-row.clearfix
+              .form-group
+                label.cloud-input-title 标题
+                .cloud-input-content
+                  input#title.form-control.input-sm(type='text')
+              .form-group
+                label.cloud-input-title 公众号
+                .cloud-input-content.cloud-lg
+                  select#weixin-account.select.form-control
+              +cDate('发送时间','form')
+              .form-group
+                button#search-btn.btn.btn-primary.btn-sm(type='button') 查询
+                //- button#updateStat-btn.btn.btn-primary.btn-sm(type='button') 刷新数据
+                button#count-btn.btn.btn-primary.btn-sm(type='button') 合计
+                button#export-btn.btn.btn-primary.btn-sm(type='button') 导出
+              +cPageChange
+        .cloud-row
+          table#table.table.fixed-table
+block modal
+  #count-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title
+        .modal-body
+          form.form-horizontal
+            .form-group
+              label.cloud-input-title.title-width  总送达人员
+              .cloud-input-content1.targetUsers
+            .form-group
+              label.cloud-input-title.title-width  总阅读数
+              .cloud-input-content1.pageReadCounts
+            .form-group
+              label.cloud-input-title.title-width 总查看原文数
+              .cloud-input-content1.oripageReadCounts
+            .form-group
+              label.cloud-input-title.title-width 总分享数
+              .cloud-input-content1.shareCounts
+            .form-group
+              label.cloud-input-title.title-width 总收藏数
+              .cloud-input-content1.favCounts
+            .form-group
+              label.cloud-input-title.title-width 总新增用户数
+              .cloud-input-content1.countNewUsers
+            .form-group
+              label.cloud-input-title.title-width 总取关数
+              .cloud-input-content1.countCancelUsers

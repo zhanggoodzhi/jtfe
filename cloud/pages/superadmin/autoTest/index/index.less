@@ -1,0 +1,46 @@
+#upload-file,#file-info{
+    margin-left: 5px;
+}
+#sidebar .dataTables_wrapper{
+    padding-bottom: 10px;
+    &::after{
+        content: '.';
+        clear: both;
+        width: 0;
+        height: 0;
+        display: block;
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+p{
+    font-size: 15px;
+}
+
+#sidebar {
+    strong{
+        color: #a94442;
+    }
+    .result-link{
+        &.best{
+            color:#3c763d;
+        }
+        &.worst{
+            color: #a94442;
+        }
+    }
+    .result-success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        color:#3c763d;
+    }
+    .result-fail{
+        color: #a94442;
+        background-color: #f2dede;
+    }
+    .result-fail-no-answer {
+        color: #a94442;
+        background-color: #ffcb51;
+    }
+}

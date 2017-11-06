@@ -1,0 +1,383 @@
+extends /layout/main.pug
+
+block variable
+  - const title="客服管理";
+
+prepend script
+  script.
+    var selectmap=JSON.parse('${selectmap}')[0];
+    var accountList=selectmap.accountList;
+    var doctypeList=selectmap.doctypeList;
+    var groups=selectmap.groupPrivilegeList;
+    var operationList=selectmap.operationList;
+
+block mainbody
+  .x_panel
+    .x_content
+      ul#tablist.nav.nav-tabs(role="tablist")
+        li.active(role="presentation")
+          a#server-acc-tab(href="#server-account",role="tab",data-toggle="tab") 客服账号
+        li(role="presentation")
+          a#server-group-tab(href="#server-group",role="tab",data-toggle="tab") 分组管理
+        li(role="presentation")
+          a#document-manage-tab(href="#document-manage",role="tab",data-toggle="tab") 文档管理
+        li(role="presentation")
+          a#common-manage-tab(href="#common-manage",role="tab",data-toggle="tab") 常用语管理
+      .tab-content
+        #server-account.tab-pane.fade.in.active.clearfix(rol="tabpanel")
+          #cropper-wrap.cropper-wrap.col-xs-12
+            .col-xs-8
+              h6 裁剪区域
+              img#cropper-image.cropper-image(src="")
+              .crop-btn-wrap
+                button#crop-btn.btn.btn-success(type="button") 确定
+                button#cancel-btn.btn.btn-default(type="button") 取消
+            .col-xs-4
+              h6 预览区域
+              .cropper-preview.preview-lg
+              .cropper-preview.preview-md
+              .cropper-preview.preview-sm
+          .box1
+            form.form-horizontal.cloud-search-area
+              .form-group
+                label.cloud-input-title 用户名
+                .cloud-input-content
+                  input#account-name.form-control.input-sm(type='text')
+              .form-group
+                label.cloud-input-title 别名
+                .cloud-input-content
+                  input#account-alias.form-control.input-sm(type='text')
+              .form-group
+                label.cloud-input-title 分组
+                .cloud-input-content
+                  select#account-group.form-control.input-sm
+                    option(value="") 全部
+              .form-group
+                label.cloud-input-title 状态
+                .cloud-input-content
+                  select#account-status.form-control.input-sm
+                    option(value="") 全部
+                    option(value="0",selected) 已启用
+                    option(value="1") 已禁用
+              .form-group
+                button.btn.btn-primary.btn-sm.acc-search(type="button") 查询
+                button.btn.btn-primary.btn-sm.acc-edit(type="button") 编辑
+                button.btn.btn-primary.btn-sm.acc-add(type="button") 添加
+                button.btn.btn-primary.btn-sm.acc-reopen(type="button") 启用
+                button.btn.btn-primary.btn-sm.acc-block(type="button") 禁用
+            table#account-table.table.fixed-table
+        #server-group.tab-pane.fade(rol="tabpanel")
+          form.form-horizontal.cloud-search-area
+            .form-group
+              label.cloud-input-title 分组名称
+              .cloud-input-content
+                input#grounp-name.form-control.input-sm(type='text')
+            .form-group
+              +cBtngroup("group")
+          table#group-table.table.fixed-table
+        #document-manage.tab-pane.fade(rol="tabpanel")
+          form.form-horizontal.cloud-search-area
+            .form-group
+              label.cloud-input-title 文档名称
+              .cloud-input-content
+                input.docname.form-control.input-sm(type='text')
+            .form-group
+              label.cloud-input-title 文档类型
+              .cloud-input-content
+                select.doctype.form-control.input-sm
+                  option(value='') 全部
+            .form-group
+              +cBtngroup("document")
+          table#document-table.table.fixed-table
+
+        #common-manage.tab-pane.fade(rol="tabpanel")
+          form.form-horizontal.cloud-search-area
+            //- .form-group
+            //-   label.cloud-input-title 常用语
+            //-   .cloud-input-content
+            //-     input#common-key.form-control.input-sm(type='text')
+            .form-group
+              label.cloud-input-title 分组
+              .cloud-input-content
+                select#common-group.form-control.input-sm
+                  option(value='') 全部
+            .form-group
+              button.btn.btn-primary.btn-sm(type="button",id="common-search-btn") 查询
+              button.btn.btn-primary.btn-sm(type="button",id="common-add-btn") 添加
+              button.btn.btn-primary.btn-sm(type="button",id="common-group-btn") 分组管理
+          table#common-table.table.fixed-table
+block modal
+  #account-edit-modal.account.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 编辑客服账号
+        .modal-body
+          form.form-horizontal
+            .form-group(style='display:none')
+              label.cloud-input-title.title-width id
+              .cloud-input-content
+                input.id.form-control.input-sm(type='text')
+            .form-group
+              label.cloud-input-title.title-width 头像
+              .cloud-input-content
+                .image-container
+                  img.cropper(src="",data-name='servicerHead',data-url="setting/cs/uploadServicerHead")
+            .form-group
+              label.cloud-input-title.title-width 分组
+              .cloud-input-content
+                select.groupid.form-control.input-sm
+            .form-group
+              label.cloud-input-title.title-width 用户名
+              .cloud-input-content
+                input.username.form-control.input-sm(type='text')
+            .form-group
+              label.cloud-input-title.title-width 密码
+              .cloud-input-content
+                input.password.form-control.input-sm(type='text',placeholder='不填则保存为原密码')
+            .form-group
+              label.cloud-input-title.title-width 别名
+              .cloud-input-content
+                input.alias.form-control.input-sm(type='text')
+            .form-group
+              label.cloud-input-title.title-width 电话
+              .cloud-input-content
+                input.mobile.form-control.input-sm(type='text')
+            .form-group
+              label.cloud-input-title.title-width 邮箱
+              .cloud-input-content
+                input.email.form-control.input-sm(type='text')
+            .form-group(style='display:none')
+              label.cloud-input-title.title-width 状态
+              .cloud-input-content
+                input.deleted.form-control.input-sm(type='text')
+        .modal-footer
+          button#acc-edit-submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+
+  #account-add-modal.account.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 添加客服信息
+        .modal-body
+          form.form-horizontal
+            .form-group
+              label.cloud-input-title.title-width 头像
+              .cloud-input-content
+                .image-container
+                  img.cropper(src="${ctx}/upload/img/servicerHead/servicer.jpg",data-name='servicerHead',data-url="setting/cs/uploadServicerHead")
+            .form-group
+              label.cloud-input-title.title-width 分组
+              .cloud-input-content
+                select.groupid.form-control.input-sm
+            .form-group
+              label.cloud-input-title.title-width 用户名
+              .cloud-input-content
+                input.username.form-control.input-sm(type='text')
+            .form-group
+              label.cloud-input-title.title-width 密码
+              .cloud-input-content
+                input.password.form-control.input-sm(type='text')
+            .form-group
+              label.cloud-input-title.title-width 别名
+              .cloud-input-content
+                input.alias.form-control.input-sm(type='text')
+            .form-group
+              label.cloud-input-title.title-width 电话
+              .cloud-input-content
+                input.mobile.form-control.input-sm(type='text')
+            .form-group
+              label.cloud-input-title.title-width 邮箱
+              .cloud-input-content
+                input.email.form-control.input-sm(type='text')
+            .form-group
+              label.cloud-input-title.title-width 状态
+              .cloud-input-content
+                select.deleted.form-control.input-sm
+                  option(value="0",selected) 已启用
+                  option(value="1") 已禁用
+        .modal-footer
+          button#acc-add-submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  #groups-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 选择分组
+        .modal-body
+          form.form-horizontal
+            .form-group
+              label.cloud-input-title.title-width 分组
+              .cloud-input-content
+                select.groupid.form-control.input-sm
+        .modal-footer
+          button#group-submit-btn.btn.btn-success(type='button') 确定
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  #group-edit-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 编辑分组管理信息
+        .modal-body
+          form.form-horizontal
+            .form-group(style='display:none')
+              label.cloud-input-title.title-width id
+              .cloud-input-content
+                input.id.form-control.input-sm(type='text')
+            .form-group
+              label.cloud-input-title.title-width 分组
+              .cloud-input-content
+                input.groupname.form-control.input-sm
+            .form-group
+              label.cloud-input-title.title-width 权限
+              .cloud-input-content.operationids
+        .modal-footer
+          button#group-edit-submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  #group-add-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 添加分组管理信息
+        .modal-body
+          form.form-horizontal
+            .form-group
+              label.cloud-input-title.title-width 分组名
+              .cloud-input-content
+                input.groupname.form-control.input-sm
+            .form-group
+              label.cloud-input-title.title-width 权限
+              .cloud-input-content.operationids
+        .modal-footer
+          button#group-add-submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  #document-edit-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 编辑文档管理信息
+        .modal-body
+          form.form-horizontal(enctype="multipart/form-data")
+            .form-group(style='display:none')
+              label.cloud-input-title.title-width id
+              .cloud-input-content
+                input.id.form-control.input-sm(type='text')
+            .form-group
+              label.cloud-input-title.title-width 文档名
+              .cloud-input-content
+                input.docname.form-control.input-sm
+            .form-group
+              label.cloud-input-title.title-width 附件
+              .cloud-input-content
+                a.attach(href='javascript:;',data-text="点击此处上传附件(若不上传则默认使用原附件)")
+        .modal-footer
+          button#document-edit-submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  #document-add-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 添加文档管理信息
+        .modal-body
+          form.form-horizontal(enctype="multipart/form-data")
+            .form-group
+              label.cloud-input-title.title-width 文档名
+              .cloud-input-content
+                input.docname.form-control.input-sm
+            .form-group
+              label.cloud-input-title.title-width 附件
+              .cloud-input-content
+                a.attach(href='javascript:;',data-text="点击此处上传附件")
+        .modal-footer
+          button#document-add-submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  #common-add-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-default
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 添加常用语
+        .modal-body
+          form.form-horizontal
+            .form-group
+              label.cloud-input-title.title-width 常用语
+              .cloud-input-content
+                input#common-add-input.form-control.input-sm
+            .form-group
+              label.cloud-input-title.title-width 分组
+              .cloud-input-content
+                select#common-add-group.form-control.input-sm
+        .modal-footer
+          button#common-add-submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  #common-edit-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-default
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 编辑常用语
+        .modal-body
+          form.form-horizontal
+            .form-group
+              label.cloud-input-title.title-width 常用语
+              .cloud-input-content
+                input#common-edit-input.form-control.input-sm
+            .form-group
+              label.cloud-input-title.title-width 分组
+              .cloud-input-content
+                select#common-edit-group.form-control.input-sm
+        .modal-footer
+          button#common-edit-submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  #common-group-modal.modal.fade(data-backdrop='false')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 编辑常用语
+        .modal-body
+          table.table
+            thead
+              tr
+                th 分组名称
+                th 操作
+            tbody#common-group-table
+          form.form-inline.addMargin
+            .form-group
+              input#common-group-input.form-control.input-sm(placeholder="分组名称")
+            .form-group
+              button#common-group-submit-btn.btn.btn-primary.btn-sm(type="button") 新增
+
+        .modal-footer
+          button.btn.btn-default(type='button', data-dismiss='modal') 关闭
+  #common-group-edit-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 编辑分组
+        .modal-body
+          input#common-group-edit-input.input-sm.form-control(placeholder="分组名称")
+
+        .modal-footer
+          button#common-group-edit-submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消

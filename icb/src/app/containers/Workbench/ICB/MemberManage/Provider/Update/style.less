@@ -1,0 +1,52 @@
+.Content {
+    padding: 0 10px;
+    .BtnWrap {
+        padding: 10px 0;
+        text-align: right;
+        button {
+            margin-left: 10px;
+        }
+    }
+}
+
+.Form {
+    padding: 20px 0;
+    .Display {
+        font-size: 30px;
+        cursor: pointer;
+        opacity: 0.7;
+        &:hover {
+            opacity: 1;
+        }
+    }
+    .Flex {
+        display: flex;
+        .RightInput {
+            flex: 1;
+            margin-top: 2px;
+        }
+    }
+    .SubItem {
+        :global(.ant-form-item-label) {
+            label {
+                display: none;
+            }
+        }
+    }
+    .SwitchWrap {}
+    .PlanItem {
+        padding: 10px 0;
+        border-top: 1px dashed #eee;
+    }
+    .AddPlainWrap {
+        text-align: center;
+    }
+    .Smile {
+        font-size: 18px;
+        vertical-align: -3px;
+    }
+}
+
+.Mf {
+    margin-left: 5px;
+}

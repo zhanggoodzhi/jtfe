@@ -1,0 +1,132 @@
+extends /layout/main.pug
+
+block variable
+  - const isadmin=true;
+  - const title='用户管理';
+
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+        .clearfix
+          .form-group
+            label.cloud-input-title 用户名
+            .cloud-input-content
+              input#adminName.form-control.input-sm(type='text',placeholder='请输入用户名')
+          .form-group
+            label.cloud-input-title 邮箱
+            .cloud-input-content.cloud-lg
+              input#email.form-control.input-sm(type='text',placeholder='请输入邮箱')
+          .form-group
+            label.cloud-input-title 状态
+            .cloud-input-content
+              select#status.form-control.input-sm
+                option(value='') 全部
+                option(value='0') 禁用
+                option(value='1') 启用
+                //- c:forEach(items='${kvpair.isenable}',var='enable')
+                  option(value='${enable.key}') ${enable.value}
+        .clearfix
+          .form-group
+            button#search-btn.btn.btn-primary.btn-sm(type='button') 查询
+            button#add-btn.btn.btn-primary.btn-sm(type='button') 添加
+            //- button#edit-btn.btn.btn-primary.btn-sm(type='button') 编辑
+            button#enable-btn.btn.btn-primary.btn-sm(type='button') 启用
+            button#disable-btn.btn.btn-primary.btn-sm(type='button') 禁用
+          +cPageChange
+      table#table.table.fixed-table
+block modal
+  #edit-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-default
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 编辑用户
+        .modal-body
+          form.form-horizontal
+            .form-group(style='display:none')
+              label.cloud-input-title.title-width id
+              .cloud-input-content
+                input.id.form-control.input-sm(type='text')
+            .form-group
+              label.cloud-input-title.title-width 用户名
+              .cloud-input-content
+                input.admin-name.form-control.input-sm(type='text',placeholder='请输入用户名')
+                span.validate-msg
+                  img(src='${ctx}/images/validate/error.png')
+                  span.validate-ctx 该用户名已存在，请重新输入
+            .form-group
+              label.cloud-input-title.title-width 邮箱
+              .cloud-input-content
+                input.email.form-control.input-sm(type='email',placeholder='请输入邮箱',disabled)
+                span.validate-msg
+                  img(src='${ctx}/images/validate/error.png')
+                  span.validate-ctx 该邮箱已存在，请重新输入
+            .form-group
+              label.cloud-input-title 分配的应用
+              .cloud-input-content
+                select.apps.form-control(multiple='multiple')
+            .form-group
+              label.cloud-input-title.title-width 手机号
+              .cloud-input-content
+                input.mobile.form-control.input-sm(type='tel',maxlength='11',placeholder='请输入11位手机号码')
+            .form-group
+              label.cloud-input-title.title-width QQ
+              .cloud-input-content
+                input.qq.form-control.input-sm(type='text',placeholder='请输入QQ号码')
+        .modal-footer
+          button#edit-submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  #add-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-default
+      .modal-content
+        .modal-header
+          button.close.add-close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 添加用户
+        .modal-body
+          form.form-horizontal
+            .form-group
+              label.cloud-input-title.title-width 用户名
+              .cloud-input-content
+                input.admin-name.form-control.input-sm(type='text',placeholder='请输入用户名')
+                span.validate-msg
+                  img(src='${ctx}/images/validate/error.png')
+                  span.validate-ctx 该用户名已存在，请重新输入
+            .form-group
+              label.cloud-input-title.title-width 邮箱
+              .cloud-input-content
+                input.email.form-control.input-sm(type='email',placeholder='请输入邮箱')
+                span.validate-msg
+                  img(src='${ctx}/images/validate/error.png')
+                  span.validate-ctx 该邮箱已存在，请重新输入
+            .form-group
+              label.cloud-input-title.title-width 密码
+              .cloud-input-content.cloud-password
+            .form-group
+              label.cloud-input-title 分配的应用
+              .cloud-input-content
+                select.apps.form-control(multiple='multiple')
+            .breakLine
+              | 以下内容为选填
+            .form-group
+              label.cloud-input-title.title-width 手机号
+              .cloud-input-content
+                input.mobile.form-control.input-sm(type='tel',maxlength='11',placeholder='请输入11位手机号')
+            .form-group
+              label.cloud-input-title.title-width QQ
+              .cloud-input-content
+                input.qq.form-control.input-sm(type='text',placeholder='请输入QQ号')
+            .form-group
+              label.cloud-input-title.title-width 是否启用
+              .cloud-input-content.radio-label
+                label
+                  input(type='radio',name='isOpen',value='1',checked)
+                  | 启用
+                label
+                  input(type='radio',name='isOpen',value='0')
+                  | 禁用
+        .modal-footer
+          button#add-submit-btn.btn.btn-success(type='button') 添加
+          button.btn.btn-default.add-close(type='button', data-dismiss='modal') 取消

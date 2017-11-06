@@ -1,0 +1,399 @@
+extends /layout/main.pug
+
+mixin radio(options)
+  .form-group
+    .col-xs-3.control-label= options.title
+    .col-xs-4
+      label.radio-inline
+        input(type="radio",name=options.name,value=options.leftValue,data-value=options.dataValue)
+        = options.leftTitle
+      label.radio-inline
+        input(type="radio",name=options.name,value=options.rightValue,data-value=options.dataValue)
+        = options.rightTitle
+
+block variable
+  - const href="setting/app/basicInfo/index"
+  -
+    const radioList=[
+    //-   {
+    //-     title:"是否对大小写敏感",
+    //-     name:"case-sensitive",
+    //-     dataValue:"${csclient.caseSensitive}",
+    //-     leftTitle:"敏感",
+    //-     rightTitle:"不敏感",
+    //-     leftValue:"1",
+    //-     rightValue:"0",
+    //-     param:"caseSensitive"
+    //- },
+      {
+        title:"是否显示推荐问题",
+        name:"show-q",
+        dataValue:"${csclient.recomQuestionDisplay}",
+        leftTitle:"显示",
+        rightTitle:"隐藏",
+        leftValue:"1",
+        rightValue:"0",
+        param:"recomQuestionDisplay"
+    },
+      {
+        title:"左侧FAQ是否展开",
+        name:"show-faq",
+        dataValue:"${csclient.faqExpandDisplay}",
+        leftTitle:"展开",
+        rightTitle:"收起",
+        leftValue:"1",
+        rightValue:"0",
+        param:"faqExpandDisplay"
+    },
+      {
+        title:"是否显示问题评价",
+        name:"show-help",
+        dataValue:"${csclient.ishelpfulDisplay}",
+        leftTitle:"显示",
+        rightTitle:"隐藏",
+        leftValue:"1",
+        rightValue:"0",
+        param:"ishelpfulDisplay"
+    },
+    //-   {
+    //-     title:"用户培养功能(教教我)",
+    //-     name:"isopen",
+    //-     dataValue:"${appConfiguration.is_open}",
+    //-     leftTitle:"打开",
+    //-     rightTitle:"关闭",
+    //-     leftValue:"1",
+    //-     rightValue:"0",
+    //-     param:"isOpen"
+    //- },
+      {
+        title:"是否使用人工客服模块",
+        name:"use-human",
+        dataValue:"${csclient.useHumanServicer}",
+        leftTitle:"打开",
+        rightTitle:"关闭",
+        leftValue:"1",
+        rightValue:"0",
+        param:"useHumanServicer"
+    },
+    //-   {
+    //-     title:"是否启用指代消解",
+    //-     name:"use-core",
+    //-     dataValue:"${csclient.useCoreference}",
+    //-     leftTitle:"打开",
+    //-     rightTitle:"关闭",
+    //-     leftValue:"1",
+    //-     rightValue:"0",
+    //-     param:"useCoreference"
+    //- },
+    //-   {
+    //-     title:"是否启用对话模型",
+    //-     name:"use-dialog",
+    //-     dataValue:"${csclient.useDialogModel}",
+    //-     leftTitle:"打开",
+    //-     rightTitle:"关闭",
+    //-     leftValue:"1",
+    //-     rightValue:"0",
+    //-     param:"useDialogModel"
+    //- },
+    //-   {
+    //-     title:"是否使用纠错的功能",
+    //-     name:"use-miss",
+    //-     dataValue:"${csclient.useMisspellCorrect}",
+    //-     leftTitle:"打开",
+    //-     rightTitle:"关闭",
+    //-     leftValue:"1",
+    //-     rightValue:"0",
+    //-     param:"useMisspellCorrect"
+    //- },
+    //-   {
+    //-     title:"是否使用用户自定义的纠错词典",
+    //-     name:"use-custom",
+    //-     dataValue:"${csclient.useCustomizedMisspell}",
+    //-     leftTitle:"打开",
+    //-     rightTitle:"关闭",
+    //-     leftValue:"1",
+    //-     rightValue:"0",
+    //-     param:"useCustomizedMisspell"
+    //- }
+    ]
+    const radioJson=JSON.stringify(radioList.map(v=>{
+      return {
+          el: `[name=${v.name}]:checked`,
+          text: v.title,
+          valName: v.param,
+          require: true
+      };
+    })
+    .concat(
+      [
+          {
+              el: "#robot-name",
+              text: "智能机器人名称",
+              valName: "robotName",
+              require: true
+          },
+          //- {
+          //-     el: "[name=client-style]:checked",
+          //-     text: "样式选择项",
+          //-     valName: "clientStyle",
+          //-     require: true
+          //- },
+          {
+              el: "[name=use-noanswer-human]",
+              text: "是否开启（自动转人工）",
+              valName: "useNoanswerHuman",
+              require: true
+          },
+          {
+              el: "#timeout-length",
+              text: "超时时长设置",
+              valName: "timeoutLength",
+              require: true
+          },
+          {
+              el: "#noanswer-times",
+              text: "机器人答案未匹配次数设置",
+              valName: "noanswerTimes",
+              require: true
+          }
+      ]
+    ));
+
+//- ,
+//- {
+//-   el: "#timeout-msg",
+//- text: "客服界面用户空闲时间超时的提示",
+//- valName: "timeoutMsg",
+//- require: false
+//- },
+//- {
+//- el: "#feedback-msg",
+//- text: "用户给了评分后的消息提示",
+//- valName: "feedbackMsg",
+//- emptyrequire: false
+//- }
+//-
+
+
+block script
+  script.
+    var radioList=JSON.parse('!{radioJson}');
+
+block mainbody
+  .x_panel
+    .x_content
+      ul#tablist.nav.nav-tabs(role="tablist")
+        li.active(role="presentation")
+          a(href="#info",role="tab",data-toggle="tab") 基本信息
+        li(role="presentation")
+          a#character-tab(href="#character",role="tab",data-toggle="tab") 角色管理
+        li(role="presentation")
+          a#default-answer-tab(href="#default-answer",role="tab",data-toggle="tab") 默认回复
+        li(role="presentation")
+          a#repeat-answer-tab(href="#repeat-answer",role="tab",data-toggle="tab") 重复问题回复
+        li(role="presentation")
+          a#sensitive-answer-tab(href="#sensitive-answer",role="tab",data-toggle="tab") 敏感信息回复
+      .tab-content
+        #info.tab-pane.fade.in.active.clearfix(rol="tabpanel")
+          #info-form-wrap.col-xs-8.col-xs-offset-2.info-form-wrap
+            form.form-horizontal
+              .form-group
+                .col-xs-3.control-label 领域
+                .col-xs-9
+                  p.form-control-static
+                    c:forEach(items="${domainEntity}",var="domain")
+                      span ${domain.domainName}
+              .form-group
+                .col-xs-3.control-label 智能机器人名称
+                .col-xs-4
+                  input#robot-name.form-control.input-sm(type="text",value="${csclient.robotName}")
+              .form-group
+                .col-xs-3.control-label 机器人头像
+                .col-xs-6
+                  .image-container
+                    img.cropper(src=".${csclient.robotPic}",data-change-head-src="true",data-name="robot_pic",data-url="setting/app/basicInfo/uploadRobotHead")
+              .form-group
+                .col-xs-3.control-label 默认访客头像
+                .col-xs-6
+                  .image-container
+                    img.cropper(src=".${csclient.visitorPic}",data-name="visitor_pic",data-url="setting/app/basicInfo/uploadVisitorHead")
+              each item in radioList
+                +radio(item)
+              //- .form-group
+              //-   .col-xs-3.control-label  样式选择项
+              //-   .col-xs-4
+              //-     label.page-style.radio-inline(data-type="standard")
+              //-       input(type="radio",name="client-style",value="1",data-value="${csclient.clientStyle}")
+              //-       | 标准版
+              //-     label.page-style.radio-inline(data-type="simplified")
+              //-       input(type="radio",name="client-style",value="2",data-value="${csclient.clientStyle}")
+              //-       | 精简版
+              .form-group
+                .col-xs-3.control-label 欢迎语
+                .col-xs-8.control-baseform
+                  img.control-tixing(src="images/tixing_ic_big.png")
+                  span 用户开始咨询时，系统自动将此消息作为欢迎语！
+                .col-xs-8.col-xs-offset-3.control-baseform
+                  .base-editor(data-html="${appConfiguration.guide}",data-name="guide") ${appConfiguration.guide}
+                  //- #wel-content.wel-content.form-control.input-sm ${appConfiguration.guide}
+                //.col-xs-8.col-xs-offset-3
+                //  button#edit-wel-btn.btn.btn-link.btn-sm(type="button") 编辑欢迎语
+              .form-group
+                .col-xs-3.control-label 超时提示
+                .col-xs-8.control-baseform
+                  img.control-tixing(src="images/tixing_ic_big.png")
+                  span 用户超过设置的时长未回复时，系统将自动给用户推送此消息！
+                .col-xs-8.col-xs-offset-3.control-baseform
+                  span 超时时长设置
+                  input(type="number",min="1",step="1",id="timeout-length",name="timeout-length",value="${csclient.timeoutLength}")
+                  | 秒
+                .col-xs-8.col-xs-offset-3.control-baseform
+                  .base-editor(data-html="${csclient.timeoutMsg}",data-name="timeoutMsg") ${csclient.timeoutMsg}
+                //.col-xs-3.control-label 客服界面用户空闲时间超时的提示
+                //.col-xs-8
+                //  input#timeout-msg.form-control.input-sm(type="text",value="${csclient.timeoutMsg}")
+              .form-group
+                .col-xs-3.control-label 评价提示
+                .col-xs-8.control-baseform
+                  img.control-tixing(src="images/tixing_ic_big.png")
+                  span 用户做了满意度评价之后，系统将自动给用户推送此消息！
+                .col-xs-8.col-xs-offset-3.control-baseform
+                  .base-editor(data-html="${csclient.feedbackMsg}",data-name="feedbackMsg") ${csclient.feedbackMsg}
+              .form-group
+                .col-xs-3.control-label 自动转人工
+                .col-xs-8.control-baseform
+                  img.control-tixing(src="images/tixing_ic_big.png")
+                  span 机器人连续未匹配答案次数超过设置的次数时，系统将自动转接会话至人工客服，同时给用户推送以下消息！
+                .col-xs-8.col-xs-offset-3.control-baseform
+                  span 是否开启
+                  span.status-wrap-s
+                    c:if(test='${csclient.useNoanswerHuman == 1}',var="isuse")
+                      input.s-chk(name="use-noanswer-human",type="checkbox",value="${csclient.useNoanswerHuman}",checked)
+                    c:if(test='${csclient.useNoanswerHuman == 0}',var="isuse")
+                      input.s-chk(name="use-noanswer-human",type="checkbox",value="${csclient.useNoanswerHuman}")
+                    label
+                  span 次数设置
+                  input(type="number",min="1",step="1",id="noanswer-times",name="noanswer-times",value="${csclient.noanswerTimes}")
+                  | 次
+                .col-xs-8.col-xs-offset-3.control-baseform
+                    .base-editor(data-html="${csclient.noanswerMsg}",data-name="noanswerMsg") ${csclient.noanswerMsg}
+                //.col-xs-3.control-label 客服界面用户空闲时间超时的提示
+                //.col-xs-8
+                //  input#timeout-msg.form-control.input-sm(type="text",value="${csclient.timeoutMsg}")
+              //.form-group
+              //  .col-xs-3.control-label 用户给了评分后的消息提示
+              //  .col-xs-8
+              //    input#feedback-msg.form-control.input-sm(type="text",value="${csclient.feedbackMsg}")
+              .form-group.text-center
+                button#info-save-btn.btn.btn-success(type="button") 保存
+          #cropper-wrap.cropper-wrap.col-xs-12
+            .col-xs-8
+              h6 裁剪区域
+              img#cropper-image.cropper-image(src="")
+              .crop-btn-wrap
+                button#crop-btn.btn.btn-success(type="button") 确定
+                button#cancel-btn.btn.btn-default(type="button") 取消
+            .col-xs-4
+              h6 预览区域
+              .cropper-preview.preview-lg
+              .cropper-preview.preview-md
+              .cropper-preview.preview-sm
+        #character.tab-pane.fade(rol="tabpanel")
+          form.form-horizontal.cloud-search-area
+            .form-group
+              label.cloud-input-title 关键词
+              .cloud-input-content
+                input#character-keyword.form-control.input-sm(type='text')
+            .form-group
+              +cBtngroup("character")
+          table#character-table.table.fixed-table
+        #default-answer.tab-pane.fade(rol="tabpanel")
+          form.form-horizontal.cloud-search-area
+            .form-group
+              label.cloud-input-title 关键词
+              .cloud-input-content
+                input#default-answer-keyword.form-control.input-sm(type='text')
+            .form-group
+              +cBtngroup("default-answer")
+          table#default-answer-table.table.fixed-table
+        #repeat-answer.tab-pane.fade(rol="tabpanel")
+          form.form-horizontal.cloud-search-area
+            .form-group
+              label.cloud-input-title 关键词
+              .cloud-input-content
+                input#repeat-answer-keyword.form-control.input-sm(type='text')
+            .form-group
+              +cBtngroup("repeat-answer")
+          table#repeat-answer-table.table.fixed-table
+        #sensitive-answer.tab-pane.fade(rol="tabpanel")
+          form.form-horizontal.cloud-search-area
+            .form-group
+              label.cloud-input-title 关键词
+              .cloud-input-content
+                input#sensitive-answer-keyword.form-control.input-sm(type='text')
+            .form-group
+              +cBtngroup("sensitive-answer")
+          table#sensitive-answer-table.table.fixed-table
+
+
+block modal
+  #detail-modal.modal.fade(data-backdrop='false')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title
+        .modal-body
+          form.form-horizontal
+            .form-group
+              .col-xs-2
+                .cloud-input-title 角色名称
+              .col-xs-5
+                .cloud-input-content.cloud-full
+                  input#name.form-control.input-sm(type="text")
+            .form-group
+              .col-xs-2
+                .cloud-input-title 性别
+              .col-xs-5
+                .cloud-input-content.cloud-full
+                  select#gender.form-control.input-sm
+                    option(value="3") 未知
+                    option(value="1") 男
+                    option(value="2") 女
+            .form-group
+              .col-xs-2
+                .cloud-input-title 标签
+              .col-xs-10
+                .cloud-input-content.cloud-full
+                  input#label.form-control.input-sm(type="text")
+            .form-group
+              .col-xs-2
+                .cloud-input-title 描述
+              .col-xs-10
+                .cloud-input-content.cloud-full
+                  input#description.form-control.input-sm(type="text")
+
+        .modal-footer
+          button#submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+
+  #answer-modal.modal.fade(data-backdrop='false')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title
+        .modal-body
+          form#answer-form.answer-form
+            //- .form-group.clearfix
+            //-   .cloud-input-title 优先级
+            //-   .cloud-input-content
+            //-     input#answer-num.form-control.input-sm(type="number",max="100",min="1")
+            .form-group.clearfix
+              .cloud-input-title 回复
+          #answer-editor
+        .modal-footer
+          button#editor-yes-btn.btn.btn-primary(type='button') 确定
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消

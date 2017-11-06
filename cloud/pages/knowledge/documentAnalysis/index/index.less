@@ -1,0 +1,132 @@
+#upload-doc-modal {
+    .upload-icon-wrap {
+        color: #ccc;
+        text-align: center;
+        margin: 20px 20px 15px!important;
+        padding: 5px!important;
+        font-size: 65px;
+        cursor: pointer;
+        border: 2px dotted #f1f1f1;
+        transition: .25s;
+        &:hover, &:active, &:focus {
+            color: #666;
+            border-color: #ccc;
+        }
+        .upload-icon {
+            cursor: pointer;
+        }
+    }
+    .info-wrap {
+        margin: 0 20px;
+        clear: both;
+        span.info-del {
+            float: right;
+        }
+    }
+}
+/*.up-form{
+    display:none;
+}*/
+.prop-form{
+    label{
+        width: 50px;
+    }
+}
+
+.corpus-form{
+    label{
+        font-weight: normal;
+    }
+    .edit-answer,.edit-question{
+        height: auto;
+        word-break: break-all;
+        word-wrap: break-word;
+    }
+}
+
+.question-wrap{
+    padding-right: 24px;
+    position: relative;
+    .question-action{
+        position: absolute;
+        right: 0;
+        top: 2px;
+        cursor: pointer;
+        font-size: 20px;
+    }
+}
+
+.repeat-wrap{
+    input{
+        margin-bottom: 10px;
+    }
+}
+
+.doc-opt {
+    a {
+        cursor: pointer;
+        margin-right: 10px;
+        i {
+            font-size: 20px;
+        }
+    }
+}
+
+#pre-detail-form {
+    .cloud-row {
+        padding: 50px 180px;
+        // label.control-label {
+        //     text-align: right;
+        //     padding-top: 11px;
+        //     +div {
+        //         p {
+        //             border: 1px solid #ccc;
+        //             padding: 10px 15px;
+        //             border-radius: 5px;
+        //             min-height: 41px;
+        //         }
+        //     }
+        // }
+    }
+    .btn-wrap{
+        text-align: center;
+    }
+}
+
+.edit-sidebar-content .cloud-tree-wrap{
+    flex:1;
+}
+
+.corpus-form{
+    [readonly]{
+        background-color: #fff;
+    }
+    .selected{
+        color:red;
+    }
+}
+
+#edit-sidebar .sidebar-content{
+    overflow: hidden;
+}
+.edit-doc-content{
+    strong{
+        color:red;
+    }
+}
+.edit-sidebar-content{
+    height: 100%;
+    overflow: hidden;
+    &>.col-sm-6{
+        height: 100%;
+        overflow: auto;
+    }
+}
+
+.add-question-info{
+	margin: 0;
+	color: #a94442;
+	font-size: 12px;
+	padding: 5px 10px;
+	display: none;
+}

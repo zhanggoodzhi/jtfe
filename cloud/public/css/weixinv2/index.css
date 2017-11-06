@@ -1,0 +1,28 @@
+.weixin-file-wrap{
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+.weixin-file-wrap>img{
+    width: 100px;
+    height: 100px;
+    display: block;
+}
+.weixin-file-wrap>.weixin-file{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0;
+    z-index: 100;
+}
+.imgcover{
+    width: 120px;
+    height: 120px;
+    background-image: url('../../images/upqrcode.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}

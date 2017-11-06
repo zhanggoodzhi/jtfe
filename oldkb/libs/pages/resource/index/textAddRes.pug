@@ -1,0 +1,33 @@
+include ../../../layouts/components.pug
+main.resource-detail-main
+  form.col.s7.m7.l7.add-res
+    //- .row
+    //-   .input-field.col.s10
+    //-     textarea#text-ctx.materialize-textarea(type='text',length="600",placeholder="请输入素材文本")
+    //-     label.active(for='text-ctx') 素材文本
+    .row
+      .input-field.col.s10
+        label.active(for='text-ctx') 素材文本
+        #face.faceBtn 添加表情
+        textarea#text-ctx.materialize-textarea(type='text',length="600",placeholder="请输入素材文本")
+        //-a.waves-effect.btn.btn-small.preview(title='点击在右侧预览聊天内容（含表情）') 预览
+  .col.s5.m5.l5.resource-right-gray
+    .row.text-right-sider
+        .chat-box
+          section.header
+            img(src='/images/robot.jpg')
+          section.chat-ctx
+            section.text-ctx1
+              img(src='/images/right.png',width='10px')
+            section.text-ctx2
+              p(style='white-space: pre-wrap;')
+//- div.cover-footer
+//-   +btn('保存').text-save
+//-   a.waves-effect.btn-small.text-cancel.cancel-btn.btn-flat 取消
+
+
+
+
+
+
+

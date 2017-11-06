@@ -1,0 +1,96 @@
+.RadioGroup {
+    :global(.ant-radio-group) {
+        width: 100%;
+        display: flex;
+        :global(.ant-radio-button-wrapper) {
+            flex: 1;
+            text-align: center;
+        }
+        :global(.ant-radio-button-wrapper) {
+            flex: 1;
+            text-align: center;
+        }
+    }
+}
+
+.SearchInputWrap {
+    margin-bottom: 10px;
+    :global(.ant-btn-lg) {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+    }
+    :global(.ant-input-suffix) {
+        right: 0!important;
+    }
+    :global(.ant-input:not(:last-child)) {
+        padding-right: 70px!important;
+    }
+}
+
+.Icon {
+    cursor: pointer;
+    font-size: 18px;
+    opacity: 1;
+    transition: all 0.2s;
+    margin-left: 5px;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.LanguageWrap {
+    display: flex;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    .Text {
+        word-wrap: break-word;
+        line-height: 20px;
+        display: inline-block;
+        width: 140px;
+        &.Small {
+            width: 110px;
+        }
+    }
+    ul li {
+        padding: 5px 5px;
+        cursor: pointer;
+        &:hover {
+            background: #ecf6fd;
+            .Operation {
+                display: inline-block;
+            }
+        }
+        &.Checked {
+            background: #49a9ee;
+        }
+    }
+    .Left {
+        position: relative;
+        padding-bottom: 29px;
+        flex: none;
+        border-right: 1px solid #ccc;
+        width: 170px;
+    }
+    .Right {
+        padding-bottom: 29px;
+        position: relative;
+        flex: 1;
+    }
+    .Add {
+        bottom: 0;
+        width: 100%;
+        position: absolute;
+        border-top: 1px solid #ccc;
+        padding: 5px;
+    }
+    .Item {
+        .Operation {
+            vertical-align: top;
+            display: none;
+        }
+    }
+}
+
+.Spin {
+    min-height: 50px;
+}

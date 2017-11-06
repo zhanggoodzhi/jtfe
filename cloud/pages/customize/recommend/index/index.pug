@@ -1,0 +1,64 @@
+extends /layout/main.pug
+
+block style
+  link(href='${ctx}/module/jstree/themes/default/style.min.css', rel='stylesheet', type='text/css')
+
+block script
+  script.
+    var selectData = JSON.parse('${selectmap}');
+
+block variable
+  - const href="recommend/index";
+
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+        .hidden
+          +cClassify
+        .form-group
+          label.cloud-input-title 关键词
+          .cloud-input-content
+            input#keyword.form-control.input-sm(type="text")
+        +cBtngroup
+        +cPageChange
+      table#table.table.fixed-table
+
+block modal
+  #detail-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-lg
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title
+        .modal-body
+          form.form-horizontal.modal-form
+            .hidden
+              +cClassify("modal")
+            .form-group
+              label.cloud-input-title 问题
+              .cloud-input-content
+                input#detail-keyword.form-control.input-sm(type='text', placeholder='关键词')
+            .form-group
+              button#detail-search-btn.btn.btn-primary.btn-sm(type='button') 查询
+              button#set-q-btn.btn.btn-primary.btn-sm(type='button') 设为问题
+              button#set-rq-btn.btn.btn-primary.btn-sm(type='button') 设为推荐问题
+          table#detail-table.table.fixed-table
+          form.detail-form
+            .form-group
+              label 问题
+              input#detail-q.form-control.input-sm(type="text",readonly)
+            .form-group
+              label 推荐问题
+              //- #placeholder
+              //-   input.form-control.input-sm(type="text",readonly,value="请选择推荐问题")
+              #rq-wrap
+                //- .rq-item
+                //-   input#detail-rq.form-control.input-sm(type="text",readonly)
+                //-   button.close(type="button")
+                //-     span(aria-hidden="true") &times;
+                //-     span.sr-only Close
+        .modal-footer
+          button#detail-submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 关闭

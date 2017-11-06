@@ -1,0 +1,38 @@
+extends /layout/main.pug
+
+block variable
+  - const href="weixinv2/enterprise/app/index.do";
+
+block script
+  script.
+    var agentList=JSON.parse('${output}'.replace(/wxName/g,'text'))[0].wechatCredentials;
+
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+          .form-group
+            button#addEnterpriseAppBtn.btn.btn-success.btn-sm(data-toggle="modal",type="button") 添加应用
+          +cPageChange
+      table#enterprise-app-table.table.fixed-table
+block modal
+  #addEnterpriseApp.modal.fade(tabindex="-1", role="dialog", aria-labelledby="addWechatLabel",aria-hidden="true" data-backdrop="false")
+    .modal-dialog.modal-default.modal-sm(role="document")
+      .modal-content
+        .modal-header
+          button.close(type="button", data-dismiss="modal", aria-label="Close")
+            span(aria-hidden="true") &times;
+          h4#formtitle.modal-title 添加应用
+        .modal-body
+          form.form-horizontal
+            .form-group
+              label.cloud-input-title(for="agent") 管理组
+              .cloud-input-content
+                select#agent.agentid.select.form-control(data-required="true",multiple="multiple")
+            .form-group
+              label.cloud-input-title(for="#wxEAppId") 应用ID
+              .cloud-input-content
+                input#wxEAppId.input-sm.form-control(type="text", name="wxAppId", value="${wechatCredential.wxAppId }", data-required="true",placeHolder='请输入应用ID')
+        .modal-footer
+          button#submit.btn.btn-primary(type="button") 确认
+          button#cancel.btn.btn-default(type="button", data-dismiss="modal") 取消

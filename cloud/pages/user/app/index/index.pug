@@ -1,0 +1,276 @@
+extends /layout/main.pug
+block script
+  script.
+   var appName = '${ctx}';
+   var roleJson='${roleJson}';
+block variable
+  - var title="成员列表"
+
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+        .clearfix
+          .form-group
+            label.cloud-input-title 用户名
+            .cloud-input-content.cloud-lg
+              input#name.form-control.input-sm(type='text',placeholder='请输入用户名' )
+          c:if(test="${!isVcg}")
+            .form-group
+              label.cloud-input-title 邮箱
+              .cloud-input-content.cloud-lg
+                input#email.form-control.input-sm(type='email',placeholder='请输入邮箱' )
+            .form-group
+              label.cloud-input-title 角色
+              .cloud-input-content
+                select#role.form-control.input-sm
+                  option(value='') 全部
+                  c:forEach(var='role', items='${roles}')
+                    option(value='${role.id}') ${role.name }
+        .clearfix
+          .form-group
+            button#search-btn.btn.btn-primary.btn-sm(type='button') 查询
+            c:if(test="${!isVcg}")
+              button#add-btn.btn.btn-primary.btn-sm(type='button') 添加
+          +cPageChange
+      table#user-table.table.fixed-table
+
+block modal
+  #edit-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-default
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 编辑用户
+        .modal-body
+          form.form-horizontal
+            .form-group
+              label.cloud-input-title.title-width 用户名
+              .cloud-input-content
+                c:if(test="${!isVcg}")
+                  input.name.form-control.input-sm(type='text',placeholder='请输入用户名')
+                  span.validate-msg
+                    img(src='${ctx}/images/validate/error.png')
+                    span.validate-ctx 该用户名已存在，请重新输入
+                c:if(test="${isVcg}")
+                  input.name.form-control.input-sm(type='text',disabled)
+            .form-group
+              label.cloud-input-title 角色
+              .cloud-input-content
+                c:if(test="${!isVcg}")
+                  select.role.form-control(multiple='multiple')
+                c:if(test="${isVcg}")
+                  select.role.form-control(multiple='multiple',disabled)
+            c:if(test="${!isVcg}")
+              .form-group
+                label.cloud-input-title.title-width 邮箱
+                .cloud-input-content
+                  input.email.form-control.input-sm(type='email',disabled)
+            .form-group
+              label.cloud-input-title 分配公众号
+              .cloud-input-content
+                select.wx.form-control.input-sm(placeholder='请选择公众号')
+                  option(value='') 全部
+                  c:forEach(var='wechatCredential', items='${wechatCredentials}')
+                    option(value='${wechatCredential.id }') ${wechatCredential.wxName }
+            c:if(test="${!isVcg}")
+              .form-group
+                label.cloud-input-title.title-width 手机号码
+                .cloud-input-content
+                  input.mobile.form-control.input-sm(type='tel',maxlength='11',placeholder='请输入11位手机号')
+              .form-group
+                label.cloud-input-title.title-width QQ号
+                .cloud-input-content
+                  input.qq.form-control.input-sm(type='text',placeholder='请输入QQ号')
+        .modal-footer
+          button#edit-submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  #add-modal.modal.fade(data-backdrop='false')
+        .modal-dialog.modal-default
+          .modal-content
+            .modal-header
+              button.close.add-close(type='button', data-dismiss='modal', aria-label='Close')
+                span(aria-hidden='true') &times;
+              h4.modal-title 添加用户
+            .modal-body
+              form.form-horizontal
+                .form-group
+                  label.cloud-input-title.title-width 用户名
+                  .cloud-input-content
+                    input.name.form-control.input-sm(type='text',placeholder='请输入用户名')
+                    span.validate-msg
+                      img(src='${ctx}/images/validate/error.png')
+                      span.validate-ctx 该用户名已存在，请重新输入
+                .form-group
+                  label.cloud-input-title 角色
+                  .cloud-input-content
+                    select.role.form-control(multiple='multiple')
+                c:if(test="${!isVcg}")
+                  .form-group
+                    label.cloud-input-title.title-width 邮箱
+                    .cloud-input-content
+                      input.email.form-control.input-sm(type='email',placeholder='请输入邮箱')
+                      span.validate-msg
+                        img(src='${ctx}/images/validate/error.png')
+                        span.validate-ctx 该邮箱已存在，请重新输入
+                //- +cPassword
+                .form-group
+                  label.cloud-input-title.title-width 密码
+                  .cloud-input-content.cloud-password
+                .breakLine
+                  | 以下内容为选填
+                .form-group
+                  label.cloud-input-title 分配公众号
+                  .cloud-input-content
+                    select.wx.form-control.input-sm(placeholder='请选择公众号')
+                      option(value='') 全部
+                      c:forEach(var='wechatCredential', items='${wechatCredentials}')
+                        option(value='${wechatCredential.id }') ${wechatCredential.wxName }
+                c:if(test="${!isVcg}")
+                  .form-group
+                    label.cloud-input-title.title-width 手机号码
+                    .cloud-input-content
+                      input.mobile.form-control.input-sm(type='tel',maxlength='11',placeholder='请输入11位手机号')
+                  .form-group
+                    label.cloud-input-title.title-width QQ号
+                    .cloud-input-content
+                      input.qq.form-control.input-sm(type='text',placeholder='请输入QQ号')
+            .modal-footer
+              button#register-btn.btn.btn-success(type='button') 添加
+              button.btn.btn-default.add-close(type='button', data-dismiss='modal') 取消
+//- table#usertable.table.fixed-table
+  thead
+    tr
+      th 名称
+      c:if(test="${!isVcg}")
+        th email
+        th 手机号
+      th 成员角色
+      th 微信公众号
+      th.no-link.last
+        span.nobr 操作
+  tbody
+    c:forEach(var='adminUser', items='${adminUsers}')
+      tr(id='record-${adminUser.id}')
+        c:if(test="${adminUser.nickname==''}")
+          td 未指定
+        c:if(test="${adminUser.nickname!=''}")
+          td ${adminUser.nickname }
+        c:if(test="${!isVcg}")
+          td ${adminUser.email }
+          td ${adminUser.mobile }
+        td
+          c:if(test="${!isVcg}")
+            c:forEach(var='userRoleRel', items='${userRoleRels}')
+              c:if(test='${userRoleRel.adminUser==adminUser}')
+                | ${userRoleRel.role.name }&nbsp&nbsp
+          c:if(test="${isVcg}")
+            | ${adminUser.roleName}&nbsp&nbsp
+        td.wxTd
+          c:if(test="${!isVcg}")
+            c:forEach(var='name', items='${idNames}')
+              c:if(test='${name.id==adminUser.id}')
+                c:if(test="${name.name==''}") 未指定
+                c:if(test="${name.name!=''}")
+                  c:forEach(var='wechatCredential', items='${wechatCredentials}')
+                    c:if(test='${wechatCredential.appSecret==name.name}')
+                      | ${wechatCredential.wxName }
+          c:if(test="${isVcg}")
+            c:forEach(var='name', items='${idNames}')
+              c:if(test='${name.userId==adminUser.id}')
+                c:if(test="${name.credentials.size()==0}") 未指定
+                c:if(test="${name.credentials.size()!=0}")
+                  c:forEach(var="wechatCredential",items="${wechatCredentials}")
+                    c:if(test="${wechatCredential.appSecret==name.credentials[0]}")
+                      | ${wechatCredential.wxName}
+
+        td.last
+          a.trEdit(href='javascript:;',data-id='${adminUser.id}',data-nickname='${adminUser.nickname}') 编辑
+          c:if(test="${!isVcg}")
+            a.trDel(href='javascript:;',data-id='${adminUser.id}') 删除
+//- block modal
+  #addUser.modal.fade(tabindex='-1', role='dialog', aria-labelledby='addUserLabel')
+    .modal-dialog.modal-dialog-mainform(role='document')
+      .modal-content.modal-content-mainform
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+          h4#formtitle.modal-title 注册应用成员
+        .modal-body
+          form.form-horizontal
+            c:if(test="${!isVcg}")
+              .form-group
+                input#email_input.form-control(style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/message.png') no-repeat 8px;", placeholder='邮箱', name='email', type='text', value='')
+              .form-group
+                input#mobile_input.form-control(style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/call.png') no-repeat 8px;", placeholder='手机号码', name='mobile', type='text', value='')
+            .form-group
+              input#alias_input.form-control(style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/contacts.png') no-repeat 8px;", placeholder='名称', name='alias', type='text', value='')
+            .form-group
+              input#pwd_input.form-control(style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/account.png') no-repeat 8px;", placeholder='输入密码', name='pwd', type='password', value='')
+            .form-group
+              input#repwd_input.form-control(style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/account.png') no-repeat 8px;", placeholder='再次输入密码', name='agpwd', type='password', value='')
+            .form-group
+              label.control-label(for='roleSelect_edit')
+                | 成员角色
+                span.required *
+              select#roleSelect.multiselect(multiple='multiple')
+                c:forEach(var='role', items='${roles}')
+                  option(value='${role.id }') ${role.name }
+            .checkbox
+              .form-group
+                span(style='font-size: 14px; font-family: cursive; font-weight: bold; color: #908d88') 以下是选填内容
+                span(style='color: #0095FF; cursor: pointer;') ◢
+              .submenu
+                c:if(test="${!isVcg}")
+                  .form-group
+                    input#qq_input.form-control(style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/qq.png') no-repeat 8px;", placeholder='QQ', name='qq', type='text', value='')
+                .form-group.add-select-bg
+                  select#wxAppSecret-add-input.form-control.select
+                    option
+                    c:forEach(var='wechatCredential', items='${wechatCredentials}')
+                      option(value='${wechatCredential.id }') ${wechatCredential.wxName }
+        .modal-footer
+          button.btn.btn-success#register-btn(type='button') 注册
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消
+  #editUser.modal.fade(tabindex='-1', role='dialog', aria-labelledby='addUserLabel')
+    .modal-dialog.modal-dialog-mainform-1(role='document')
+      .modal-content.modal-content-mainform-1
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+          h4#formtitle.modal-title 编辑应用成员
+        .modal-body
+          form.form-horizontal
+            .form-group
+              input#userid(name='userid', style='display: none')
+            c:if(test="${!isVcg}")
+              .form-group
+                input#email_edit.form-control(style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/message.png') no-repeat 8px;", placeholder='邮箱', name='email', type='text', value='', readonly='true')
+              .form-group
+                input#mobile_edit.form-control(style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/call.png') no-repeat 8px;", placeholder='手机', name='mobile', type='text', value='', readonly='true')
+            .form-group
+              label.control-label(for='roleSelect_edit')
+                | 成员角色
+                span.required *
+              select#roleSelect_edit.multiselect(multiple='multiple')
+                c:forEach(var='role', items='${roles}')
+                  option.edit-options(value='${role.id }', id='select-${role.id }') ${role.name }
+            .checkbox
+              .form-group
+                span(style='font-size: 14px; font-family: cursive; font-weight: bold; color: #908d88') 以下是选填内容
+                span(style='color: #0095FF; cursor: pointer;') ◢
+              .submenu
+                .form-group
+                  input#alias_edit.form-control(style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/contacts.png') no-repeat 8px;", placeholder='名称', name='alias', type='text', value='')
+                c:if(test="${!isVcg}")
+                  .form-group
+                    input#qq_edit.form-control(style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/qq.png') no-repeat 8px;", placeholder='QQ', name='qq', type='text', value='')
+              .form-group.edit-select-bg
+                select#wxAppSecret-edit-input.form-control.select(placeholder='AppSecret', name='wxAppSecret', style="height:38px;padding-left:34px;background:url('${ctx}/images/small_icon/appsecrect.png') no-repeat 8px;")
+                  option
+                  c:forEach(var='wechatCredential', items='${wechatCredentials}')
+                    option(value='${wechatCredential.id }') ${wechatCredential.wxName }
+        .modal-footer
+          button.btn.btn-success#submit(type='button') 提交
+          button.btn.btn-default(type='button' data-dismiss='modal') 取消

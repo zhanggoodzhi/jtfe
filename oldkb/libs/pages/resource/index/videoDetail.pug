@@ -1,0 +1,36 @@
+include ../../../layouts/components.pug
+
+main.resource-detail-main
+  form.col.s8.add-res
+    .row
+      .input-field.col.s8
+        input.title.required(type='text',placeholder="请输入标题")
+        label.active(for='title') 标题
+    .row
+      .input-field.col.s8
+        textarea.desc.materialize-textarea(type='text',placeholder="请输入简介")
+        label.active(for='desc') 简介
+    .row
+      .input-field.col.s8
+        +btn('上传')(id='upload-video')
+        label.active(for='cover',style='height:30px;') 视频
+    .row.cover-show
+  .col.s4.resource-right-gray
+    .row.right-sider
+      a.col.s12.m12.l12.right-innerBox
+        .card
+          .card-content
+            .title-preview 标题
+          .card-image
+          .card-content
+            .desc-preview 简介
+//- div.cover-footer
+//-   +btn('保存').save
+//-   a.waves-effect.btn-small.cancel.cancel-btn.btn-flat 取消
+
+
+
+
+
+
+

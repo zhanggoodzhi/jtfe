@@ -1,0 +1,24 @@
+.col-xs-2
+  .file-item-wrap
+    .file-item.resource-hover-item(data-id= msg.materialId)
+      .file(style='background-image:url('+smallUrl+')')
+      .name-wrap.ellipsis
+        - var names=msg.name.split('.');
+        - var type= names[names.length-1];
+        - var name=name= names.slice(0,names,length-1).join('');
+        span(data-type=type,data-name=name)=  name
+        input.input-small
+      .toolbox-wrap
+        .toolbox
+          if !nodeAccountId||(id&&nodeAccountId!==id)
+            .icon-wrap.view-edit(data-id= msg.id)
+              img(src= ctx+'/images/materialIcon/editIcon.png',title='编辑',width='20px',height='20px')
+          .icon-wrap.view-share-all(data-id= msg.id)
+            img(src= ctx+'/images/materialIcon/shareAllIcon.png',title='推送到微信矩阵',width='20px',height='20px')
+          if id!==''
+            .icon-wrap.view-share(data-id= msg.id)
+              img(src= ctx+'/images/materialIcon/shareIcon.png',title='群发',width='20px',height='20px')
+          if !nodeAccountId||(id&&nodeAccountId!==id)
+            .icon-wrap.view-delete(data-id= msg.id)
+              img(src= ctx+'/images/materialIcon/delIcon.png',title='删除',width='20px',height='20px')
+

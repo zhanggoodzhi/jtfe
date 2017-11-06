@@ -1,0 +1,141 @@
+extends /layout/main.pug
+
+block variable
+  - const href="weixinv2/index.do";
+  -
+    const ips=[
+      "59.110.168.105",
+
+      "59.110.171.3",
+
+      "60.205.186.42",
+
+      "60.205.211.83",
+
+      "218.94.189.82",
+
+      "101.200.155.22",
+
+      "123.57.58.250",
+
+      "123.56.15.6",
+
+      "123.56.23.142"
+    ].join('\n')
+
+block script
+  script.
+    var adminType=${adminType};
+    var userExtraData='${userExtraData}';
+
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+          c:if(test="${adminType!=2||userExtraData==null}")
+            .form-group
+              button#connect-btn.btn.btn-success.btn-sm(data-toggle="modal",type="button",href="#addWechat") 关联公众号
+          +cPageChange
+      table#table.table.fixed-table
+block modal
+    #addWechat.modal.fade(tabindex="-1", role="dialog", aria-labelledby="addWechatLabel",aria-hidden="true" data-backdrop="false")
+      .modal-dialog.modal-default(role="document")
+        .modal-content
+          .modal-header
+            button.close(type="button", data-dismiss="modal", aria-label="Close")
+              span(aria-hidden="true") &times;
+            h4#formtitle.modal-title 关联公众号
+          .modal-body
+            .ip-info.alert.alert-warning(role="alert")
+              p
+                i.fa.fa-exclamation-triangle
+                span 关联前请务必在该微信公众号后台的IP白名单中配置金童软件IP地址，
+                a#copy-btn(href="javascript:;",data-ips=ips) 点击此处复制IP地址
+              p
+                a(target="_blank",href="https://mp.weixin.qq.com/cgi-bin/announce?action=getannouncement&key=1495617578&version=1&lang=zh_CN&platform=2 ") 查看配置步骤
+            form.form-horizontal
+              .form-group
+                label.cloud-input-title(for="wxName") 公众号名称
+                .cloud-input-content
+                  input#wxName.input-sm.form-control(type="text", name="wxName", value="${wechatCredential.wxName }", data-required="true")
+              .form-group
+                label.cloud-input-title(for="wxAppId") 开发者ID(AppID)
+                .cloud-input-content
+                  input#wxAppId.input-sm.form-control(type="text", name="wxAppId", value="${wechatCredential.wxAppId }", data-required="true")
+              .form-group
+                label.cloud-input-title(for="appSecret") 开发者密码(AppSecret)
+                .cloud-input-content
+                  input#appSecret.input-sm.form-control(type="text", name="wxAppSecret", value="${wechatCredential.appSecret }", data-required="true")
+              .form-group
+                label.cloud-input-title 账号类型
+                .cloud-input-content
+                  #accountType.btn-group(data-toggle="buttons")
+                    label.btn.btn-sm.btn-default.active
+                      input(type="radio", name="wxType", value="1", checked="checked",data-default="true")
+                      | 服务号
+                    label.btn.btn-sm.btn-default
+                      input(type="radio", name="wxType", value="2")
+                      | 订阅号
+                    c:if(test="${!isVcg}")
+                      label.btn.btn-sm.btn-default
+                        input(type="radio", name="wxType", value="3")
+                        | 企业号
+              .form-group
+                label.cloud-input-title 同步素材
+                .cloud-input-content
+                  #sync.btn-group(data-toggle="buttons")
+                    label.btn.btn-sm.btn-default.nosync-label
+                      input(type="radio", name="sync", value="-1")
+                      | 不同步
+                    label.btn.btn-sm.btn-default.accNot
+                      input(type="radio", name="sync", value="1")
+                      | 今天
+                    label.btn.btn-sm.btn-default.accNot
+                      input(type="radio", name="sync", value="3")
+                      | 近三天
+                    label.btn.btn-sm.btn-default.accNot.week-label.active
+                      input(type="radio", name="sync", value="7",checked='checked')
+                      | 近一周
+                    label.btn.btn-sm.btn-default.accNot
+                      input(type="radio", name="sync", value="30")
+                      | 近一个月
+                    label.btn.btn-sm.btn-default
+                      input(type="radio", name="sync", value="0")
+                      | 全部
+
+              .form-group
+                label.cloud-input-title(for="description") 公众号介绍
+                .cloud-input-content
+                  input.form-control.input-sm(type="text", name="description", value="${wechatCredential.description }")
+              .form-group
+                label.cloud-input-title(for="appSecret") 公众号二维码
+                .cloud-input-content
+                  #imgcover.imgcover
+          .modal-footer
+            button#submit.btn.btn-primary(type="button") 关联
+            button#cancel.btn.btn-default(type="button", data-dismiss="modal") 取消
+    #bind-user-modal.modal.fade(data-backdrop='false')
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') &times;
+            h4.modal-title 绑定管理员
+          .modal-body
+            form.form-horizontal
+              .form-group.clearfix
+                label.control-label.word-name.col-md-3 公众号名称
+                .word-title-wrap.word-wrap.col-md-7
+                  input#input-name.form-control.input-sm(readonly,type='text',maxlength="50")
+              .form-group.clearfix
+                label.control-label.word-name.col-md-3 微信昵称
+                .word-content-wrap.word-wrap.col-md-7
+                  input#input-nickname.form-control(placeholder="请输入当前公众号管理员的微信昵称" type='text',maxlength="50")
+              .form-group.clearfix
+                label.control-label.word-name.col-md-3 微信号
+                .word-content-wrap.word-wrap.col-md-7
+                  input#input-account.form-control(placeholder="请输入当前公众号管理员的微信号" type='text',maxlength="50")
+          .modal-footer
+            button#user-save.btn.btn-success(type='button') 保存
+            button#delete-btn.btn.btn-danger(type='button') 删除
+            button.btn.btn-default(type='button', data-dismiss='modal') 取消

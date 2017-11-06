@@ -1,0 +1,131 @@
+.Card {
+    :global(.ant-card-body) {
+        padding: 5px;
+    }
+    form {
+        &>div {
+            margin: 0!important;
+        }
+    }
+    .TagWrap {
+        padding: 10px 30px;
+    }
+}
+
+.StarWrap {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .Star {
+        cursor: pointer;
+        font-size: 30px;
+        color: #e9e9e9;
+        transition: all 0.2s;
+        &:hover {
+            font-size: 40px;
+        }
+    }
+    .Lighten {
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 30px;
+        color: #f7b84f;
+        &:hover {
+            font-size: 40px;
+        }
+    }
+}
+
+.TextAreaWrap {
+    padding: 10px 0;
+    display: flex;
+    align-items: flex-end;
+    .Submit {
+        margin-left: 5px;
+        flex: none;
+    }
+}
+
+.CollectWrap {
+    text-align: center;
+}
+
+:global(.ant-card) {
+    margin: 15px 0;
+    :global(.ant-card-head) {
+        position: relative;
+        .Column {
+            width: 5px;
+            position: absolute;
+            background: #2196f3;
+            left: 0;
+            top: 15%;
+            height: 70%;
+        }
+    }
+}
+
+.Spin {
+    width: 100%;
+    min-height: 100px;
+}
+
+.CommentWrap {
+    :global(.comment-item) {
+        padding-top: 10px;
+        border-top: 1px solid #eee;
+        :global(.head-icon-wrap) {
+            float: left;
+            img {
+                width: 30px;
+                height: 30px;
+                border-radius: 15px;
+            }
+        }
+        :global(.comment-main) {
+            padding-left: 10px;
+            overflow: hidden;
+            :global(.comment-info) {
+                padding-top: 3px;
+                margin-bottom: 10px;
+                &::after {
+                    clear: both;
+                    content: '.';
+                    visibility: hidden;
+                    width: 0;
+                    height: 0;
+                    display: inline-block;
+                }
+                :global(.comment-name) {
+                    cursor: pointer;
+                    padding: 0 5px;
+                }
+                .BigTime {
+                    font-size: 17px;
+                }
+                :global(.comment-time) {
+                    margin-right: 5px;
+                    color: #999;
+                    font-style: italic;
+                    float: right;
+                }
+            }
+            :global(.comment-content) {
+                margin-bottom: 10px;
+                .Reply {
+                    margin-left: 10px;
+                }
+            }
+            :global(.reply-content-wrap) {
+                textarea {
+                    height: 30px;
+                    margin-bottom: 15px;
+                }
+                :global(.reply-sure) {
+                    margin-top: 67px;
+                }
+            }
+        }
+    }
+}

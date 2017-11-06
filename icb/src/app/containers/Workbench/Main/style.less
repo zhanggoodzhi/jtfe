@@ -1,0 +1,51 @@
+@import 'components/MenusPanel/style.less';
+.Notifications {
+    padding: 0 20px;
+}
+
+.Notification {
+    padding: 8px 0;
+    font-size: 14px;
+    position: relative;
+    border-bottom: 1px dashed #ccc;
+    padding-left: 16px;
+    &.ShouldReaded {
+        border-color: #eee;
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #D5382A;
+            left: 0;
+            top: 15.5px;
+        }
+    }
+}
+
+.ViewMore {
+    padding: 8px 0;
+    font-size: 14px;
+    text-align: right;
+}
+
+.NotificationContent {
+    display: block;
+    color: #000;
+    padding-right: 90px;
+}
+
+.NotificationTime {
+    position: absolute;
+    right: 0;
+    width: 90px;
+    text-align: right;
+    top: 9px;
+}
+
+.Empty {
+    padding: 20px 0;
+    text-align: center;
+}

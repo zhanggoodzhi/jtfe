@@ -1,0 +1,57 @@
+extends /layout/main.pug
+
+block variable
+  - const isadmin=true;
+  - const title="应用管理"
+
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+        .form-group
+          label.cloud-input-title 应用名称
+          .cloud-input-content
+            input#search-appName.form-control.input-sm(type='text')
+        .form-group
+          button#search-btn.btn.btn-primary.btn-sm(type='button') 查询
+          //- button#edit-btn.btn.btn-primary.btn-sm(type='button') 编辑
+          button#add-btn.btn.btn-primary.btn-sm(type='button') 添加
+          button#delete-btn.btn.btn-danger.btn-sm(type='button') 删除
+        +cPageChange
+      table#table.table.fixed-table
+
+block modal
+  #create-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-default
+      .modal-content
+        .modal-header
+          button.close(data-dismiss='modal', type='button', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 编辑应用
+        .modal-body
+          form.form-horizontal
+            .form-group.clearfix
+              label.cloud-input-title 应用名
+              .cloud-input-content
+                input#appName.form-control.input-sm(name='appName', type='text',placeholder='单行输入')
+            .form-group
+              label.cloud-input-title 应用简介
+              .cloud-input-content
+                input#appReadme.form-control.input-sm(name='appReadme',type='text',placeholder='单行输入')
+            .form-group
+              label.cloud-input-title 分配的用户
+              .cloud-input-content
+                select#users.form-control(multiple='multiple')
+                | 该应用始终分配给超级管理员
+            .form-group
+              label.cloud-input-title 在线图库
+              .cloud-input-content.power-choose
+                label.checkbox-inline
+                  input#noPower(type='radio', name='optionsRadiosinline', value='false')
+                  span 无权限
+                label.checkbox-inline
+                  input#withPower(type='radio', name='optionsRadiosinline', value='true')
+                  span 有权限
+        .modal-footer
+          button#create-submit-btn.btn.btn-success(type='button') 保存
+          button.btn.btn-default(data-dismiss='modal', type='button') 取消

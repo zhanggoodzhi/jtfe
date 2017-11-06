@@ -1,0 +1,15 @@
+{
+    "plugins": [
+        "lodash", [
+            "import",
+            {
+                "libraryName": "antd",
+                "style": true
+            }
+        ]
+    ],
+    "presets": [
+        "react",
+        "es2015"
+    ]
+}

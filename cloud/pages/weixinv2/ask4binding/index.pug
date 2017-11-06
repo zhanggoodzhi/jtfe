@@ -1,0 +1,20 @@
+extends /layout/main.pug
+block style
+  style.
+    .empty-container{
+      padding:100px 0;
+      text-align:center;
+    }
+
+     .empty-container p{
+       font-size:14px;
+       font-weight:bold;
+     }
+
+block mainbody
+  .x_panel
+    .x_content
+      .empty-container.cloud-minheight
+        img(src="${ctx}/images/empty.png" ,width="260px",height="260px")
+        p 哦吼，您还未关联微信公众号，关联成功后才可查看此页面内容哦~
+        a.btn.btn-success( href="/cloud/weixinv2/index.do") 立即绑定

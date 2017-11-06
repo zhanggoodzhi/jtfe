@@ -1,0 +1,109 @@
+.clearfix.news-sidebar
+  .col-xs-3.sidebar-column
+    .news-group-wrap
+      #news-group.news-group
+      #remove-news.remove-news.hidden.alert-danger
+        .remove-text 移动到此处删除
+      #add-empty-news.add-empty-news
+        span.add-icon
+        span 继续添加
+    .new-template-wrap
+      ul.nav.nav-tabs
+        //- li.active(role="presentation")
+        //-   a(href="#news-template-title",role="tab",data-toggle="tab") 标题
+        li.active(role="presentation")
+          a(href="#news-template-title",role="tab",data-toggle="tab") 标题
+        li(role="presentation")
+          a(href="#news-template-sep",role="tab",data-toggle="tab") 分隔符
+      #news-template-tab.news-template-tab.tab-content
+        #news-template-title.tab-pane.active.fade.in(role="tabpanel")
+          ul
+            li.news-template-group
+              h2 点击模板会插入到编辑器中
+              br
+            li.news-template-group
+              h2
+                span(style={
+                      'display':'inline-block',
+                      'padding': '0.3em 0.5em',
+                      'border-radius': '0.5em',
+                      'color': 'rgb(255, 255, 255)',
+                      'font-size': '1em',
+                      'box-shadow': 'rgb(165, 165, 165) 0.2em 0.2em 0.1em',
+                      'background-color': 'rgb(249, 110, 87)',
+                      'border-color': 'rgb(249, 110, 87)'
+                }) 请输入标题
+              br
+        #news-template-sep.tab-pane.fade(role="tabpanel")
+          ul
+            li.news-template-group
+              hr(style={
+                'border-top':'1px dashed #ccc',
+                'margin':'1.5rem 0',
+              })
+              br
+            li.news-template-group
+              hr(style={
+                'border-top':'1px dotted #ccc',
+                'margin':'1.5rem 0',
+              })
+              br
+            li.news-template-group
+              hr(style={
+                'border-top':'1px solid #ccc',
+                'margin':'1.5rem 0',
+              })
+              br
+            li.news-template-group
+              hr(style={
+                'border-top':'2px solid #ccc',
+                'border-bottom':'2px solid #ccc',
+                'height':'1rem',
+                'margin':'1.5rem 0',
+              })
+              br
+
+  .col-xs-6.sidebar-column
+    form
+      .form-group
+        input#news-sidebar-title.input-sm.form-control(type="text",placeholder="请输入标题，不得超过64字")
+      .form-group
+        input#news-sidebar-auth.input-sm.form-control(type="text",placeholder="请输入作者姓名")
+      .form-group
+        input#news-sidebar-url.input-sm.form-control(type="url",placeholder="请输入原文链接")
+      .form-group
+        .group-header
+          label 正文
+          //- button#toggle-type.btn.btn-sm.btn-primary.pull-right(type="button") 链接到网页
+        //- input#link-type.hidden.link-type.input-sm.form-control(type="text",placeholder="请输入正确有效的链接地址")
+        div#editor-type.editor-type
+      .form-group
+        label 封面图片
+        .select-cover-wrap
+          #news-sidebar-cover.upload-cover
+        p.text-center 推荐尺寸：900像素 * 500像素
+        #show-cover-wrap.checkbox.text-center
+          label
+            input#news-sidebar-show-cover(type="checkbox")
+            | 封面图片显示在正文中
+      .form-group
+        label 摘要
+        small 选填，如不填写会默认抓取正文前54个字
+        textarea#news-sidebar-summary.input-sm.form-control(maxlength="120",placeholder="请输入摘要内容，不超过120字")
+      .form-group.text-center
+        button#news-sidebar-save.btn.btn-success(type="button") 保存
+        button#news-sidebar-cancel.btn.btn-default(type="button") 取消
+  #news-asset-column.col-xs-3.sidebar-column
+    #news-asset-wrap.news-asset-wrap
+      ul.nav.nav-tabs.download-header(role='tablist')
+        li
+          a(href="#news-asset-pic",role="tab",data-toggle="tab") 微信图库
+      .tab-content
+        #news-asset-pic.tab-pane(role="tabpanel")
+          .btns-container.row
+            .col-sm-6.col-md-6.col-lg-6
+              button.btn.btn-primary.btn-sm.upload-img(type="button")
+                i.fa.fa-upload
+                span(style='margin-left:7px;') 上传图片
+          #news-asset-pic-contariner.news-asset-pic-contariner.clearfix
+

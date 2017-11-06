@@ -1,0 +1,29 @@
+extends /layout/main.pug
+
+block script
+  script.
+
+block mainbody
+  .x_panel
+    .x_content
+      form.form-horizontal.cloud-search-area
+        .form-group
+          label.cloud-input-title 留言ID
+          .cloud-input-content
+            input#word-id.form-control.input-sm(type='text')
+        .form-group
+          label.cloud-input-title 访客ID
+          .cloud-input-content
+            input#visitor-id.form-control.input-sm(type='text')
+
+        .form-group
+          label.cloud-input-title 状态
+          .cloud-input-content
+            select#select.form-control.input-sm(name='character')
+              option(value="-1") 全部
+              option(value='1') 已回复
+              option(value='0') 未回复
+        +cDate('留言时间')
+        .form-group
+          button#search-btn.btn.btn-primary.btn-sm(type='button') 查询
+      table#table.table.fixed-table

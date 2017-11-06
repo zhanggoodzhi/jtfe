@@ -1,0 +1,127 @@
+extends /layout/main.pug
+
+block variable
+  - const href="knowledge/material/index";
+block script
+  script.
+    <c:if test="${flag}">
+      var nodeAccountId="${userExtraData.id}";
+    </c:if>
+    var typeParam='${param.type}';
+    var idParam='${param.id}';
+    var nodeAccountId=nodeAccountId||null;
+    var appid='${appid}';
+    var userid='${userid}';
+    var kbRestUrl = '${kbRestUrl}';
+    var group='${group}';
+    var sendGroup='${group}';// 以为图文已经用了group变量，所以换个
+
+mixin accountOption
+  c:if(test="${flag}")
+    c:if(test="${userExtraData.id==item.id}")
+      option(value="${item.id}" selected) ${item.wxName}
+    c:if(test="${userExtraData.id!=item.id}")
+      option(value="${item.id}",class="without-access") ${item.wxName}
+  c:if(test="${!flag}")
+    option(value="${item.id}") ${item.wxName}
+
+mixin searchForm(name)
+  form#search-form.form-horizontal.cloud-search-area
+    .clearfix
+      .form-group.col-md-3.col-sm-3.col-lg-3
+        .input-group
+          input.form-control.input-sm(id=name+"-search-title",type='text',placeholder="请输入关键词搜索")
+          span.input-group-btn
+            button.btn.btn-default.btn-sm(id=name+"-search-btn",type='button')
+              span.glyphicon.glyphicon-search
+      .form-group.col-md-6.col-sm-6.col-lg-6
+        button.weixin-add-btn.btn.btn-primary.btn-sm(id=name+"-add-btn",type='button')
+          span 新建素材
+          block
+block mainbody
+  .x_panel
+    .x_content
+      ul#tablist.nav.nav-tabs(role="tablist")
+        li.active(role="presentation")
+          a#news-link(href="#news-tab",role="tab",data-toggle="tab") 图文消息
+        li(role="presentation")
+          a#image-link(href="#image-tab",role="tab",data-toggle="tab") 图片
+        li(role="presentation")
+          a#voice-link(href="#voice-tab",role="tab",data-toggle="tab") 语音
+        li(role="presentation")
+          a#video-link(href="#video-tab",role="tab",data-toggle="tab") 视频
+        c:if(test="${!flag||userExtraData.accountType=='3'}")
+          li(role="presentation")
+            a#link-link(href="#link-tab",role="tab",data-toggle="tab") 链接
+          li(role="presentation")
+            a#file-link(href="#file-tab",role="tab",data-toggle="tab") 文件
+          li(role="presentation")
+            a#text-link(href="#text-tab",role="tab",data-toggle="tab") 文本
+        li(role="presentation")
+          a#music-link(href="#music-tab",role="tab",data-toggle="tab") 音乐
+      #tab-content.tab-content
+        #news-tab.news-tab.tab-pane.fade.in.active(rol="tabpanel")
+          +searchForm('news')
+          //- form.news-form
+          //-    button.btn.btn-primary.btn-sm(id="news-add-btn",type='button') 新增素材
+          #news-scroll.cloud-scroll
+            #news-items-wrap.clearfix
+        #image-tab.tab-pane.fade(rol="tabpanel")
+          +searchForm('image')
+            input#image-upload-btn(type='file',accept=".jpg,.png")
+          .image-box.row
+          .preview-wrap
+            i.fa.fa-close.close-btn
+            img.image-loading(src="images/default.png")
+        #voice-tab.tab-pane.fade(rol="tabpanel")
+          +searchForm('voice')
+            input#voice-upload-btn(type='file',accept=".mid,.midi,.oga,.wav,.mp3")
+          table#voice-table.table.fixed-table
+        #video-tab.tab-pane.fade(rol="tabpanel")
+          +searchForm('video')
+          .video-box.row
+        c:if(test="${!flag||userExtraData.accountType=='3'}")
+          #link-tab.tab-pane.fade(rol="tabpanel")
+            +searchForm('link')
+            table#link-table.table.fixed-table
+          #file-tab.tab-pane.fade(rol="tabpanel")
+            +searchForm('file')
+              input#file-upload-btn(type='file',accept='*',name='input')
+            .file-box.row
+            //- .preview-wrap
+            //-   i.fa.fa-close.close-btn
+            //-   img.image-loading(src='images/default.png')
+          #text-tab.tab-pane.fade(rol="tabpanel")
+            +searchForm('text')
+            table#text-table.table.fixed-table
+          #music-tab.tab-pane.fade(rol="tabpanel")
+            +searchForm('music')
+            table#music-table.table.fixed-table
+block modal
+  #preview-news-modal.modal.fade(data-backdrop='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4.modal-title 图文消息预览
+        .modal-body
+          form.form-horizontal
+            .form-group
+              label.cloud-input-title 公众号
+              .cloud-input-content
+                select#preview-wx-account.input-sm.form-control
+                  c:forEach(var="wechatCredential", items="${wechatCredentials}")
+                    c:if(test="${!flag}")
+                      c:if(test="${wechatCredential.accountType!='3'}")
+                        option(value="${wechatCredential.id}") ${wechatCredential.wxName}
+                    c:if(test="${flag}")
+                      c:if(test!="${wechatCredential.accountType!='3' && wechatCredential.id==userExtraData.id}")
+                        option(value="${wechatCredential.id}") ${wechatCredential.wxName}
+            .form-group
+              .cloud-input-title 微信号
+              .cloud-input-content
+                input#preview-wx-user.input-sm.form-control
+        .modal-footer
+          button#preview-news-btn.btn.btn-success(type='button') 确定
+          button.btn.btn-default(type='button', data-dismiss='modal') 取消

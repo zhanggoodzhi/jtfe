@@ -1,0 +1,51 @@
+.NewsWrapper {
+    width: 300px;
+}
+
+.News {
+    position: relative;
+    padding: 10px 0;
+    cursor: pointer;
+    &:first-child {
+        .NewsCover {
+            width: 100%;
+            height: 120px;
+            float: none;
+        }
+        .NewsTitle {
+            position: absolute;
+            float: none;
+            width: 100%;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            line-height: 30px;
+            height: 30px;
+            padding: 0 10px;
+            color: #fff;
+        }
+    }
+}
+
+.News+.News {
+    border-top: 1px solid #eee;
+}
+
+.NewsTitle {
+    width: 194px;
+    height: 50px;
+    line-height: 50px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-right: 8px;
+    float: left;
+}
+
+.NewsCover {
+    float: right;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 78px;
+    height: 50px;
+}

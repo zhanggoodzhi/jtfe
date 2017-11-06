@@ -1,0 +1,20 @@
+ul#tablist.nav.nav-tabs(role="tablist")
+  each type,index in types
+    li(role="presentation",class=index===0?"active":"")
+      a(href="#"+type.name+"-tab",role="tab",data-toggle="tab",id=type.name+"-link")= type.text
+#tab-content.tab-content
+  each type,index in types
+     .tab-pane.fade(rol="tabpanel",id=type.name+"-tab",class=index===0?"active in":"")
+        .resource-box.row
+        if type.content
+          != type.content
+        else
+          .tool-wrap
+            .select-item
+              .img-wrap
+                img(src="images/knowledge_answer/choose.png")
+              span 从素材库中选择
+            .upload-item
+              .img-wrap
+                img(src="images/knowledge_answer/"+type.name+".png")
+              span= type.actionText+type.text

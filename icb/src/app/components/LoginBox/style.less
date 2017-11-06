@@ -1,0 +1,58 @@
+@box-width:320px;
+.SubmitBtn{
+    width: 100%;
+}
+.Icon{
+    font-size: 13px;
+}
+.LoginFormForgot{
+    float: right;
+}
+.RememberME{
+    user-select: none;
+}
+.LoginBox{
+    width: @box-width;
+}
+.LoginForm,.LoginType{
+    padding: 0 10px;
+}
+.LoginType{
+    margin-bottom: 24px;
+}
+.RadioGroup{
+    display: block;
+}
+.RadioButton{
+    width: 50%;
+    text-align: center;
+    &:global(.ant-radio-button-wrapper-checked){
+        color: #fff;
+        background-color: #1f90e6;
+    }
+}
+.LoginLogo{
+    text-align: center;
+    margin-bottom: 30px;
+    img{
+        max-width: @box-width;
+    }
+}
+.ButtonItem{
+    margin-bottom: 0;
+}
+.CodeItem{
+    :global(.ant-input-group-wrapper){
+        width: 100%;
+    }
+    :global(.ant-input-group-addon){
+        padding: 0;
+        background-color: transparent;
+    }
+}
+.GetCodeBtn{
+    border: none;
+    height: 30px;
+    width: 95px;
+    z-index: 1;
+}

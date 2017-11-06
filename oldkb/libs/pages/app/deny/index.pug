@@ -1,0 +1,12 @@
+extends /layouts/main.pug
+block tabs
+  +tab('提示','deny')
+block mainbody
+  .kb-tabs-content
+    #text-tab.row
+      .col.m12
+        .kb-scroll
+          .text-wrap
+            i.material-icons lock
+            span.text 抱歉，您没有权限进行该操作
+
